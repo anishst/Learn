@@ -38,6 +38,15 @@ Docker Architecture
 •possible to have multiple containers running of the same image
 •dockers default image "registry" is called Docker Hub
 
+Registries and Repositories
+
+- registry is where we store our images
+- you can host your own registry or can use dockers publich registry
+called Docker Hub
+https://hub.docker.com/
+
+
+
 Steps to Install - Windows
 ========================================
 Docker for windows - windows 10 machines; has built-in VM; preferred method
@@ -46,6 +55,13 @@ Docker Toolbox - windows version older than win10
 1.Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
 2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
 3.After install make sure to switch to Windows Containers
+
+Running a test container (busybox):
+==============================================
+docker run busybox:1.24
+docker run busybox:1.24  echo "Hello world"
+docker run busybox:1.24 ls / - shows directories in the root directory of image
+docker run -i  -t busybox:1.24 - run container in interactive mode; similiar to running cmd windows inside container
 
 Docker Network defaults
 =======================
