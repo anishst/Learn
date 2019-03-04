@@ -62,7 +62,11 @@ docker run busybox:1.24
 docker run busybox:1.24  echo "Hello world"
 docker run busybox:1.24 ls / - shows directories in the root directory of image
 docker run -i  -t busybox:1.24 - run container in interactive mode; similiar to running cmd windows inside container
+    in this mode you can type in commands just like cmd window
+    to exit type exit
+    this will shutdown the container and thus overriding any changes
 
+    
 Docker Network defaults
 =======================
 - each container connected to private virtual network bridge
