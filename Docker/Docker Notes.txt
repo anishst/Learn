@@ -10,16 +10,38 @@ https://kitematic.com/
 - NOT a VM; docker engine takes care of OS
 - Engine shares kernel with diff containers
 
-Notes:
+Hypervisor-based Virtualization
+====================================
+providers: VMWare, VirtualBox, Hyper-V
+
+Benefits:
+- cost-efficient
+- easy to scale
+Limitation:
+- kernerl resource duplication
+- application portability issue
+
+Container-based Virtualization
+================================
+Benefits:
+-runtime isolation
+-cost-efficient
+-less memory 
+-fast deployment
+-guarateed portability
+
+
+Docker Architecture
+============================================================
 • image is the application we want to run
 •container is an instance of that image running as a process
 •possible to have multiple containers running of the same image
 •dockers default image "registry" is called Docker Hub
 
-Docker Architecture
-  
 Steps to Install - Windows
 ========================================
+Docker for windows - windows 10 machines; has built-in VM; preferred method
+Docker Toolbox - windows version older than win10
 
 1.Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
 2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
