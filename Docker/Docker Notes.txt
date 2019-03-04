@@ -1,0 +1,7 @@
+Docker
+https://hub.docker.com/
+https://kitematic.com/
+
+- software container
+- NOT a VM; docker engine takes care of OS
+- Engine shares kernel with diff containers
