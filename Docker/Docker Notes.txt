@@ -19,6 +19,13 @@ Notes:
 Docker Architecture
   
 Steps to Install - Windows
+========================================
+
 1.Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
 2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
 3.After install make sure to switch to Windows Containers
+
+Docker Network defaults
+=======================
+- each container connected to private virtual network bridge
+
