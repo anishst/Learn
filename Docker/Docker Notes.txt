@@ -1,7 +1,24 @@
 Docker
+===================================
+Docker is an open platform for developing, shipping, and running applications. 
+Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
+
 https://hub.docker.com/
 https://kitematic.com/
 
 - software container
 - NOT a VM; docker engine takes care of OS
 - Engine shares kernel with diff containers
+
+Notes:
+• image is the application we want to run
+•container is an instance of that image running as a process
+•possible to have multiple containers running of the same image
+•dockers default image "registry" is called Docker Hub
+
+Docker Architecture
+  
+Steps to Install - Windows
+1.Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
+2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
+3.After install make sure to switch to Windows Containers
