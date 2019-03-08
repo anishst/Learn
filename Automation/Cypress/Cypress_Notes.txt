@@ -45,3 +45,8 @@ Sample script: test_google.specc.js
     })
 
 To remove cypress:  npm uninstall cypress
+
+Run from command line:
+==================================================================
+single test
+npm run cy:run -- --spec "cypress/integration/examples/google_test.spec.js"
