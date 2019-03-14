@@ -71,3 +71,36 @@ Docker Network defaults
 =======================
 - each container connected to private virtual network bridge
 
+
+Docker Commands
+===========================
+
+docker stop — Stops one or more containers. docker stop my_container stops one container, while docker stop $(docker ps -a -q) stops all running containers.
+
+Docker File
+=========================
+
+Sample YAML File
+
+docker-compose.yml
+
+    seleniumhub:
+        image: selenium/hub
+        ports: 
+            -4444:4444
+
+    firefoxnode:
+        image: selenium/node-firefox-debug
+        ports:
+            -4577
+        links:
+            - seleniumhub:hub
+
+    chromenode:
+        image: selenium/node-chrome-debug
+        ports:
+            -4578
+        links:
+            - seleniumhub:hub
+
+To run yaml file: docker-compose up -d
