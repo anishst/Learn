@@ -1,0 +1,35 @@
+Videos 
+==================================
+Crash course on Git/GitHub: https://www.youtube.com/watch?v=SWYqp7iY_Tc
+
+SublimeText Related
++++++++++++++++++++++++++++++++++++++++++
+packages: GitSavvy
+
+Git Commands
+Download page: https://git-scm.com/download/win
+++++++++++++++++++++++++++++++++++++++++++
+git clone <URL> -- this downloads the repository from Github
+git init
+git status -- what is different between local and Github
+
+git add <filename> - add changes
+
+**** MAKE CHANGES **********
+============================
+git status  	- lists all new or modified files to be committed
+git diff 		-shows file differences not staged
+git add [file] 	- snapshots the file in prep for versioning
+git commit  -m "added new file" - -m is for comment
+
+
+*** Sync changes *****
+git push -- pushes to Github
+git pull --downloads from Github
+git merge
+
+**** HELP **********
+============================
+git help -shows help
+
+escape /wq
