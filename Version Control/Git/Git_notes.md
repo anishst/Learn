@@ -5,7 +5,7 @@ Crash course on Git/GitHub: https://www.youtube.com/watch?v=SWYqp7iY_Tc
 SublimeText Related
 +++++++++++++++++++++++++++++++++++++++++
 packages: GitSavvy
-
+ 
 Git Commands
 Download page: https://git-scm.com/download/win
 ++++++++++++++++++++++++++++++++++++++++++
