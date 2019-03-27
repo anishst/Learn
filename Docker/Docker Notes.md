@@ -1,5 +1,4 @@
 # Docker
-===================================
 Docker is an open platform for developing, shipping, and running applications. 
 Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
 
@@ -10,8 +9,8 @@ https://kitematic.com/
 - NOT a VM; docker engine takes care of OS
 - Engine shares kernel with diff containers
 
-Hypervisor-based Virtualization
-====================================
+## Hypervisor-based Virtualization
+
 providers: VMWare, VirtualBox, Hyper-V
 
 Benefits:
@@ -21,8 +20,8 @@ Limitation:
 - kernerl resource duplication
 - application portability issue
 
-Container-based Virtualization
-================================
+## Container-based Virtualization
+
 Benefits:
 -runtime isolation
 -cost-efficient
@@ -31,8 +30,8 @@ Benefits:
 -guarateed portability
 
 
-Docker Architecture
-============================================================
+## Docker Architecture
+
 • image is the application we want to run
 •container is an instance of that image running as a process
 •possible to have multiple containers running of the same image
@@ -47,8 +46,8 @@ https://hub.docker.com/
 
 
 
-Steps to Install - Windows
-========================================
+## Steps to Install - Windows
+
 Docker for windows - windows 10 machines; has built-in VM; preferred method
 Docker Toolbox - windows version older than win10
 
@@ -56,8 +55,8 @@ Docker Toolbox - windows version older than win10
 2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
 3.After install make sure to switch to Windows Containers
 
-Running a test container (busybox):
-==============================================
+## Running a test container (busybox):
+
 docker run busybox:1.24
 docker run busybox:1.24  echo "Hello world"
 docker run busybox:1.24 ls / - shows directories in the root directory of image
@@ -77,8 +76,8 @@ Docker Commands
 
 docker stop — Stops one or more containers. docker stop my_container stops one container, while docker stop $(docker ps -a -q) stops all running containers.
 
-Docker File
-=========================
+## Docker File
+
 
 Compose is a tool for defining and running multi-container Docker applications
 Sample YAML File
