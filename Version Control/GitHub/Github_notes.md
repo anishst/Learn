@@ -1,6 +1,0 @@
-# GitHub
-
-## Github Repository
-
-
-## Teams
