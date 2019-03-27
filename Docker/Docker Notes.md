@@ -1,4 +1,4 @@
-Docker
+#Docker
 ===================================
 Docker is an open platform for developing, shipping, and running applications. 
 Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
@@ -84,7 +84,7 @@ Compose is a tool for defining and running multi-container Docker applications
 Sample YAML File
 
 docker-compose.yml
-
+```
     seleniumhub:
         image: selenium/hub
         ports: 
@@ -103,7 +103,7 @@ docker-compose.yml
             -4578
         links:
             - seleniumhub:hub
-
+```
 To run yaml file: docker-compose up -d
 
 to stop all: docker-compose stop
