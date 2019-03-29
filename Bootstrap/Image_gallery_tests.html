@@ -1,0 +1,184 @@
+<!-- https://medium.com/@lil_drop/image-gallery-example-using-bootstrap-4-flexbox-6295e1215493 -->
+<!-- https://www.youtube.com/watch?v=ob6wWyEAl7g -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    
+body{
+  width:94%;
+  margin:auto;
+  font-family: "Helvetica", Sans-serif;
+}
+
+.gallery{
+  width:100%;
+  display:flex;
+  flex-flow: row wrap;
+}
+
+.gallery__item{
+  box-sizing:border-box;
+  width:100%;
+  padding:1rem;
+  margin:1rem;
+  box-shadow: 1px 2px 40px 2px rgba(160, 160, 160, .5);
+}
+.gallery__image-caption{
+  margin-top:1rem;
+  font-size:0.95rem;
+}
+.gallery__image{
+  width:100%;
+  display:block;
+}
+
+@media only screen and (min-width: 33.75em){
+  .gallery__item{
+    flex-basis: calc(50% - 2rem);
+  }
+}
+
+@media only screen and (min-width: 48em){
+  .gallery__item{
+    flex-basis: calc((100% / 3) - 2rem);
+  }
+}
+
+@media only screen and (min-width: 60em){
+  .gallery__item{
+    flex-basis: calc((100% / 4) - 2rem);
+  }
+}
+  </style>
+</head>
+<body>
+
+<!--  Start Navigation Bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Sebastians</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">School<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="school.html">Tony</a></li>
+            <li><a href="school.html#Leah">Leah</a></li>
+            <li><a href="#">Summer Camps</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Family<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Health</a></li>
+            <li><a href="#">Family Tree</a></li>
+            <li><a href="#">Memories</a></li>
+          </ul>
+        </li>        
+        <li><a href="newhome.html">New Home</a></li>
+        <li><a href="#">Diary</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+ <!--        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        <li><a href="#">October 1 2017</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<!--  End  Navigation Bar -->
+
+<div class="container">
+  
+
+
+  <main class="site-wrapper">
+  <section class="gallery">
+    <figure class="gallery__item">
+      <img src="http://lorempixel.com/output/city-q-c-644-480-1.jpg" alt="" class="gallery__image">
+      <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure> 
+    
+    
+    <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-7.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+    <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-6.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+    <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-4.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+    
+    <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-3.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+    
+    <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-2.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+     <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-1.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+     <figure class="gallery__item">
+     <img class="gallery__image" src="http://lorempixel.com/output/city-q-c-644-480-9.jpg">  
+       <figcaption class="gallery__image-caption">
+        Lorem ipsum dolor sit amet.
+      </figcaption>
+    </figure>
+    
+  </section>
+</main>
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

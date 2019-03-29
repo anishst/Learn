@@ -1,0 +1,15 @@
+****************************************************************
+				Documentation
+****************************************************************
+http://getbootstrap.com/docs/4.0/getting-started/introduction/
+
+****************************************************************
+				Cheat sheets 
+****************************************************************
+https://bootstrapcreative.com/resources/bootstrap-4-css-classes-index/
+https://hackerthemes.com/bootstrap-cheatsheet/
+
+****************************************************************
+				Online editors to test out code 
+****************************************************************
+https://www.bootply.com/new?visual=1

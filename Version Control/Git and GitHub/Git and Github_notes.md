@@ -46,6 +46,9 @@ git commit -m "msg" . | commit all changed files; -m is for comment
 git rm [filename]  | to remove a file
 git commit rm "removing [filename]" | remove file
 git mv [filename] <source> | move file
+git pull | 2 command in one; includes fetch
+git fetch | use to get updates from remote
+
 
 ### Historical Data
 Command | Description
