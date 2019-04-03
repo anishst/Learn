@@ -7,6 +7,15 @@ Components
 - Selenium webdriver; webdriver is not installed; needs to be configured to be used
 - Selenium Grid - run test cases in multiple operating systems
 
+# Page Object Model
+
+### Resources
+- https://github.com/SeleniumHQ/selenium/blob/master/py/test/selenium/webdriver/common/driver_element_finding_tests.py
+- https://selenium-python.readthedocs.io/page-objects.html
+- https://justin.abrah.ms/python/selenium-page-object-pattern--the-key-to-maintainable-tests.html
+- http://www.seleniumframework.com/python-frameworks/implement-page-object-pattern/
+
+
 
 Why popular
 - google manages it
