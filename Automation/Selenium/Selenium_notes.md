@@ -8,6 +8,15 @@ Selenium is a popular automation testing framework that is primarily used for cr
 - **Selenium webdriver** - Selenium WebDriver framework is implemented through a browser-specific driver e.g. each browser will have its corresponding WebDriver application on which the automation testing would be performed; Selenium WebDriver directly communicates with the browser, so it does not require any separate component like the Selenium Server.
 - **Selenium Grid** - Selenium Grid is mainly used for parallel testing since it helps run tests on different machines against different browsers & operating systems, simultaneously. It does the job in conjunction with Selenium RC.
 
+# Page Object Model
+
+### Resources
+- https://github.com/SeleniumHQ/selenium/blob/master/py/test/selenium/webdriver/common/driver_element_finding_tests.py
+- https://selenium-python.readthedocs.io/page-objects.html
+- https://justin.abrah.ms/python/selenium-page-object-pattern--the-key-to-maintainable-tests.html
+- http://www.seleniumframework.com/python-frameworks/implement-page-object-pattern/
+
+
 
 ## Docs
 Main Project Site: https://www.seleniumhq.org/docs/ 
