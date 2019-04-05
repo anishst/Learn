@@ -51,7 +51,8 @@ git commit rm "removing [filename]" | remove file
 git mv [filename] <source> | move file
 git pull | 2 command in one; includes fetch
 git fetch | use to get updates from remote
-
+git rm -r --cached <foler> | removes folders already in git
+git rm --cached <file>  | removes file already in git
 
 ### Historical Data
 Command | Description
