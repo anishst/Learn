@@ -1,6 +1,10 @@
 # Python
 
 
+## Generators
+
+https://speakerd.s3.amazonaws.com/presentations/0b3d897c54204d299b25cefa92e3704a/Generators.pdf
+http://www.dabeaz.com/tutorials.html
 ## Logging
 https://docs.python.org/3/library/logging.html
 

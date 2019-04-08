@@ -54,6 +54,12 @@ git fetch | use to get updates from remote
 git rm -r --cached <foler> | removes folders already in git
 git rm --cached <file>  | removes file already in git
 
+### Cloning
+Command | Description
+-------| -------------
+git clone https://github.com/<username>/<repo>.git | clones an existing repo
+
+
 ### Historical Data
 Command | Description
 -------| -------------
