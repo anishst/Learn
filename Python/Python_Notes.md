@@ -1,5 +1,20 @@
 # Python
 
+https://docs.python.org/3/
+
+
+## Coding Style
+- Google Style Guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md
+
+## Web Resources
+
+
+- https://www.tutorialspoint.com/python3/index.htm
+- https://realpython.com/
+
+## Video Tutorials
+- Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
+- Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
 
 ## Generators
 
@@ -14,8 +29,10 @@ FORMAT = '%(asctime)s:%(levelname)s:%(message)s:%(module)s:%(filename)s:%(filena
 logging.basicConfig(filename='test.log',level=logging.INFO,format=FORMAT)
 ```
 ### Videos
-- Basics: https://www.youtube.com/watch?v=-ARI4Cz-awo&t=760s
+
+-Basics: https://www.youtube.com/watch?v=-ARI4Cz-awo&t=760s
 - Advanced: https://www.youtube.com/watch?v=jxmzY9soFXg
 
 ### Guides
 https://realpython.com/python-logging/#basic-configurations
+
