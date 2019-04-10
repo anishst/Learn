@@ -4,11 +4,12 @@ https://docs.python.org/3/
 
 
 ## Coding Style
+- PEP8 Guide: https://www.python.org/dev/peps/pep-0008/#package-and-module-names
 - Google Style Guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md
 
-## Web Resources
+## Favorite Resources
 
-
+- https://treyhunner.com/
 - https://www.tutorialspoint.com/python3/index.htm
 - https://realpython.com/
 
