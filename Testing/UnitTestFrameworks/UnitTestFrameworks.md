@@ -5,6 +5,7 @@ unit testing framework for JavaScript
 - Getting started: https://mochajs.org/#getting-started
 # Chai
 JavaScript assertion library
+- https://www.chaijs.com/
 ## Setup
 - make sure node js is installed
 - create a test folder
