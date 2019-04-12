@@ -27,6 +27,8 @@ Guide on Documenting code: https://guides.github.com/features/wikis/
 
 ## Git Commands
 
+Cheat Sheets: https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+
 ### Basics
 Command | Description
 -------| -------------
@@ -135,6 +137,8 @@ Solution: disable credential helper for the current project by executing
 ```git config credential.helper "" ```
 
 More details:https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000586190-VCS-in-PyCharm-works-with-one-Github-account-but-not-the-other
+
+https://stackoverflow.com/questions/10054318/how-do-i-provide-a-username-and-password-when-running-git-clone-gitremote-git
 
 
 push to orgs

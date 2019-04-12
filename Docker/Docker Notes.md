@@ -51,16 +51,16 @@ https://hub.docker.com/
 Docker for windows - windows 10 machines; has built-in VM; preferred method
 Docker Toolbox - windows version older than win10
 
-1.Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
-2.Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
-3.After install make sure to switch to Windows Containers
+1. Download docker https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows
+2. Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
+3. After install make sure to switch to Windows Containers
 
 ## Running a test container (busybox):
 
-docker run busybox:1.24
-docker run busybox:1.24  echo "Hello world"
-docker run busybox:1.24 ls / - shows directories in the root directory of image
-docker run -i  -t busybox:1.24 - run container in interactive mode; similiar to running cmd windows inside container
+- docker run busybox:1.24
+- docker run busybox:1.24  echo "Hello world"
+- docker run busybox:1.24 ls / - shows directories in the root - directory of image
+- docker run -i  -t busybox:1.24 - run container in interactive mode; similiar to running cmd windows inside container
     in this mode you can type in commands just like cmd window
     to exit type exit
     this will shutdown the container and thus overriding any changes
@@ -80,6 +80,7 @@ docker stop — Stops one or more containers. docker stop my_container stops
 
 
 Compose is a tool for defining and running multi-container Docker applications
+
 Sample YAML File
 
 docker-compose.yml
@@ -103,6 +104,6 @@ docker-compose.yml
         links:
             - seleniumhub:hub
 ```
-To run yaml file: docker-compose up -d
+To run yaml file: ```docker-compose up -d```
 
-to stop all: docker-compose stop
+to stop all: ```docker-compose stop```
