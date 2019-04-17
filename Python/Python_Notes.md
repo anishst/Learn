@@ -9,6 +9,8 @@ https://docs.python.org/3/
 
 ## Favorite Resources
 
+- https://lectures.quantecon.org/py/
+- https://www.pythoncheatsheet.org/
 - https://treyhunner.com/
 - https://www.tutorialspoint.com/python3/index.htm
 - https://realpython.com/
