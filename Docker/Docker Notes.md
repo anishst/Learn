@@ -32,10 +32,11 @@ Benefits:
 
 ## Docker Architecture
 
-• image is the application we want to run
-•container is an instance of that image running as a process
-•possible to have multiple containers running of the same image
-•dockers default image "registry" is called Docker Hub
+- **image** is the application we want to run
+- **container** is an instance of that image running as a process
+- possible to have multiple containers running of the same image
+- dockers default image "registry" is called Docker Hub
+- images are created using a DockerFile
 
 Registries and Repositories
 
@@ -66,17 +67,23 @@ Docker Toolbox - windows version older than win10
     this will shutdown the container and thus overriding any changes
 
     
-Docker Network defaults
-=======================
+## Docker Network defaults
+
 - each container connected to private virtual network bridge
 
 
-Docker Commands
-===========================
+## Docker Commands
+
 
 docker stop — Stops one or more containers. docker stop my_container stops one container, while docker stop $(docker ps -a -q) stops all running containers.
 
 ## Docker File
+
+```
+FROM php:7.0-apache
+COPY src/ /var/www/html
+EXPOSE port 80
+```
 
 
 Compose is a tool for defining and running multi-container Docker applications
