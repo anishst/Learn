@@ -69,6 +69,36 @@ False acceptance occurs when a biometric authentication system authenticates use
 
 IT security threats can apply to software or hardware. Software threats include the exploitation of vulnerabilities and the wide array of malware such as worms and spyware. Hardware threats apply when a malicious entity gains physical access, for example, to a handheld device or a server hard disk. Physical security threats could include employees being tricked to allow unauthorized persons into a secured area such as a server room. Identifying these threats is an important step in properly applying security policies.
 
+# Cryptography
+
+## Hash
+
+Hashes are invloved with password storage and encryption; hashes are one way; exact same size 
+
+Not being used anymore
+- MD5
+- SHA-1
+
+Current used version
+- SHA-2
+- RIPEMD
+
+HMAC - provides message integrity; each side of conversation shoudl have the same key; based on standard hashes (MD5, sha-1, etc)
+
+## Steganogrphy
+
+Hiding data within data (ex. images); Tool: Image Steganogrphy
+
+## Certificates and Trust
+
+Certificates inlcude a public key and at least one digital signature
+
+publick key infrasture (PKI) uses a hierachical structure with root servers
+## Tools
+
+- https://www.freeformatter.com/
+
+
 ## Pracice Questions
 https://www.examcompass.com/comptia/security-plus-certification/free-security-plus-practice-tests
 
