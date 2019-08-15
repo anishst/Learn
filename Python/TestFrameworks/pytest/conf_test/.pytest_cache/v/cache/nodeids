@@ -1,0 +1,4 @@
+[
+  "test_pytest_conftest_demo1.py::test_methodA",
+  "test_pytest_conftest_demo1.py::test_methodB"
+]
