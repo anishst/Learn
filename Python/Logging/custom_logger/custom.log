@@ -1,0 +1,51 @@
+02-28-2019 11:19:11 PM :INFO:custom_logger:test passed
+02-28-2019 11:19:22 PM :DEBUG:custom_logger:test failed
+02-28-2019 11:19:49 PM :DEBUG:custom_logger:test failed
+02-28-2019 11:20:28 PM :INFO:custom_logger:test passed
+02-28-2019 11:21:28 PM :ERROR:custom_logger:test failed
+NoneType: None
+02-28-2019 11:21:49 PM :ERROR:custom_logger:test failed
+02-28-2019 11:21:54 PM :ERROR:custom_logger:test failed
+02-28-2019 11:22:01 PM :INFO:custom_logger:test passed
+02-28-2019 11:22:24 PM :INFO:custom_logger:test passed
+02-28-2019 11:22:24 PM :WARNING:custom_logger:test warning
+02-28-2019 11:22:56 PM :ERROR:custom_logger:test failed
+NoneType: None
+02-28-2019 11:23:07 PM :INFO:custom_logger:test passed
+02-28-2019 11:23:07 PM :WARNING:custom_logger:test warning
+02-28-2019 11:23:29 PM :INFO:custom_logger:test passed
+02-28-2019 11:23:29 PM :WARNING:custom_logger:test warning
+02-28-2019 11:23:29 PM :INFO:custom_logger:REQ 231.3 PASSED
+02-28-2019 11:24:46 PM :INFO:custom_logger:test passed
+02-28-2019 11:24:46 PM :WARNING:custom_logger:test warning
+02-28-2019 11:24:46 PM :INFO:custom_logger:OTC 231.3 PASSED
+02-28-2019 11:24:57 PM :INFO:custom_logger:test passed
+02-28-2019 11:24:57 PM :WARNING:custom_logger:test warning
+02-28-2019 11:24:57 PM :INFO:custom_logger:OTC-231.3 PASSED
+02-28-2019 11:25:37 PM :	 INFO:custom_logger:test passed
+02-28-2019 11:25:37 PM :	 WARNING:custom_logger:test warning
+02-28-2019 11:25:37 PM :	 INFO:custom_logger:OTC-231.3 PASSED
+02-28-2019 11:26:02 PM :,INFO:custom_logger:test passed
+02-28-2019 11:26:02 PM :,WARNING:custom_logger:test warning
+02-28-2019 11:26:02 PM :,INFO:custom_logger:OTC-231.3 PASSED
+02-28-2019 11:26:39 PM :INFO:custom_logger:test passed
+02-28-2019 11:26:39 PM :WARNING:custom_logger:test warning
+02-28-2019 11:26:39 PM :INFO:custom_logger:OTC-231.3 PASSED
+02-28-2019 11:28:16 PM :test_custom_logger.py: INFO:custom_logger:test passed
+02-28-2019 11:28:16 PM :test_custom_logger.py: WARNING:custom_logger:test warning
+02-28-2019 11:28:16 PM :test_custom_logger.py: INFO:custom_logger:OTC-231.3 PASSED
+02-28-2019 11:29:01 PM : INFO:test_custom_logger.py:test passed
+02-28-2019 11:29:01 PM : WARNING:test_custom_logger.py:test warning
+02-28-2019 11:29:01 PM : INFO:test_custom_logger.py:OTC-231.3 PASSED
+02-28-2019 11:30:10 PM :INFO:test_custom_logger.py:test passed
+02-28-2019 11:30:10 PM :WARNING:test_custom_logger.py:test warning
+02-28-2019 11:30:10 PM :INFO:test_custom_logger.py:OTC-231.3 PASSED
+02-28-2019 11:33:30 PM :INFO:test_custom_logger.py: 59; test passed
+02-28-2019 11:33:30 PM :WARNING:test_custom_logger.py: 60; test warning
+02-28-2019 11:33:30 PM :INFO:test_custom_logger.py: 61; OTC-231.3 PASSED
+02-28-2019 11:34:06 PM :ERROR:test_custom_logger.py: 63; test failed
+NoneType: None
+02-28-2019 11:34:06 PM :INFO:test_custom_logger.py: 64; OTC-231.3 PASSED
+02-28-2019 11:34:37 PM :ERROR: Filename: test_custom_logger.py: Line: 63; test failed
+NoneType: None
+02-28-2019 11:34:37 PM :INFO: Filename: test_custom_logger.py: Line: 64; OTC-231.3 PASSED
