@@ -31,3 +31,7 @@ https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 ### POM
 
 A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file (pom.xml) that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
+
+## Resources
+- Official Java Tutorial: https://docs.oracle.com/javase/tutorial/index.html
+- JAR File usage: https://docs.oracle.com/javase/tutorial/deployment/jar/basicsindex.html
