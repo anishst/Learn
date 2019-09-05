@@ -35,3 +35,4 @@ A Project Object Model or POM is the fundamental unit of work in Maven. It is an
 ## Resources
 - Official Java Tutorial: https://docs.oracle.com/javase/tutorial/index.html
 - JAR File usage: https://docs.oracle.com/javase/tutorial/deployment/jar/basicsindex.html
+- Oracle Docs: https://docs.oracle.com/en/

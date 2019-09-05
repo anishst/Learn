@@ -17,6 +17,7 @@ Documentation
 - Git: https://git-scm.com/doc
 - GitHub: https://help.github.com/en
 - Fork a Repo - https://help.github.com/en/articles/fork-a-repo
+- Atlassian Guides - https://www.atlassian.com/git/tutorials/what-is-version-control
 
 GitHub Markdown
 =====================

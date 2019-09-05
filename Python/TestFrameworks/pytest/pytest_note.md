@@ -48,6 +48,15 @@ install xdist: pip install -U pytest-xdist
 py.test -n
 ```
 
+## Reporting with Allure
+
+https://docs.qameta.io/allure/#_pytest
+
+Manual Install for Windows: https://docs.qameta.io/allure/#_manual_installation
+
+## Known Issues
+- Issue#1: upgrading to pytest version above 4.0.2 causes issues
+
 ## Resources
 - PyTest Docs: https://docs.pytest.org/en/latest/getting-started.html
 - PyTest-Selenium: https://pytest-selenium.readthedocs.io/en/latest/index.html

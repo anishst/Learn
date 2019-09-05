@@ -39,3 +39,11 @@ logging.basicConfig(filename='test.log',level=logging.INFO,format=FORMAT)
 ### Guides
 https://realpython.com/python-logging/#basic-configurations
 
+
+## Build Tools
+###  pyinstaller 
+PyInstaller bundles a Python application and all its dependencies into a single package. The user can run the packaged app without installing a Python interpreter or any modules.
+- download
+- how to guide: https://realpython.com/pyinstaller-python/
+- manual: https://pyinstaller.readthedocs.io/en/stable/index.html
+- video: https://www.youtube.com/watch?v=UZX5kH72Yx4
