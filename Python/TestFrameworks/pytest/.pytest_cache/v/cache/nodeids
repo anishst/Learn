@@ -1,5 +1,4 @@
 [
-  "pytest_example_parameters_from_file.py::test_sample[user1, pwd1\\n]",
-  "pytest_example_parameters_from_file.py::test_sample[user2, pwd2\\n]",
-  "pytest_example_parameters_from_file.py::test_sample[user3, pwd3]"
+  "test_pytest_simple.py::test_1",
+  "test_pytest_simple.py::test_2"
 ]

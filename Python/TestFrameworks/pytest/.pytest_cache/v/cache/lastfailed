@@ -1,8 +1,0 @@
-{
-  "pytest_example_parameters.py": true,
-  "pytest_example_parameters.py::TestOTCnetLogin::()": true,
-  "taking_command_line_args/test_commandline_demo1.py::test_methodA": true,
-  "taking_command_line_args/test_commandline_demo1.py::test_methodB": true,
-  "taking_command_line_args/test_commandline_demo2.py::test_demo2_methodA": true,
-  "taking_command_line_args/test_commandline_demo2.py::test_demo2_methodB": true
-}
