@@ -104,6 +104,6 @@ undefined, null, bool, string, symbol, number and object
 
 ```firstName[firstName.length - 1]; // get last letter```
 ## Resources
-
+-  https://www.quackit.com/javascript/tutorial/
 - Mozilla: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 - Javascript Info: https://javascript.info/
