@@ -29,6 +29,8 @@ https://www.tutorialspoint.com/soap/soap_quick_guide.htm
 
 SoapUI supports both REST and SOAP services. 
 
+- to generate documenation: right click on webservice and use 'Generate Documentation'
+
 
 ## Postman
 Postman can be installed as a browser extension or a desktop application on Mac, Linux, and Windows
