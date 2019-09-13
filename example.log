@@ -52,3 +52,9 @@ WARNING:root:And this, too
 ERROR:custom_logger:test failed
 NoneType: None
 INFO:custom_logger:OTC-231.3 PASSED
+DEBUG:root:This message should go to the log file
+INFO:root:So should this
+WARNING:root:And this, too
+ERROR:custom_logger:test failed
+NoneType: None
+INFO:custom_logger:OTC-231.3 PASSED
