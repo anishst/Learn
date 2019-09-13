@@ -43,3 +43,11 @@ VSCode Fav Shortcuts
 Terminal setup: https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-display-settings 
 
 Guided Video on Initial setup: https://www.youtube.com/watch?v=-nh9rCzPJ20&t=2069s
+
+
+## Google Fonts
+https://fonts.google.com/
+
+Download and copy to : %windir%\fonts
+
+Guide to install: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
