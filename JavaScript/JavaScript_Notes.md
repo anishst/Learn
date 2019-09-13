@@ -2,6 +2,7 @@
 
 JavaScript is a scripting or programming language that allows you to implement complex things on web pages.
 
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript
 ### Node JS vs JavaScript
 
 JavaScript is a programming language, which runs in web browsers. Whereas Node.js is an interpreter or running environment for JavaScript which holds a lot of requiring libraries and all. Node.js is the V8 engine bundled with some libraries to do I/O and networking, so that you can use JavaScript outside of the browser, to create shell scripts, backend services or run on hardware. https://www.quora.com/What-is-the-difference-between-JavaScript-and-Node-js

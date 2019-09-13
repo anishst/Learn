@@ -2,6 +2,8 @@
 
 Node.js is an open-source server side runtime environment built on Chrome's V8 JavaScript engine. It provides an event driven, non-blocking (asynchronous) I/O and cross-platform runtime environment for building highly scalable server-side applications using JavaScript.
 
+https://nodejs.org/en/about/
+
 ## Node Web Frameworks
 
 ### express
@@ -19,10 +21,11 @@ Node.js is an open-source server side runtime environment built on Chrome's V8 J
 
 Command | Description
 -------| -------------
-```npm i packagename``` | installs packages
-```npm install packagename``` | installs packages
-```npm install -g packagename``` | installs packages globally
-```npm uninstall packagename``` | uninstalls package
+```npm i <packagename>``` | installs packages
+```npm install <packagename>``` | installs packages
+```npm update <packagename>``` | updates package
+```npm install -g <packagename>``` | installs packages globally
+```npm uninstall <packagename>``` | uninstalls package
 
 
 ## Node Packages
