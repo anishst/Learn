@@ -2,6 +2,12 @@
 node_modules
 build
 npm-debug.log
-.env
-.DS_Store
-.log
+*.env
+*.DS_Store
+*.log
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
