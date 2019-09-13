@@ -17,7 +17,22 @@ app.get('/', (req, res) => {
 // define courses route
 app.get('/api/courses', (req, res) => {
     // return array of number; in real world this could be html, db output etc.
-    res.send([1,2,4])
+    res.send([1, 2, 4])
+});
+
+//  dealing with parameters - sing params
+app.get('/api/posts/:year', (req, res) => {
+    // display id passed in
+    // example request: http://localhost:3000/api/posts/2019
+    res.send(req.params.year);
+});
+
+
+//  dealing with parameters - dual params
+app.get('/api/posts/:year/:month', (req, res) => {
+    // display id passed in
+    // example request: http://localhost:3000/api/posts/2019/3
+    res.send(req.params);
 });
 
 // use 3000 or env variable as the port number
