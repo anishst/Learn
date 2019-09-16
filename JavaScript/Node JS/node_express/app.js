@@ -3,6 +3,7 @@
 //  load express module
 const express = require('express')
 
+
 // create instance of app
 const app = express();
 
@@ -35,6 +36,12 @@ app.get('/api/posts/:year/:month', (req, res) => {
     res.send(req.params);
 });
 
+//  dealing with query string parameters
+app.get('/api/testquery', (req, res) => {
+    // display id passed in
+    // example request: http://localhost:3000/api/testquery?sortBy=Nf
+    res.send(req.query);
+});
 // use 3000 or env variable as the port number
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port} with nodemon`))
