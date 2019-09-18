@@ -97,6 +97,12 @@ string2 = "testing2"
 print('{}{:*^50}{}'.format('', string1, string2))
 print(format(5, "05d"))
 
+# add 1000 sep
+print('{:,}'.format(40000))
+# using f-string
+val = 4000000000.89
+print(f'{val:,}')
+
 for i in range(2):
     print("Binary representation of {0} is {0:b}".format(i))
 

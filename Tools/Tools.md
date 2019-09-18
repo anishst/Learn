@@ -17,6 +17,8 @@ PyCharm Fav Shortcuts
 |ctrl + shift + j |make it one line |
 |F3 |search for item |
 |ctrl + shift + U |uppercase |
+|Ctrl+Alt+T |Surround Code Fragments with Language-Specific Constructs |
+
 
 # Text Editors
 
