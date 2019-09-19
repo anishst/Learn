@@ -26,3 +26,9 @@ Workflow
 - support coding using 7? different programming lanugages; ex. Python
 - supports both desktop and web applications
 
+# Blogs
+- https://www.automatetheplanet.com/
+- https://willowtreeapps.com/ideas
+- Google Testing: https://testing.googleblog.com/
+- https://testguild.com/blog/
+- https://www.rainforestqa.com/blog/

@@ -9,6 +9,19 @@ cfg.read('ConfigFile_otcnet.ini')
 print (cfg.sections())
 
 print(cfg.get('TestCaseRelated','browser'))
-print(cfg.get('TestCaseRelated','timeout'))
+print(cfg.get('TestCaseRelated','close_browsers_before_run'))
 
 print(cfg.get('TestCaseRelated','url'))
+
+print("Looping thru values...")
+key_to_search = 'url'
+value = ""
+
+for each_section in cfg.sections():
+    for (each_key, each_val) in cfg.items(each_section):
+        if key_to_search == each_key:
+            print("found")
+            value = each_val
+            break
+            
+print(key_to_search, value)
