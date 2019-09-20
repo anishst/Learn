@@ -35,6 +35,12 @@ logging.basicConfig(filename='test.log',level=logging.INFO,format=FORMAT)
 
 -Basics: https://www.youtube.com/watch?v=-ARI4Cz-awo&t=760s
 - Advanced: https://www.youtube.com/watch?v=jxmzY9soFXg
+- Microsoft Tutorials: https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6
+
+
+## GitHub Repos:
+ - Microsoft: https://github.com/microsoft/c9-python-getting-started
+ - Corey Shafer: https://github.com/CoreyMSchafer/code_snippets
 
 ### Guides
 https://realpython.com/python-logging/#basic-configurations

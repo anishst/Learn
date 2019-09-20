@@ -1,0 +1,22 @@
+TKInter
+https://docs.python.org/3.6/library/tk.html
+https://wiki.python.org/moin/TkInter
+
+PyQt
+https://riverbankcomputing.com/software/pyqt/intro
+https://wiki.python.org/moin/PyQt
+http://doc.qt.io/
+
+kivy
+https://kivy.org/#home
+
+- good for mobile/games
+- looks different than typical application
+
+BeeWare
+https://pybee.org/
+
+- new
+
+PyGame
+https://www.pygame.org/news
