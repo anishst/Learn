@@ -46,6 +46,8 @@ Terminal setup: https://code.visualstudio.com/docs/editor/integrated-terminal#_t
 
 Guided Video on Initial setup: https://www.youtube.com/watch?v=-nh9rCzPJ20&t=2069s
 
+## Chrome
+Developer Tools Reference: https://developers.google.com/web/tools/chrome-devtools 
 
 ## Google Fonts
 https://fonts.google.com/
