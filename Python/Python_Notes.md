@@ -14,6 +14,8 @@ https://docs.python.org/3/
 - https://treyhunner.com/
 - https://www.tutorialspoint.com/python3/index.htm
 - https://realpython.com/
+- Data Science
+    - https://datatofish.com/
 
 ## Video Tutorials
 - Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7

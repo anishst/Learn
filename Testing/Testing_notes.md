@@ -16,6 +16,10 @@ Workflow
  - green - write passing unit test
  - refactor - clean up unit test
 
+## 508 Compliance Testing
+
+http://www.w3.org/TR/WCAG20/
+
 ## Automation
 
 ### Tools
