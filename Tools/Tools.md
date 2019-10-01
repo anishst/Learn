@@ -55,3 +55,11 @@ https://fonts.google.com/
 Download and copy to : %windir%\fonts
 
 Guide to install: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+
+## Screen Cast Software
+- Free Cam 8: https://www.freescreenrecording.com/
+- Icecream Screen Recorder: https://icecreamapps.com/Screen-Recor...
+- Debut Video Capture Software: https://www.nchsoftware.com/capture
+- Flashback Express: https://www.flashbackrecorder.com
+- OBS Studio: https://obsproject.com/

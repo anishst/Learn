@@ -1,0 +1,37 @@
+
+******************************************************
+			GIT/GITHUB
+******************************************************
+Eclipse plugin for Github
+
+Marketplace > Github > EGit
+
+latest version already has git itegrated
+
+
+******************************************************
+			MAVEN
+******************************************************
+Maven - used for managing JARS
+- Need internet connection
+- provide jar version in xml file
+
+Dowloand plugin for Eclipse if needed; Oxygen version already has it
+Plugin Name: Maven Integration for Eclipse
+You can verify by going to Windows > Preferences  Maven
+
+Archetype
+use quickstart
+
+Groupid = package name
+com.org.learningMaven
+
+Artifcat Id = project name
+myMavenProject
+
+
+Maven selenium 
+http://www.seleniumhq.org/download/maven.jsp
+
+Maven files location
+C:\Users\532975\.m2

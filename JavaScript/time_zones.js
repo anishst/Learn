@@ -13,5 +13,5 @@ usaTime = new Date(usaTime);
 console.log('USA time: ' + usaTime.toLocaleString())
 
 var indiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
-indiaTime = new Date(indiaTime);
+// indiaTime = new Date(indiaTime);
 console.log('India time: ' + indiaTime.toLocaleString())

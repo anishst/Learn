@@ -1,0 +1,7 @@
+Show subtasks in filters
+
+issuetype in subtaskIssueTypes() and assignee = currentUser()
+
+https://jira.boozallencsn.com/issues/?jql=issuetype%20in%20subtaskIssueTypes()
+
+https://stackoverflow.com/questions/14649036/jira-quick-filter-to-show-all-task-with-subtasks-assigned-to-current-user
