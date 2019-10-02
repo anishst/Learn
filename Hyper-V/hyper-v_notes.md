@@ -17,6 +17,9 @@ Hyper-V specifically provides hardware virtualization.
 
 ```C:\Windows\System32\vmconnect.exe localhost "<nameofvm>"```
 
+## VHD location
+
+```C:\Users\Public\Documents\Hyper-V\Virtual hard disks```
 
 ## Devloper Images
 - https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
