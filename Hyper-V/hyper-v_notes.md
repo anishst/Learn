@@ -8,9 +8,14 @@ Hyper-V specifically provides hardware virtualization.
 ## Steps to give internet access
 1. Create a new external switch using Virtual Switch Manager and assign to the VM
 
+## Hyper-V setup Pre-requisites
+
+- enable VT in BIOS
+- enable all Hyper-V windows features
+
 ## Shortcut
 
-```C:\Windows\System32\vmconnect.exe localhost "WinDev1903Eval"```
+```C:\Windows\System32\vmconnect.exe localhost "<nameofvm>"```
 
 
 ## Devloper Images
@@ -21,7 +26,6 @@ Hyper-V specifically provides hardware virtualization.
 
 - fail to add v-switch: https://support.microsoft.com/en-us/help/3101106/you-cannot-create-a-hyper-v-virtual-switch-on-64-bit-versions-of-windo
 - Screen blank: https://serverfault.com/questions/220437/remote-desktop-connection-screen-is-totally-black-but-server-is-working-perfectl
-
 
 to try:
 ps commands
