@@ -26,7 +26,7 @@ conftest.py is a special named file that pytest looks for when running tests.
 |```pyest somepath``` | run all tests below somepath|
 |```ptest test_module.py::test_method``` | run certain method|
 |```pytest -v -m cardtests```| runs tests with 'cardtests' as marker|
-| ```pytest pytest-example.py --driver Chrome --html=report.html```| Example Code to run a test and output results to html format|
+| ```pytest pytest-example.py --driver Chrome --html=report.html```| Example Code to run a test and output results to html format; note you need to install ```pytest-html``` package for this to work|
 |```pytest pytest-otcnet.py --driver=Ie -v```| Show more details using -v flag
 | ```pytest pytest-otcnet.py -k Demo --driver=Ie -v``` | Running tests with  certain name by providing the -k flag and then keyword; example below runs test case fucntions with 'Demo' in the name: |
 |```pytest pytest_example_custom_markers.py -m mac -v``` | Skip tests by using custom marker tags by providing -m flag following by flagname; example runs test tagged with 'mac' flagname. To use negation: ```pytest pytest_example_custom_markers.py -m "not mac"  -v```|
