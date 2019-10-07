@@ -73,9 +73,14 @@ Docker Toolbox - windows version older than win10
 
 
 ## Docker Commands
-
-
-docker stop — Stops one or more containers. docker stop my_container stops one container, while docker stop $(docker ps -a -q) stops all running containers.
+|Command | Description 
+|--------|--------------------|
+|docker ps -aq| list all containers
+|docker stop | Stops one or more containers|
+|docker stop $(docker ps -a -q)  |stops all running containers. |
+|docker stop *my_container*|stops one container name *my_container* |
+|docker rm $(docker ps -aq) | Remove all containers. |
+|docker rmi $(docker images -q) | Remove all images |
 
 ## Docker File
 

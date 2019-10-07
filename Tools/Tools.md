@@ -15,6 +15,7 @@ PyCharm Fav Shortcuts
 |ctrl + alt + l |formats code |
 |alt + j |selects text |
 |ctrl + shift + j |make it one line |
+| shift + alt + up down | move line up and down|
 |F3 |search for item |
 |ctrl + shift + U |uppercase |
 |Ctrl+Alt+T |Surround Code Fragments with Language-Specific Constructs |
@@ -30,6 +31,7 @@ VSCode Fav Shortcuts
 |--------|--------------------|
 |ctrl + shift + p |command pallete |
 |ctrl + f2 |Select all occurrences of current word |
+|Alt+Enter| Select all occurrences of find match|
 |ctrl + L |select current line |
 | Shit + Alt + drag mouse|Column (box) selection |
 | Shit + Alt + arrow key|Column (box) selection |
@@ -37,6 +39,7 @@ VSCode Fav Shortcuts
 |Ctrl + Enter| insert line below |
 |Ctrl + Shift + Enter| insert line above |
 |shift + alt + f |autoformat |
+
 
 ### Themes
 - pre-dawn or Ayu for themese
