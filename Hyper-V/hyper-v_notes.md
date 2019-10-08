@@ -29,6 +29,7 @@ Hyper-V specifically provides hardware virtualization.
 
 - fail to add v-switch: https://support.microsoft.com/en-us/help/3101106/you-cannot-create-a-hyper-v-virtual-switch-on-64-bit-versions-of-windo
 - Screen blank: https://serverfault.com/questions/220437/remote-desktop-connection-screen-is-totally-black-but-server-is-working-perfectl
+- unable to remote into Ubuntu - Disabling Enhanced Session Mode in the Hyper-V settings screen worked perfectly for me.
 
 to try:
 ps commands
