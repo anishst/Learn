@@ -56,6 +56,19 @@ Docker Toolbox - windows version older than win10
 2. Download URL: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
 3. After install make sure to switch to Windows Containers
 
+
+ Steps to Install - Ubuntu
+
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+get
+
+Different ways to install; easy one is to Install using the convenience script
+
+Issue: Get error "docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.35/containers/create: dial unix /var/run/docker.sock: connect: permission denied.See 'docker run --help'"
+
+Solution: add user to docker group ```sudo usermod -aG docker $USER```
+reboot machine. Test by doing ```docker run hello-world```
+
 ## Running a test container (busybox):
 
 - docker run busybox:1.24
@@ -73,14 +86,27 @@ Docker Toolbox - windows version older than win10
 
 
 ## Docker Commands
+
+https://docs.docker.com/engine/reference/run/
+
 |Command | Description 
 |--------|--------------------|
-|docker ps -aq| list all containers
-|docker stop | Stops one or more containers|
+|docker run *image*| runs the images; if not downloaed it will download |
+|docker ps | lists all running containers|
+|docker ps -a | lists all containers|
+|docker ps -aq| list all container ids |do
+|docker images| shows images|
+|docker stop *containerid/name* | Stops one or more containers|
 |docker stop $(docker ps -a -q)  |stops all running containers. |
 |docker stop *my_container*|stops one container name *my_container* |
-|docker rm $(docker ps -aq) | Remove all containers. |
+|docker rm $(docker ps -a -q)| remove all stopped containers|
+|docker rmi -f *image_id*| force deletion of image|
 |docker rmi $(docker images -q) | Remove all images |
+
+## Launch Common Apps
+
+- ```docker container run --publish 80:80 nginx``` - run nginx web server in attach mode
+- ```docker container run --publish 80:80 nginx``` - un nginx web server in detached mode
 
 ## Docker File
 
@@ -119,3 +145,14 @@ docker-compose.yml
 To run yaml file: ```docker-compose up -d```
 
 to stop all: ```docker-compose stop```
+## Common Containers and setup
+
+### Jenkins
+ 
+https://github.com/jenkinsci/docker/blob/master/README.md
+
+
+
+## Troubleshooting
+
+- https://success.docker.com/article/docker-for-windows-fails-with-a-daemon-not-running-message
