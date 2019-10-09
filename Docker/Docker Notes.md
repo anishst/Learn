@@ -102,6 +102,11 @@ https://docs.docker.com/engine/reference/run/
 |docker rm $(docker ps -a -q)| remove all stopped containers|
 |docker rmi -f *image_id*| force deletion of image|
 |docker rmi $(docker images -q) | Remove all images |
+| **Publishing Images**||
+|docker login| to login to docker account|
+|docker push *accountname/imagename*| pushes image to docker hub|
+| **Get environment variables**||
+|docker inspect *containername*| check under config > env section to get variales|
 
 ## Launch Common Apps
 
