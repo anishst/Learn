@@ -45,8 +45,24 @@ Registries and Repositories
 called Docker Hub
 https://hub.docker.com/
 
+## Docker Engine
 
+- Docker CLI - command line interface
+- REST API
+- Docker Deamon
+- namespaces are used to isolate containers
 
+## Docker Storage
+
+ - /var/lib/docker
+ - C:\ProgramData\DockerDesktop
+ - C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines
+ - C:\Users\Public\Documents\Hyper-V\Virtual hard disks
+ - laytered architecture - saves disk space
+ - volumes
+  - 2 types of mounting
+    - volume monting - from volume folder
+    - bind mounting - location from host
 ## Steps to Install - Windows
 
 Docker for windows - windows 10 machines; has built-in VM; preferred method
@@ -57,7 +73,7 @@ Docker Toolbox - windows version older than win10
 3. After install make sure to switch to Windows Containers
 
 
- Steps to Install - Ubuntu
+ ## Steps to Install - Ubuntu
 
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 get
@@ -91,6 +107,7 @@ https://docs.docker.com/engine/reference/run/
 
 |Command | Description 
 |--------|--------------------|
+|docker info| details about docker install
 |docker run *image*| runs the images; if not downloaed it will download |
 |docker ps | lists all running containers|
 |docker ps -a | lists all containers|
@@ -107,11 +124,17 @@ https://docs.docker.com/engine/reference/run/
 |docker push *accountname/imagename*| pushes image to docker hub|
 | **Get environment variables**||
 |docker inspect *containername*| check under config > env section to get variales|
-
+| **Monitoring related**||
+|docker exec *containername* ps -eaf| shows all processes running|
+| ps -eaf | show processes ids on the host|
+| **VLOUMES**||
+| docker volume create *data_volume_name* | creates a new volume under /var/lob/docker/volumes/*data_volume_name*|
+| docker run -v *data_volume_name*:/var/lib/mysql mysql
 ## Launch Common Apps
 
 - ```docker container run --publish 80:80 nginx``` - run nginx web server in attach mode
 - ```docker container run --publish 80:80 nginx``` - un nginx web server in detached mode
+
 
 ## Docker File
 
@@ -121,6 +144,8 @@ COPY src/ /var/www/html
 EXPOSE port 80
 ```
 
+
+## Docker Compose
 
 Compose is a tool for defining and running multi-container Docker applications
 
@@ -154,7 +179,7 @@ to stop all: ```docker-compose stop```
 
 ### Jenkins
  
-https://github.com/jenkinsci/docker/blob/master/README.md
+https://github.com/jenkinsci/docker/blobmaster/README.md
 
 
 
