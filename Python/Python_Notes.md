@@ -9,6 +9,7 @@ https://docs.python.org/3/
 
 ## Favorite Resources
 
+- quick reference: https://github.com/justmarkham/python-reference
 - https://lectures.quantecon.org/py/
 - https://www.pythoncheatsheet.org/
 - https://treyhunner.com/
@@ -20,6 +21,10 @@ https://docs.python.org/3/
 ## Video Tutorials
 - Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
 - Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
+
+## Udemy Trainings
+ - https://www.udemy.com/course/data-analysis-with-pandas/
+    - files - https://github.com/sivabalanb/Data-Analysis-with-Pandas-and-Python 
 
 ## Generators
 
