@@ -5,4 +5,6 @@ def test_demo2_methodA(setup, oneTimeSetup):
 
 def test_demo2_methodB(setup, oneTimeSetup):
 	print("Running demo2 conftest Method B")
+	import time
+	time.sleep(3)
 

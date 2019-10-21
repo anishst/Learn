@@ -30,6 +30,8 @@ conftest.py is a special named file that pytest looks for when running tests.
 |```pytest pytest-otcnet.py --driver=Ie -v```| Show more details using -v flag
 | ```pytest pytest-otcnet.py -k Demo --driver=Ie -v``` | Running tests with  certain name by providing the -k flag and then keyword; example below runs test case fucntions with 'Demo' in the name: |
 |```pytest pytest_example_custom_markers.py -m mac -v``` | Skip tests by using custom marker tags by providing -m flag following by flagname; example runs test tagged with 'mac' flagname. To use negation: ```pytest pytest_example_custom_markers.py -m "not mac"  -v```|
+|```pytest -rfp```| shows all passed failed tests|
+| ```pytest -v --result-log=test.txt```| pipe run results to a file
 
 ## Using Fixtures
 | Fixture Usage | Description |
@@ -40,6 +42,8 @@ conftest.py is a special named file that pytest looks for when running tests.
 | ```    @pytest.mark.parametrize("param_var_name", ['param1',                       'param2',                                 'param3'])```| Parameter fixture - single parameter |
 |```@pytest.mark.parametrize("msg_number,display_number, msg_title, msg_content", [(0, 1, 'Test Msg1', 'Test Msg Content 1'),(3, 4, 'Test Msg4', 'Test Msg Content 4')])```|multiple parameters|
 |```@pytest.mark.usefixtures("one_time_setups")class TestStability():```| Class level fixture |
+
+
 
 ## Running Tests in Parallel
 
