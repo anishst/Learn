@@ -22,7 +22,9 @@ conftest.py is a special named file that pytest looks for when running tests.
 
 | Command | Description |
 | -------- | -------- |
-|```pytest test_mode.py```| run tests in module|
+|```pytest --collect-only --quiet```| get list of tests; don't run|
+|```pytest --collect-only -qq```|When used twice (or more), --quiet will print the amount of tests per module:|
+|```pytest <modulename>.py```| run tests in module|
 |```pyest somepath``` | run all tests below somepath|
 |```ptest test_module.py::test_method``` | run certain method|
 |```pytest -v -m cardtests```| runs tests with 'cardtests' as marker|
