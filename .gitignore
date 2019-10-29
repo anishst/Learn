@@ -6,6 +6,8 @@ npm-debug.log
 *.DS_Store
 *.log
 
+# pycharm folders to ignore
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
