@@ -22,6 +22,18 @@ https://docs.python.org/3/
 - Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
 - Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
 
+## PIP Commands
+
+|Shortcut | Description 
+|--------|--------------------|
+|pip install package |install package |
+| pip install -U package| upgrade package |
+|pip list | show list of installed packages |
+|pip list -o /  pip list --outdated | find outdated packages |
+| pip uninstall package| uninstall pkg|
+| pip freeze > requirements.txt| send packages to a output file |
+|pip install -r requirements.txt | use req files to install|
+
 ## Udemy Trainings
  - https://www.udemy.com/course/data-analysis-with-pandas/
     - files - https://github.com/sivabalanb/Data-Analysis-with-Pandas-and-Python 
