@@ -5,14 +5,12 @@
 
 import pandas as pd
 import xml.etree.ElementTree as ET
-# import xlrd
-import os
-import sys
+import xlrd, sys,os
 import datetime
 from lxml import objectify
 
-print('Python version ' + sys.version)
-print('Pandas version ' + pd.__version__)
+# print('Python version ' + sys.version)
+# print('Pandas version ' + pd.__version__)
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #  read csv files
