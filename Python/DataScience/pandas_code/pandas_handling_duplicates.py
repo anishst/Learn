@@ -2,24 +2,13 @@
 import pandas as pd
 import os, sys
 
-
-# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# reading from Excel
-# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#  http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_excel.html
-xls = pd.ExcelFile(r"CIRAQuery.xlsx")
-df =  xls.parse('Sheet1', columns=['BATCHID','IRN'],index_col=None)
-print(df.head())
-print(df['BATCHID'].describe())
-
-# print(testdf.duplicated()) #Identify which observations are duplicates #http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.duplicated.html
-testdf = df.drop_duplicates() #Drop duplicates  drop_duplicates(['ID'])
-print(df.duplicated())
-print(testdf)
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  EXPORT options 
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# df.to_excel("TestSetValidation.xlsx", columns=['ID','Manual Test Script'], index=False) 	#Excel   http://pandas.pydata.org/pandas-docs/version/0.15.1/generated/pandas.DataFrame.to_excel.html
+#  read file
+xls = pd.ExcelFile(r"duplicates.xlsx")
+df =  xls.parse('Sheet1', columns=['IRN','BATCHID','ACCOUNT_NUMBER', 'RTN'],index_col=None)
+# Remove dupes
+df  = df.drop_duplicates() #Drop duplicates  drop_duplicates(['ID'])
+#  save to new file
+df.to_excel("duplicates_removed.xlsx", columns=['IRN','BATCHID','ACCOUNT_NUMBER', 'RTN'], index=False) 
 #Open excel
-os.system('start excel.exe "%s\\CIRAQuery.xlsx"' % (sys.path[0], ))
+os.system('start excel.exe "%s\\duplicates_removed.xlsx"' % (sys.path[0], ))
 
