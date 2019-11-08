@@ -67,9 +67,10 @@ git clone https://github.com/<username>/<repo>.git | clones an existing repo
 ### Historical Data
 Command | Description
 -------| -------------
-git log     | shows changes
-git help log | more info on logs
-git log --oneline --graph --decorate --color  | better graphical view
+git log     | shows changes|
+git help log | more info on logs|
+git log --oneline --graph --decorate --color  | better graphical view|
+| git blame *filename*| who changed what and when in *filename*|
 
 ### Setting Usernames globally
 Command | Description
