@@ -10,9 +10,17 @@ https://www.ibm.com/support/knowledgecenter/en/SSMKHH_9.0.0/com.ibm.etools.mft.d
 ### Free Web services for paractice
 - http://www.dneonline.com/calculator.asmx?WSDL
 
-## API Types
+## HTTP Verbs
 
-### SOAP
+- GET - retreive something; ex. GET item/1
+- POST - rcvd data and use it; ex. POST/item
+- PUT - make sure something is there; ex. PUT/item
+- DELETE - remove something; ex. DELETE/item/1
+
+
+# API Types
+
+## SOAP
 SOAP (Simple Object Access Protocol) is an XML message format used in Web service interactions
 - WSDL is an XML notation for describing a web service
  - Latest version of SOAP is 1.2
@@ -20,7 +28,20 @@ SOAP (Simple Object Access Protocol) is an XML message format used in Web servic
 https://www.tutorialspoint.com/soap/soap_quick_guide.htm
 
 
-### REST
+## REST
+
+Representational state transfer (REST) is a software architectural style that defines a set of constraints to be used for creating Web services
+
+### REST API
+
+- returns a resource
+- stateless; one request cannot depend on any other requests; server only knows aout current request
+
+## Videos
+ - https://bah.udemy.com/course/rest-api-flask-and-python/learn/lecture/5993706#overview
+
+## Git Repos
+- https://github.com/schoolofcode-me/rest-api-sections
 
 
 # API Test Tools
