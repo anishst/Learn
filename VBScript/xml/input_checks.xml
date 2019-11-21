@@ -1,0 +1,25 @@
+<checkdata>
+	<scannerserialnumber>5703523</scannerserialnumber>
+	<make>Panini</make>
+	<model>Panini</model>
+	<firmwareversion>16911104</firmwareversion>
+	<checktype>1</checktype>
+	<micr>T101108319T    777780880 1001</micr>
+	<micrlinestatus>0</micrlinestatus>
+	<accountnumber>777780880</accountnumber>
+	<banknumber>101108319</banknumber>
+	<checknumber>1001</checknumber>
+	<transitnumber>101108319</transitnumber>
+	<imagesize>1</imagesize>
+	<imagequality>1</imagequality>
+	<countrycode>1</countrycode>
+	<serialnumber/>
+	<checkamount/>
+	<irn/>
+	<datetime/>
+	<capturetime/>
+	<epc/>
+	<imagequalityresult/>
+	<imagequalityreport/>
+	<base64checkimage/>
+</checkdata>

@@ -54,11 +54,24 @@ SoapUI supports both REST and SOAP services.
 
 
 ## Postman
+
+API Testing tool
+
 Postman can be installed as a browser extension or a desktop application on Mac, Linux, and Windows
 
 Login/Download: https://www.getpostman.com/
 
 Sample Request APIs: https://reqres.in/
+
+### Shortcuts
+
+```CTRL + ALT + C``` bring up console window
+### Guides:
+- Learning Center: https://learning.getpostman.com/
+- Authorizing Requests:https://learning.getpostman.com/docs/postman/sending-api-requests/authorization/
+- Adding Certificates: https://learning.getpostman.com/docs/postman/sending-api-requests/certificates/
+- Soap Requests: https://blog.getpostman.com/2017/11/18/postman-makes-soap-requests-too/
+- Certs: https://learning.getpostman.com/docs/postman/sending-api-requests/certificates/
 
 ### Collections
 Group of API requests

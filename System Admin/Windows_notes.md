@@ -1,5 +1,10 @@
 # Windows System Admin
 
+## Common Task commands
+
+- ```mstsc``` - remote desktop
+- ```compmgmt.msc``` - computer management
+
 ## Package Managers
 
 ### Chocolatey
