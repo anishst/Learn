@@ -90,6 +90,10 @@ console.log(pm.variables.get("NAME"))
 ```
 use SNIPPETS to save time
 
+### Chrome Extensions
+
+- **Wizdler** Parses the WSDL files and generates SOAP messages for you.
+https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififiakb?hl=en
 
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/
