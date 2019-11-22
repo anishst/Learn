@@ -18,7 +18,24 @@ Workflow
 
 ## 508 Compliance Testing
 
-http://www.w3.org/TR/WCAG20/
+Section 508 requires that all website content be accessible to people with disabilities.
+
+It is the law:
+Section 508 of the Rehabilitation Act (29 U.S.C. 794d), as amended by the Workforce Investment Act of 1998 (P.L. 105-220), August 7, 1998.
+
+Beginning January, 2018, new ADA regulations for web accessibility will go into effect. While organizations cannot be 100% compliant, there are steps that they can take to ensure their sites are accessible to those with disabilities.
+
+### Some Checks to do:
+- Review the Website Content Accessibility Guidelines (WCAG 2.0). These guidelines offer recommendations on how to make your website accessible; https://www.w3.org/WAI/standards-guidelines/wcag/
+- Conduct an audit of your site using a WAVE Web Accessibility Tool. Google Chrome’s WAVE Tool is a great tool to look for accessible issues, including missing alt tags, styles, etc.; https://wave.webaim.org/
+- Make sure your images have descriptive alt tags. Alt tags are used by screen readers, players, and voiceovers to describe elements on a website to users
+- Keep inputs and forms accessible
+- Enable keyboard navigation
+
+### Checklists
+- WebAIM Checklist: https://webaim.org/standards/wcag/checklist
+- ADA Checklist: https://www.ada.gov/pcatoolkit/chap5chklist.htm
+- How to Meet WCAG: https://www.w3.org/WAI/WCAG21/quickref/?versions=2.0
 
 ## Automation
 
