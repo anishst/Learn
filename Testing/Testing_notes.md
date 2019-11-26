@@ -31,12 +31,16 @@ Beginning January, 2018, new ADA regulations for web accessibility will go into 
 - Make sure your images have descriptive alt tags. Alt tags are used by screen readers, players, and voiceovers to describe elements on a website to users
 - Keep inputs and forms accessible
 - Enable keyboard navigation
+- see this article for more tips: https://karlgroves.com/2018/05/25/automated-lies-with-one-line-of-code
 
 ### Checklists
 - WebAIM Checklist: https://webaim.org/standards/wcag/checklist
 - ADA Checklist: https://www.ada.gov/pcatoolkit/chap5chklist.htm
 - How to Meet WCAG: https://www.w3.org/WAI/WCAG21/quickref/?versions=2.0
 
+## Blogs
+
+- https://karlgroves.com/category/accessibility-testing
 ## Automation
 
 ### Tools
