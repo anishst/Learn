@@ -8,7 +8,7 @@ xmlDoc.load xml_file
 Set check_type_nodes = xmlDoc.selectNodes("//checkdata/checktype")
 
 For Each node in check_type_nodes:
-    node.Text = "2"
+    node.Text = "1"
 Next
 
 'Save the xml document with the new settings.
