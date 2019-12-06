@@ -72,3 +72,75 @@ PyInstaller bundles a Python application and all its dependencies into a single 
 - how to guide: https://realpython.com/pyinstaller-python/
 - manual: https://pyinstaller.readthedocs.io/en/stable/index.html
 - video: https://www.youtube.com/watch?v=UZX5kH72Yx4
+
+## Flask
+Flask main: https://flask.palletsprojects.com/en/1.1.x/quickstart/
+
+Flask Cheat sheet: https://s3.us-east-2.amazonaws.com/prettyprinted/flask_cheatsheet.pdf
+
+Videos: https://www.youtube.com/watch?v=qla-KaMF-2Q&t=945s
+
+Boostrap usage:
+https://github.com/mbr/flask-bootstrap
+
+Blogs
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+## SQL Alchemy
+How to Install: ```pip install flask-sqlalchemy```
+
+sample app.py
+```
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy(app)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Students.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#  if first time u need to create db using db.create_all()
+
+class Student(db.Model):
+     # Manual name
+	__tablename__ = 'students'
+	# DDL 
+	id = db.Column(db.Integer, primary_key=True)
+	first_name = db.Column(db.Text)
+	last_name = db.Column(db.Text)
+	def __init__(self, first_name, last_name):
+		self.first_name = first_name
+		self.last_name = last_name
+
+```
+
+Testing in command line:
+```python
+from app import db
+db.create_all()
+from app import Student
+
+# new student
+student1 = Student(first_name='anish',last_name='sebastian')
+# add user 
+db.session.add(student1)
+# save changes
+db.session.commit()
+
+# query to get all
+Student.query.all()
+
+# get 1st result
+Student.query.first()
+
+# filter by name
+Student.query.filter_by(first_name='anish').all()
+
+# store in var
+student = Student.query.first()
+
+# get id using var
+student.id
+
+# search using id
+student = Student.query.get(<id>)
+```
+
+to drop all db tables: ```db.drop_all()```
+
