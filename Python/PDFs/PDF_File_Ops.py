@@ -7,7 +7,7 @@ import os,sys
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 
 # filename = 'Test.pdf'
-filename = r"C:\Users\532975\Downloads\AgencyCIRA-09242019_113727.pdf"
+# filename = r"C:\Users\532975\Downloads\AgencyCIRA-09242019_113727.pdf"
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # //// extract text from PDF doc write to a new file ////
@@ -38,13 +38,13 @@ filename = r"C:\Users\532975\Downloads\AgencyCIRA-09242019_113727.pdf"
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # alt version to loop thru pages using page numbers provided
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-def get_pdf_content(pdf_path, page_nums=[0]):	
-	content = ''
-	pdf = PdfFileReader(filename, 'rb')
-	for page_num in page_nums:
-		content += pdf.getPage(page_num).extractText()
-	return content
-print(get_pdf_content(filename))
+# def get_pdf_content(pdf_path, page_nums=[0]):
+# 	content = ''
+# 	pdf = PdfFileReader(filename, 'rb')
+# 	for page_num in page_nums:
+# 		content += pdf.getPage(page_num).extractText()
+# 	return content
+# print(get_pdf_content(filename))
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,11 +75,23 @@ print(get_pdf_content(filename))
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # //// Merge PDF docs //// FINAL 4/28/17
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# path = r"C:\Python\MyScripts\LearningPython\PDFs\datamodels"
+# path = r"C:\Users\532975\Documents\Automation\GitHub\Learn\Python\PDFs"
 # filenames = next(os.walk(path))[2]
 # # print(filenames)
 # merger = PdfFileMerger()
 # for filename in filenames:
-# 	print('datamodels\\',filename)
-# 	merger.append(PdfFileReader('datamodels\\' + filename))
-# merger.write(r"datamodels\MERGED_PDFs.pdf")
+# 	print(filename)
+# 	merger.append(PdfFileReader(filename))
+# merger.write(r"MERGED_PDFs.pdf")
+
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# //// Merge PDF docs //// FINAL 12/5/19
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+from PyPDF2 import PdfFileMerger
+pdfs = ['Moduel 1 certificate.pdf', 'Moduel 2 certificate.pdf','Module3_certificate.pdf', 'Module4 certificate.pdf']
+merger = PdfFileMerger()
+for pdf in pdfs:
+    merger.append(pdf)
+merger.write("result.pdf")
+merger.close()
