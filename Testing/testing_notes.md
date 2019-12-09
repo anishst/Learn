@@ -17,15 +17,8 @@ Behavior-driven development (or BDD) is an agile software development technique 
 
 Cucumber is a tool that supports Behaviour-Driven Development(BDD)
 
-- BDD Overview: https://cucumber.io/bdd/overview/
+https://cucumber.io/
 
-Acceptance testing
-
-customers should e able write accp tests
-
-GIVEN I am on the blog page\
-WHEN I press the new post button\
-THEN I am on the new post page
 
 ## Resources
 - Getting Started - https://cucumber.io/guides/overview/#what-is-cucumber
@@ -38,6 +31,20 @@ Gherkin is a simple set of grammar rules that makes plain text structured enough
 Feautre file is composed of one feautre and multiple scenarios
 
 - Gherkin Reference: https://cucumber.io/docs/gherkin/
+
+### Syntax examples
+
+GIVEN I am on the blog page\
+WHEN I press the new post button\
+THEN I am on the new post page
+
+- Feature keyword - describes which part of the functionality scenarios are being created for.
+- Scenario keyword - is used to describe the test case title.
+- Given keyword - describes pre-conditions required to complete the scenario.
+- When keyword - is used to describe the scenario’s steps.
+- Then keyword - describes the expected result of the scenario.
+- And keyword - can be used for Given, When and Then keywords to describe additional steps.
+
 
 ## Behave
 
