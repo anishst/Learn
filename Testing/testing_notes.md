@@ -2,12 +2,59 @@
 
 
 ## Levels of Testing
-- Unit testing - verify your code at the level of functions and classes; positive and negative testing at the lowest layers of 
+- **Unit testing** - verify your code at the level of functions and classes; positive and negative testing at the lowest layers of 
 code; first safety net for catching bugs; should run fast; automate
 - Component Testing - library and complied binary level tests
-- System Testing - tests the external interfaces of a system which is a collection os sub-systems
+- **System Testing** - tests the external interfaces of a system which is a collection os sub-systems
 - Performance Testing - testing done at sub-system and system levels to verify timing resource usages are acceptable
+- **Acceptance Testing** - is a level of software testing where a system is tested for acceptability. The purpose of this test is to evaluate the system's compliance with the business requirements and assess whether it is acceptable for delivery.
 
+# BDD
+
+Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project. 
+
+## Cucumber
+
+Cucumber is a tool that supports Behaviour-Driven Development(BDD)
+
+- BDD Overview: https://cucumber.io/bdd/overview/
+
+Acceptance testing
+
+customers should e able write accp tests
+
+GIVEN I am on the blog page\
+WHEN I press the new post button\
+THEN I am on the new post page
+
+## Resources
+- Getting Started - https://cucumber.io/guides/overview/#what-is-cucumber
+
+
+## Gherkin
+
+Gherkin is a simple set of grammar rules that makes plain text structured enough for Cucumber to understand.
+
+Feautre file is composed of one feautre and multiple scenarios
+
+- Gherkin Reference: https://cucumber.io/docs/gherkin/
+
+## Behave
+
+**behave** is behaviour-driven development, Python style. Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project. 
+
+https://behave.readthedocs.io/en/latest/tutorial.html
+
+
+```pip install behave```
+
+###  Dev Info:
+
+- all scenarios are kept in feature files that should be put in the features directory
+- All scenario steps must have an implementation
+
+Docs: https://behave.readthedocs.io/en/latest/
+Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project. 
 ### Test Driven Development (TDD) 
 - practice of writing your test script before writing code
 
