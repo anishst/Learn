@@ -22,10 +22,12 @@ conftest.py is a special named file that pytest looks for when running tests.
 
 | Command | Description |
 | -------- | -------- |
+| ```pytest -v ---s```| enable verbose and show console msgs|
 |```pytest --collect-only --quiet```| get list of tests; don't run|
 |```pytest --collect-only -qq```|When used twice (or more), --quiet will print the amount of tests per module:|
 |```pytest <modulename>.py```| run tests in module|
 |```pyest somepath``` | run all tests below somepath|
+|```pyest -k creditCards ``` | run all tests with name(keyword) creditCards|
 |```ptest test_module.py::test_method``` | run certain method|
 |```pytest -v -m cardtests```| runs tests with 'cardtests' as marker|
 | ```pytest pytest-example.py --driver Chrome --html=report.html```| Example Code to run a test and output results to html format; note you need to install ```pytest-html``` package for this to work|
@@ -48,6 +50,10 @@ conftest.py is a special named file that pytest looks for when running tests.
 
 
 ## Running Tests in Parallel
+
+https://pypi.org/project/pytest-xdist/#description
+
+https://github.com/pytest-dev/pytest-xdist
 
 ```
 install xdist: pip install -U pytest-xdist
