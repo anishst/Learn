@@ -106,7 +106,7 @@ for root, dirnames, filenames in os.walk(path):
      for file in filenames:
         fileName, ext = os.path.splitext(file)
         if ext.lower() in files_to_process:
-            print(f"Processing {file}...)
+            print(f"Processing {file}...")
             merger.append(os.path.join(root,file))
 merger.write(os.path.join(root,r"MERGED_PDFs.pdf"))
 merger.close()
