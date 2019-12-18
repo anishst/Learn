@@ -1,7 +1,7 @@
 # http://pythontesting.net/framework/pytest/pytest-fixtures-nuts-bolts/#bare
 import pytest
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def before():
     print('\nbefore each test')
  

@@ -88,10 +88,25 @@ from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # //// Merge PDF docs //// FINAL 12/5/19
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-from PyPDF2 import PdfFileMerger
-pdfs = ['Moduel 1 certificate.pdf', 'Moduel 2 certificate.pdf','Module3_certificate.pdf', 'Module4 certificate.pdf']
+# from PyPDF2 import PdfFileMerger
+# pdfs = ['Moduel 1 certificate.pdf', 'Moduel 2 certificate.pdf','Module3_certificate.pdf', 'Module4 certificate.pdf']
+# merger = PdfFileMerger()
+# for pdf in pdfs:
+#     merger.append(pdf)
+# merger.write("result.pdf")
+# merger.close()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# //// Merge PDF docs - traverse directory //// FINAL 12/17/19
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+path = r"<your path>"
 merger = PdfFileMerger()
-for pdf in pdfs:
-    merger.append(pdf)
-merger.write("result.pdf")
+files_to_process = ['.pdf']
+for root, dirnames, filenames in os.walk(path):
+     for file in filenames:
+        fileName, ext = os.path.splitext(file)
+        if ext.lower() in files_to_process:
+            print(file)
+            merger.append(os.path.join(root,file))
+merger.write(os.path.join(root,r"MERGED_PDFs.pdf"))
 merger.close()

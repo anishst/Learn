@@ -1,11 +1,5 @@
 [
-  "pytest_test_order.py::test_methodA",
-  "pytest_test_order.py::test_methodB",
-  "pytest_test_order.py::test_three",
-  "pytest_test_order.py::test_four",
-  "pytest_test_order.py::test_two",
-  "pytest_test_order.py::test_one",
-  "pytest_test_order.py::test_third",
-  "pytest_test_order.py::test_second",
-  "pytest_test_order.py::test_first"
+  "pytest_example_parameters_from_file.py::test_sample[user1, pwd1\\n]",
+  "pytest_example_parameters_from_file.py::test_sample[user2, pwd2\\n]",
+  "pytest_example_parameters_from_file.py::test_sample[user3, pwd3]"
 ]
