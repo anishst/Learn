@@ -108,5 +108,7 @@ for root, dirnames, filenames in os.walk(path):
         if ext.lower() in files_to_process:
             print(f"Processing {file}...")
             merger.append(os.path.join(root,file))
-merger.write(os.path.join(root,r"MERGED_PDFs.pdf"))
+print("Merging...")
+# save merged file to path provided
+merger.write(os.path.join(path,r"MERGED_PDFs.pdf"))
 merger.close()
