@@ -75,14 +75,14 @@ from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # //// Merge PDF docs //// FINAL 4/28/17
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# path = r"C:\Users\532975\Documents\Automation\GitHub\Learn\Python\PDFs"
-# filenames = next(os.walk(path))[2]
-# # print(filenames)
-# merger = PdfFileMerger()
-# for filename in filenames:
-# 	print(filename)
-# 	merger.append(PdfFileReader(filename))
-# merger.write(r"MERGED_PDFs.pdf")
+path = r"<path>"
+filenames = next(os.walk(path))[2]
+print(filenames)
+merger = PdfFileMerger()
+for filename in filenames:
+	print(os.path.join(path,filename))
+	merger.append(PdfFileReader(os.path.join(path,filename)))
+merger.write(os.path.join(path,r"merged/MERGED_PDFs.pdf"))
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,16 +99,16 @@ from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # //// Merge PDF docs - traverse directory //// FINAL 12/17/19
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-path = r"<your path>"
-merger = PdfFileMerger()
-files_to_process = ['.pdf']
-for root, dirnames, filenames in os.walk(path):
-     for file in filenames:
-        fileName, ext = os.path.splitext(file)
-        if ext.lower() in files_to_process:
-            print(f"Processing {file}...")
-            merger.append(os.path.join(root,file))
-print("Merging...")
-# save merged file to path provided
-merger.write(os.path.join(path,r"MERGED_PDFs.pdf"))
-merger.close()
+# path = r"<your path>"
+# merger = PdfFileMerger()
+# files_to_process = ['.pdf']
+# for root, dirnames, filenames in os.walk(path):
+#      for file in filenames:
+#         fileName, ext = os.path.splitext(file)
+#         if ext.lower() in files_to_process:
+#             print(f"Processing {file}...")
+#             merger.append(os.path.join(root,file))
+# print("Merging...")
+# # save merged file to path provided
+# merger.write(os.path.join(path,r"MERGED_PDFs.pdf"))
+# merger.close()
