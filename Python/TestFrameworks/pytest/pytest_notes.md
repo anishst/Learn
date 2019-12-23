@@ -35,7 +35,8 @@ conftest.py is a special named file that pytest looks for when running tests.
 | ```pytest pytest-otcnet.py -k Demo --driver=Ie -v``` | Running tests with  certain name by providing the -k flag and then keyword; example below runs test case fucntions with 'Demo' in the name: |
 |```pytest pytest_example_custom_markers.py -m mac -v``` | Skip tests by using custom marker tags by providing -m flag following by flagname; example runs test tagged with 'mac' flagname. To use negation: ```pytest pytest_example_custom_markers.py -m "not mac"  -v```|
 |```pytest -rfp```| shows all passed failed tests|
-| ```pytest -v --result-log=test.txt```| pipe run results to a file
+| ```pytest -v --result-log=test.txt```| pipe run results to a file|
+| ```pytest --junitxml='results.xml' ```| generate junit xml file; this can be used with Jenkins; shell command: ```pytest --junitxml='BUILD_$(BUILD_NUMBER)_results.xml``` then create a post-buid action to generate rpt using xml file; https://bah.udemy.com/course/elegant-automation-frameworks-with-python-and-pytest/learn/lecture/10176262?start=480#overview |
 
 ## Using Fixtures
 | Fixture Usage | Description |
