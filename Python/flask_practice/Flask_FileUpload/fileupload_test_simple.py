@@ -10,7 +10,8 @@ def upload_file():
 def upload():
    if request.method == 'POST':
       f = request.files['file']
-      f.save(secure_filename(f.filename))
+      f.save('uploads/' + secure_filename(f.filename))
+      print(f.filename)
       return 'file uploaded successfully'
 		
 if __name__ == '__main__':

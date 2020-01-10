@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, current_app, url_for
 from werkzeug import secure_filename
 import os
 
-UPLOAD_FOLDER = r'C:\Users\532975\Documents\Automation\Learn\Python\FlaskTest\Flask_FileUpload\uploads'
+UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
