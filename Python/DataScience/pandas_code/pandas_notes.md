@@ -19,7 +19,7 @@
 
 ### Concat example
 
-```
+```python
 csv_file = 'prices1.csv'
 df = pd.read_csv(csv_file)
 csv_file2 = 'prices2.csv'

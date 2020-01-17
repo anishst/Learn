@@ -80,6 +80,20 @@ Flask Cheat sheet: https://s3.us-east-2.amazonaws.com/prettyprinted/flask_cheats
 
 Videos: https://www.youtube.com/watch?v=qla-KaMF-2Q&t=945s
 
+### Flask Code Example
+
+```python
+# jinja 2 template code to skip first and last labels on WTForms
+
+  {% for question in form %}
+          {% if loop.first or loop.last %}
+            {# do not print question.label #}
+          {% else %}
+            <p>
+              {{ question.label }}
+            </p>
+          {% endif %}
+```
 Boostrap usage:
 https://github.com/mbr/flask-bootstrap
 
