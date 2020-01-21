@@ -9,12 +9,12 @@
     },
     {
         "category": "IT",
-        "type": "radio",
-        "question": "3. The correct answer is 1.",
-        "correct_answer": "1",
+        "type": "select_field",
+        "question": "3. The correct answer is 1, 2 and 3.",
+        "correct_answer": ["1", "2", "3"],
         "answers": [["1", "OneIT"], ["2", "Two"], ["3", "Three"], ["4", "Four"]]
     },
- {
+    {
         "category": "Medicine",
         "type": "select_field",
         "question": "2nd select. The correct answer is 1, and 2",
@@ -25,13 +25,6 @@
         "category": "General Knowledge",
         "type": "radio",
         "question": "1. Ligy is cool.",
-        "correct_answer": "True",
-        "answers": [["True", "True"], ["False", "False"]]
-    },
-     {
-        "category": "General Knowledge",
-        "type": "radio",
-        "question": "1. anish is cool.",
         "correct_answer": "True",
         "answers": [["True", "True"], ["False", "False"]]
     }

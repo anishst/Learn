@@ -1,42 +1,20 @@
 # https://github.com/mjhea0/thinkful-mentor/tree/master/python/flask-wtf-quiz
-# 1/16/20 THIS IS WORKING
+# 1/17/20 working added random feature
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, RadioField, SelectMultipleField, widgets, StringField, FieldList, FormField
+from wtforms import SubmitField, RadioField, SelectMultipleField, SelectField, widgets, StringField, FieldList, FormField
 from wtforms.validators import DataRequired, ValidationError
-from random import randrange
+from random import randrange, sample
 
-questions = [
-    {
-        "category": "General Knowledge",
-        "type": "radio",
-        "question": "1. The answer to question one is False.",
-        "correct_answer": 'False',
-        "answers": [('True', 'True'), ('False', 'False')]
-    },
-    {
-        "category": "IT",
-        "type": "select_field",
-        "question": "3. The correct answer is 1, 2 and 3.",
-        "correct_answer": ['1', '2', '3'],
-        "answers": [('1', 'OneIT'), ('2', 'Two'), ('3', 'Three'), ('4', 'Four')]
-    },
-    {
-        "category": "Medicine",
-        "type": "select_field",
-        "question": "2nd select. The correct answer is 1, and 2",
-        "correct_answer": ['1', '2'],
-        "answers": [('1', 'OneMedicine'), ('2', 'Two'), ('3', 'Three'), ('4', 'Four')]
-    },
-    {
-        "category": "General Knowledge",
-        "type": "radio",
-        "question": "1. Ligy is cool.",
-        "correct_answer": 'True',
-        "answers": [('True', 'True'), ('False', 'False')]
-    }
-]
+import json
 
+def random_question():
+    with open('questions.json') as fp:
+        data = json.load(fp)
+        questions = data["questions"]
+        return sample(questions, k=3)
+
+random_questions = random_question()
 class CorrectAnswer(object):
     """
     Custom validator for WTForms to check
@@ -63,24 +41,27 @@ class CorrectAnswer(object):
             raise ValidationError(message)
 
 
-def quiz(questions):
+def quiz(random_questions):
     class PopQuiz(FlaskForm):
         pass
 
+
     counter = 0
-    for question in questions:
+    for question in random_questions:
+        print(question)
+        print(question['answers'])
         if question['type'] == 'radio':
             setattr(PopQuiz, 'question_%d' % counter,
                 (RadioField(
                 question['question'],
-                choices=question["answers"],
+                choices=[answer for answer in question["answers"]],
                 validators=[CorrectAnswer(question['correct_answer'])]
             )
             ))
         else:
             setattr(PopQuiz,  'question_%d' % counter,SelectMultipleField(
                 question['question'],
-                choices=question['answers'],
+                choices=[answer for answer in question["answers"]],
                 validators=[CorrectAnswer(question['correct_answer'])],
 
                 # changes the choices into checkboxes instead of a dropdown list
@@ -104,7 +85,8 @@ app.config.from_object(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def wtf_quiz():
-    form = quiz(questions)
+
+    form = quiz(random_questions)
     if form.validate_on_submit():
         print("Form submitted")
         return redirect(url_for('you_passed'))

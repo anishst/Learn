@@ -1,7 +1,6 @@
 # http://pandas.pydata.org/pandas-docs/stable/tutorials.html
 import pandas as pd
 import os, sys
-
 #  read file
 xls = pd.ExcelFile(r"duplicates.xlsx")
 df =  xls.parse('Sheet1', columns=['IRN','BATCHID','ACCOUNT_NUMBER', 'RTN'],index_col=None)
