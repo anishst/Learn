@@ -17,16 +17,60 @@
 
 ## Code Snippets
 
+```python
+# simple read from url csv
+import pandas as pd
+movies = pd.read_csv('http://bit.ly/imdbratings')
+```
+
+###  Indexes
+```python
+# set index
+import pandas as pd 
+df = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
+
+df.set_index('myindex', inplace=True)
+
+# show index
+df.index
+
+# once index is set you acces items using that index
+df.loc[''<index_name>']
+
+# access specific col value for an index
+df.loc[''<index_name>', '<colname>']
+
+# you can still access using integer indexes using iloc
+df.iloc[0]
+
+
+# sort by index
+df.sort_index(ascending=False)
+```
+### Display settings
+```python
+import  pandas as pd
+# setting how many rows/columsn to show
+pd.set_option('display.max_columns', 3)
+pd.set_option('display.max_rows', 10)
+```
 
 ### Filter Data
 ```python
 import  pandas as pd
+df = pd.read_csv('survey_results_public.csv', index_col='Respondent')
+# set filter
+high_salary = (df['salary'] > 100000)
+#  get all matching filter
+df.loc[high_salary]
+# get specifics
+df.loc[high_salary, ['Country','LanguageWorkedWith']]
 
-people = {
-    "first": ["Corey", 'Jane', 'John'], 
-    "last": ["Schafer", 'Doe', 'Doe'], 
-    "email": ["CoreyMSchafer@gmail.com", 'JaneDoe@email.com', 'JohnDoe@email.com']
-}
+# using contry filter
+countries = ['US', 'INDIA']
+filt = df['Country'].isin(countries)
+df.loc[filt, 'Country']
+
 ```
 
 ### Drop duplicates
