@@ -1,0 +1,70 @@
+# https://www.cheatography.com/psc1914/cheat-sheets/sublime-text-3/
+
+Plugins:
+https://www.sitepoint.com/essential-sublime-text-javascript-plugins/
+https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify
+
+Shortcuts:
+
+Merge multiple lines into one using
+CTRL + J
+
+Select columns
+Right Mouse Button + Shift
+
+selecting mutliple text
+click first instance then CTRL key then press next
+CTRL+D
+
+select all text then move to end of all of them
+CTRL+SHIFT + L
+
+Alt + F3 Selects all instances
+
+multi-line cursor
+hold Shift and drag using right mouse
+
+move items up and down
+ctrl + shift + arrow
+
+Remove  line
+ctrl + shift + K
+duplicate line
+ctrl + shift + D
+
+*** HTML RELATED ****
+wrapping in tags
+select text and ALT+SHIFT + w
+
+indendation
+Past  without losing source format
+ctrl + shift + V
+
+Command Paletee (CTRL +SHIFT + P)
+	sort lines
+
+/************************************************************************************************************************
+					Emmet shortcuts
+/************************************************************************************************************************
+
+https://docs.emmet.io/cheat-sheet/
+!	html template
+
+links
+----------
+a
+a:link
+
+table>.row>.col
+table>.row>.col*4
+
+ul>li*10>a
+ul>li.item-$*10
+ul>li.item-$$$*10
+
+(header.site-header>h1+nav>ul>li*5>a)+(div.site-body>div.main+aside.sidebar)+(footer.site-footer>p)
+
+
+Snippets
+https://www.youtube.com/watch?v=zS_4yLizMBw
+https://docs.emmet.io/cheat-sheet/

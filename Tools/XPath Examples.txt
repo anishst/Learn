@@ -1,0 +1,29 @@
+#https://www.w3schools.com/xml/xpath_syntax.asp
+
+# find value by attribute
+elems = driver.find_elements_by_xpath("//li[@id='tab[0]']")
+for elem in elems:
+    # print(elem.get_attribute("href"))
+    print(elem.text)
+
+# find element by providing and ID name that starts with some text: example "tab"
+elems = driver.find_elements_by_xpath("//*[starts-with(@id, 'tab')]")
+for elem in elems:
+    print(elem.text)
+
+
+XPath Expression
+
+Result
+
+/bookstore/book[1]  Selects the first book element that is the child of the bookstore element 
+/bookstore/book[last()] Selects the last book element that is the child of the bookstore element 
+/bookstore/book[last()-1] Selects the last but one book element that is the child of the bookstore element 
+/bookstore/book[position()<3] Selects the first two book elements that are children of the bookstore element 
+//title[@lang] Selects all the title elements that have an attribute named lang 
+//title[@lang='en'] Selects all the title elements that have a "lang" attribute with a value of "en" 
+/bookstore/book[price>35.00] Selects all the book elements of the bookstore element that have a price element with a value greater than 35.00 
+/bookstore/book[price>35.00]/title Selects all the title elements of the book elements of the bookstore element that have a price element with a value greater than 35.00 
+
+driver.findElement(By.xpath("//*[contains(@id,'title')]"))
+driver.findElement(By.xpath("//* [start-with(@id,'title')]"))
