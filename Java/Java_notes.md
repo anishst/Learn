@@ -36,15 +36,60 @@ CTRL + Shift + L - format code
 
 - create new project
 - right click on project and add selenium jar (selenium-server-standalone-3.141.59.jar); Build Path > add external archives
-- 
+
+Sample test:
+```java
+package testcases;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class TestBrowsers {
+
+	public static void main(String[] args) {
+		
+		//Usage examples: https://selenium.dev/selenium/docs/api/java/index.html
+		
+		//assumes Chrome driver env variable is set
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://www.google.com");
+		driver.quit();
+		
+	}
+
+}
+```
 
 ## Maven
 
 
-Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies. 
+Maven is a dependency management/build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies. 
 
 https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
+### Maven setup
+
+- download binary zip archive. 	apache-maven-3.6.3-bin.zip : https://maven.apache.org/download.cgi
+- configure gloabally on test machine by adding below env variables
+    - new sys env: ```MVN_HOME``` / value: ```<path to mvv>```; ex. C:\Python\selenium\webdriver\apache-maven-3.6.3
+    - add to path variable: %MVN_HOME%/C:\Python\selenium\webdriver\apache-maven-3.6.3\bin
+    - check setup using cmd line: ```mvn --version```
+    
+- create new Maven project in Eclipse
+    - new maven project
+    - enter groupid : domainname.
+    - enter artifact id: selenimtest
+    - Finish
+    - add Java selenium dependcies for selenium using pom.xml 
+    (https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.141.59)
+  
+    ```<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-api</artifactId>
+    <version>3.141.59</version>
+    </dependency>```
+  
+    
 ### POM
 
 A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file (pom.xml) that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
