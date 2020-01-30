@@ -21,6 +21,17 @@ To run:
 ## Temp method for setting Java complier path
 ```set path=C:\Program Files\Java\jdk-11.0.1\bin```
 
+## Eclipse
+
+### Sharing Code
+
+- generate JAR file by right clicking on project > export > Java > JAR File and save
+- then you can use it another project by adding JAR as external reference lib
+
+### Shortcuts
+
+CTRL + Shift + L - format code
+
 ## Maven
 
 
