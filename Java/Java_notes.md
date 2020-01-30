@@ -32,6 +32,12 @@ To run:
 
 CTRL + Shift + L - format code
 
+## Java Selenium Setup
+
+- create new project
+- right click on project and add selenium jar (selenium-server-standalone-3.141.59.jar); Build Path > add external archives
+- 
+
 ## Maven
 
 

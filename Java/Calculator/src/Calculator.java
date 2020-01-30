@@ -27,7 +27,13 @@ public class Calculator {
 		Calculator calc = new Calculator();
 		calc.add();
 		
+		//	another way to access class methods
 		new Calculator().add();
+		
+		// in Java every variable should have a type
+		int my_number = 100;
+		String my_string = "Hello";
+		
 
 	}
 
