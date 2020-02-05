@@ -73,6 +73,23 @@ df.loc[filt, 'Country']
 
 ```
 
+### Add a new column
+
+```python
+df['full_name'] = df['first'] + ' ' + df['last']
+```
+
+### Delete columns
+
+```python
+df.drop(columns=['first','last'], inplace=True)
+```
+
+### Split a column value to 2 columns
+
+```python
+df['full_name'].str.split('', expand=True)
+```
 ### Drop duplicates
 
 ```python
