@@ -2,6 +2,7 @@
 
 import xml.etree.ElementTree as ET
 tree = ET.parse('input_checks.xml')
+
 root = tree.getroot()
 
 # update element based on name using for loop - option 1

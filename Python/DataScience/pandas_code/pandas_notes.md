@@ -15,6 +15,14 @@
 
 
 
+
+### Display settings
+```python
+import  pandas as pd
+# setting how many rows/columsn to show
+pd.set_option('display.max_columns', 3)
+pd.set_option('display.max_rows', 10)
+```
 ## Code Snippets
 
 ```python
@@ -47,13 +55,41 @@ df.iloc[0]
 # sort by index
 df.sort_index(ascending=False)
 ```
-### Display settings
+
+### Sorting
+Soure: https://github.com/CoreyMSchafer/code_snippets/blob/master/Python/Pandas/07-Sorting-Data/Snippets.ipynb
 ```python
-import  pandas as pd
-# setting how many rows/columsn to show
-pd.set_option('display.max_columns', 3)
-pd.set_option('display.max_rows', 10)
+people = {
+    'first': ['Corey', 'Jane', 'John', 'Adam'], 
+    'last': ['Schafer', 'Doe', 'Doe', 'Doe'], 
+    'email': ['CoreyMSchafer@gmail.com', 'JaneDoe@email.com', 'JohnDoe@email.com', 'A@email.com']
+}
+:
+import pandas as pd
+df = pd.DataFrame(people)
+df.sort_values(by='last', ascending=False)
+
+df.sort_values(by=['last', 'first'], ascending=False)
+df.sort_values(by=['last', 'first'], ascending=[False, True], inplace=True)
+df.sort_index()
+# sort individual column values 
+df['last'].sort_values()
+
 ```
+
+## Min and Max Value
+
+````python
+# find largest salaries 
+df['salary'].nlargest(10)
+# get all data for high salaries
+df.nlargest(10, 'salary')
+
+# find low salaries 
+df['salary'].nsmallest(10)
+# get all data for low salaries
+df.nsmallest(10, 'salary')
+````
 
 ### Filter Data
 ```python
