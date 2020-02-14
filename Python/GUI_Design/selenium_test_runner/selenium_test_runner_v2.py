@@ -33,20 +33,29 @@ option_two.grid(row=1, column=2, sticky="EW")
 
 # available test cases
 test_cases_frame = ttk.Frame(root, padding=(20,10))
-test_cases_frame.grid()
+test_cases_frame.grid(sticky="EW")
 test_cases = ("C", "Go", "JavaScript", "Perl", "Python", "Rust")
-pl = tk.StringVar(value=test_cases)
-tc_select = tk.Listbox(test_cases_frame, listvariable=pl, height=20)
+tc_list = tk.StringVar(value=test_cases)
+tc_select = tk.Listbox(test_cases_frame, listvariable=tc_list, height=20)
 tc_select.grid(row=1, column=1, sticky="EW")
+def add():
+    #todo get values
+    print(tc_select.curselection())
 
-add_button = ttk.Button(test_cases_frame, text="Add")
+def remove():
+    #todo get values
+    print(tc_select2.curselection())
+
+add_button = ttk.Button(test_cases_frame, text="Add", command=add)
 add_button.grid(row=1, column=2, sticky="EW")
-quit_button = ttk.Button(test_cases_frame, text="Remove")
-quit_button.grid(row=2, column=2, sticky="EW")
+remove_button = ttk.Button(test_cases_frame, text="Remove", command=remove)
+remove_button.grid(row=1, column=3, sticky="EW")
 test_cases_added = ("C", "Go", "JavaScript", "Perl", "Python", "Rust")
-pl = tk.StringVar(value=test_cases_added)
-tc_select2 = tk.Listbox(test_cases_frame, listvariable=pl, height=20)
+tc_list2 = tk.StringVar(value=test_cases_added)
+tc_select2 = tk.Listbox(test_cases_frame, listvariable=tc_list2, height=20)
 tc_select2.grid(row=1, column=4, sticky="EW")
+
+
 
 # seperator frame
 sep_frame = ttk.Frame(root, padding=(5))
