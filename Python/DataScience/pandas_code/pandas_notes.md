@@ -23,6 +23,13 @@ import  pandas as pd
 pd.set_option('display.max_columns', 3)
 pd.set_option('display.max_rows', 10)
 ```
+
+## Preview data
+
+df.head()
+df.tail()
+
+
 ## Code Snippets
 
 ```python
@@ -109,6 +116,37 @@ df.loc[filt, 'Country']
 
 ```
 
+### Grouping/Aggregating Data
+
+show values counts
+- df['social_media'].value_counts()
+
+show values as % 
+- df['social_media'].value_counts(normalize=True)
+
+```python
+# set a variable
+country_grp = df.groupby(['Country'])
+country_grp.get('United States')
+
+filt = df['Country'] == 'India'
+df.loc[filt]['SocialMedia'].value_counts()
+
+country_grp['SocialMedia'].value_counts()
+country_grp['SocialMedia'].value_counts().loc['United States']
+
+country_grp['Salary'].median()
+country_grp['Salary'].median().loc['Germany']
+# using agg
+country_grp['Salary'].agg(['median','mean']).loc['Cananda']
+
+filt = df['country'] == 'India'
+df.loc[filt]["languageworkedwith"].str.contains('Python').sum()
+
+country_grp["languageworkedwith"].apply(lambda x: x.str.contains('Python').sum())
+```    
+
+
 ### Add a new column
 
 ```python
@@ -126,6 +164,11 @@ df.drop(columns=['first','last'], inplace=True)
 ```python
 df['full_name'].str.split('', expand=True)
 ```
+
+### Unique Value
+
+df['colname'].unique()
+
 ### Drop duplicates
 
 ```python
@@ -153,6 +196,40 @@ csv_file2 = 'prices2.csv'
 df2 = pd.read_csv(csv_file2)
 all_prices = pd.concat([df,df2])
 ```
+
+### Handle Missing Data
+
+- df.dropna()
+- default values: ```df.dropna(axis='index', how='any') ```
+    - axis of index is for rows
+    - axis of columns is for cols
+- drop only if all rows are missing: ```df.dropna(axis='index', how='all') ```
+- drop only if all columns are missing: ```df.dropna(axis='columns', how='all') ```
+- drop only specific columns: ```df.dropna(axis='index', how='all', subset=['last', 'email'])```
+- use inplace=True to make permanent
+
+- use replace to replace na values: ```df.replace('NA', "new_value", inplace=True)```
+
+```
+df = pd.DataFrame(people)
+df.replace('NA', np.nan, inplace=True)
+df.replace('Missing', np.nan, inplace=True)
+```
+```
+na_vals = ['NA', 'Missing']
+df = pd.read_csv('yourcsv.csv', index_col='age', na_values=na_vals)
+```
+
+- find na is df: ```df.isna()```
+- fill all missing with text: ```df.fillna('MISSING')```
+
+https://www.youtube.com/watch?v=KdmPHEnPJPs&t=214s
+
+### Casting Data
+
+- show df types: ```df.dtypes```
+- cast data to int: ```df['age'] = df['age'].astype(int)```
+- cast data to float: ```df['age'] = df['age'].astype(float)```
 
 ## Resources
 - Tutorial: 
