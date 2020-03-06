@@ -91,7 +91,12 @@ Beginning January, 2018, new ADA regulations for web accessibility will go into 
 - WebAIM Checklist: https://webaim.org/standards/wcag/checklist
 - ADA Checklist: https://www.ada.gov/pcatoolkit/chap5chklist.htm
 - How to Meet WCAG: https://www.w3.org/WAI/WCAG21/quickref/?versions=2.0
+- https://a11yproject.com/checklist/
 
+### Mobile Accessiblity
+
+-  https://www.w3.org/WAI/standards-guidelines/mobile/
+- https://interactiveaccessibility.com/blog/mobile-accessibility-move#.Xle-V6hKiUk
 ## Blogs
 
 - https://karlgroves.com/category/accessibility-testing

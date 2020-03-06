@@ -17,3 +17,22 @@ Make sure you have Java 8 + setup
 ## Test plan
 
 - contains all actions 
+
+## Firefox Recording
+
+1. setup proxy settings
+2. import jmeter certificate
+
+more details: https://bah.udemy.com/course/learn-jmeter-from-scratch-performance-load-testing-tool/learn/lecture/2198292?start=375#overview
+
+## Chrome Recording
+
+1. BlazeMeter | The Load Testing Cloud - https://chrome.google.com/webstore/detail/blazemeter-the-load-testi/ojcpfajcibinpjdgcbeajgppepnmicnl
+    - record using chrome plugin
+    - save and export as .jmx file
+    - import in JMeter
+
+## Tools
+
+- Fiddler - 
+- Blazemeter Proxy Recorder: https://guide.blazemeter.com/hc/en-us/articles/360000271458-Creating-the-Proxy-Recorder-Creating-the-Proxy-Recorder
