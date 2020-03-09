@@ -24,7 +24,13 @@ __pycache__/
 dataset*.csv
 
 # java related
-
+.ant-targets*
+.classpath
+.gradle
+.idea
+*.iml
+.project
+.settings
 /_eclipse/
 /local.properties
 build
