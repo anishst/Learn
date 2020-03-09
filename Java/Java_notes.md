@@ -134,6 +134,16 @@ Sample xml file with 2 test suites:
   
 </suite> <!-- Suite -->
 ```
+- Test Groups
+     - to group test cases; you can also include/exclude tests by updating the xml file
+     - groups can be defined at the suite level and also at the test group level
+     - more info : https://testng.org/doc/documentation-main.html#test-groups
+ 
+- TestNG Listners
+    - triggers that occur when certain even occurs
+    - can be used to capture screenshots when fails
+    - https://testng.org/doc/documentation-main.html#testng-listeners  
+    
 ## Maven
 
 
@@ -163,15 +173,7 @@ https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
     <version>3.141.59</version>
     </dependency>```
  
- - Test Groups
-     - to group test cases; you can also include/exclude tests by updating the xml file
-     - groups can be defined at the suite level and also at the test group level
-     - more info : https://testng.org/doc/documentation-main.html#test-groups
  
-  - TestNG Listners
-    - triggers that occur when certain even occurs
-    - can be used to capture screenshots when fails
-    - https://testng.org/doc/documentation-main.html#testng-listeners  
 ### POM
 
 A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file (pom.xml) that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
