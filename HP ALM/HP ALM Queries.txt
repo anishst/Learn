@@ -1,0 +1,69 @@
+quer for test configs
+
+SELECT  TEST.TS_NAME AS 'Test Name',   TEST_CONFIGS.TSC_NAME AS 'Test Config Name' /*Test Configuration.Name*/ from TEST_CONFIGS /*Test Configuration*/   ,   TEST  /*Test*/
+Where TEST.TS_TEST_ID /*Test.Test ID*/    =   TEST_CONFIGS.TSC_TEST_ID /*Test Configuration.Test ID*/
+and    TEST.TS_TEST_ID /*Test.Test ID*/  IN (
+'13138',
+'11014',
+'13922',
+'9297',
+'11011',
+'13925',
+'11013')
+
+
+SQL Query to pull test cases from HP ALM:
+            SELECT
+   AL3.AL_DESCRIPTION + Char(92) + AL2.AL_DESCRIPTION + Char(92)  + AL.AL_DESCRIPTION As 'FOLDER',
+   TS_TEST_ID As 'TEST ID',
+   TS_NAME As 'TEST NAME',
+   TS_DESCRIPTION As 'TEST DESCRIPTION',
+   DS_STEP_NAME As 'STEP NAME',
+   DS_DESCRIPTION As 'DESCRIPTION',
+   DS_EXPECTED As 'EXPECTED RESULT',
+   DS_USER_03 AS 'REQUIREMENT',
+   DS_USER_01 AS 'RELATED DATA',
+   DS_USER_02 AS 'User Story / Acceptance Criteria',
+   TEST.TS_STEPS  as 'TOTAL STEPS'
+
+
+FROM TEST
+   INNER JOIN DESSTEPS ON DS_TEST_ID = TS_TEST_ID
+   INNER JOIN ALL_LISTS AL ON AL_ITEM_ID = TS_SUBJECT
+   INNER JOIN ALL_LISTS AL2 ON AL2.AL_ITEM_ID = AL.AL_FATHER_ID
+   INNER JOIN ALL_LISTS AL3 ON AL3.AL_ITEM_ID = AL2.AL_FATHER_ID
+
+WHERE
+   TS_SUBJECT IN
+      (SELECT AL4.AL_ITEM_ID
+       FROM ALL_LISTS AL4
+       WHERE AL4.AL_ABSOLUTE_PATH LIKE
+                  (SELECT AL5.AL_ABSOLUTE_PATH
+                   FROM ALL_LISTS AL5
+                   WHERE AL5.AL_DESCRIPTION LIKE 'Regression_Online'--Master Test Plan'
+                  ) + '%'
+
+       )
+
+ORDER
+   BY FOLDER, TS_NAME, DS_STEP_ORDER ASC
+
+TestLab_PullTestCaseandConfigs
+
+
+/* The problem with the current query is that it pulls all test configs related instead of pulling only the ones in the lab.*/
+select TEST_CONFIGS.TSC_NAME as TestConfigName, Test.TS_NAME as TestCase, TESTCYCL.TC_STATUS as Status,CYCLE.CY_CYCLE as TestSet, TESTCYCL.TC_ACTUAL_TESTER as Tester
+from CYCLE,TEST,TESTCYCL,TEST_CONFIGS
+where TEST.TS_TEST_ID = TESTCYCL.TC_TEST_ID
+and TESTCYCL.TC_CYCLE_ID = CYCLE.CY_CYCLE_ID
+and CYCLE.CY_CYCLE_ID IN ('23544')
+and TEST_CONFIGS.TSC_TEST_ID = TESTCYCL.TC_TEST_ID
+
+
+TestLab_PullTestCaseStatus
+
+select Test.TS_NAME as TestCase, TESTCYCL.TC_STATUS as Status,CYCLE.CY_CYCLE as TestSet, TESTCYCL.TC_ACTUAL_TESTER as Tester
+from CYCLE,TEST,TESTCYCL
+where TEST.TS_TEST_ID = TESTCYCL.TC_TEST_ID
+and TESTCYCL.TC_CYCLE_ID = CYCLE.CY_CYCLE_ID
+and CYCLE.CY_CYCLE_ID IN ('23544')

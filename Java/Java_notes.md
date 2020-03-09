@@ -60,6 +60,80 @@ public class TestBrowsers {
 }
 ```
 
+## Test Frameworks
+
+### Junit
+
+### TestNG
+TestNG is a testing framework inspired from JUnit and NUnit but introducing some new functionalities that make it more powerful 
+
+- main site: https://testng.org/doc/
+- can be setup using Maven dependeny or as a plugin (https://testng.org/doc/download.html) in Eclipse
+
+simple test:
+```
+   @Test
+    public void doLogin() {
+	    System.out.println("Executing login test");
+	}
+```
+
+- by default tests run using alphabetic order
+- to control use priority;  ex. @Test(priority=1)
+- annotations:
+    - @Test - indicates test case
+    - @BeforeMethod - run before each test case
+    - @AfterMethod - run after each test case
+    - @BeforeTest - runs before all test cases start
+    - @AfterTest - runs after all test cases are done
+    - @BeforeSuite - before entire class of tests
+    - @AfterSuite - after entire class of tests
+    
+- assertions
+    - Assert.assertEquals(actual, expected);
+    - see full list: https://www.javadoc.io/doc/org.testng/testng/6.8.17/org/testng/Assert.html
+
+- soft assertions
+    - use when you want to continue after failures```SoftAssert softAssert = new SoftAssert();```
+
+```
+		//		create instance
+		SoftAssert softAssert = new SoftAssert();
+		
+		softAssert.assertEquals(true, true);
+		softAssert.assertEquals(true, false, "text box not found");
+		//		verify all at the end to make test pass/fail
+		softAssert.assertAll();
+```
+
+- test dependencies
+    - can be used to skip a test case if dependant test case fails
+    - see doc: https://testng.org/doc/documentation-main.html#dependent-methods
+
+- create test suite
+    - option 1: use xml file to create; https://testng.org/doc/documentation-main.html#testng-xml
+    - option 2: in eclipse, right-click on project > TestNG >   Convert to TestNG; this will pick up all test cases with annotations
+    
+Sample xml file with 2 test suites:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="LoginTest">
+    <classes>
+      <class name="testcases.testcase1"/>
+    </classes>
+  </test> <!-- Test -->
+     <test name="AllTests">
+    <classes>
+      <class name="testcases.testcase1"/>
+      <class name="testcases.testcase2"/>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+```
 ## Maven
 
 
@@ -88,8 +162,16 @@ https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
     <artifactId>selenium-api</artifactId>
     <version>3.141.59</version>
     </dependency>```
-  
-    
+ 
+ - Test Groups
+     - to group test cases; you can also include/exclude tests by updating the xml file
+     - groups can be defined at the suite level and also at the test group level
+     - more info : https://testng.org/doc/documentation-main.html#test-groups
+ 
+  - TestNG Listners
+    - triggers that occur when certain even occurs
+    - can be used to capture screenshots when fails
+    - https://testng.org/doc/documentation-main.html#testng-listeners  
 ### POM
 
 A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file (pom.xml) that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
