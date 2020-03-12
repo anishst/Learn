@@ -231,6 +231,10 @@ https://www.youtube.com/watch?v=KdmPHEnPJPs&t=214s
 - cast data to int: ```df['age'] = df['age'].astype(int)```
 - cast data to float: ```df['age'] = df['age'].astype(float)```
 
+## Pandas stat
+- df1.hist() - histogram of all columns
+- df1.corr() correlation
+
 ## Resources
 - Tutorial: 
 - Code snippets: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Pandas
