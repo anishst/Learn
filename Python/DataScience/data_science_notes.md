@@ -117,6 +117,9 @@ np.st*?
 
 - features and observations
 - ROC Curve
+- k-Nearest neighbors
+- clustering: https://scikit-learn.org/stable/modules/clustering.html
+-XGboost
 
 free book: An Introduction to Statistical Learning; http://faculty.marshall.usc.edu/gareth-james/ISL/
 

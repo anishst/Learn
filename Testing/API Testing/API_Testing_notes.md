@@ -77,7 +77,8 @@ Sample Request APIs: https://reqres.in/
 Group of API requests
 
 Variables can be created at Collection/Env levels
-
+- using variables: {{url}}/api/users/2
+- scope levels: collection; env; global
 Test Example:
 ```
 console.log("Hello World!")
@@ -88,6 +89,9 @@ console.log("Value for URL variable is: " + urlVar)
 pm.variables.set("NAME", 'postman')
 console.log(pm.variables.get("NAME"))
 ```
+
+### Environments
+
 use SNIPPETS to save time
 
 ### Chrome Extensions
