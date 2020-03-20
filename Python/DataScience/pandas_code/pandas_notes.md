@@ -14,8 +14,6 @@
 
 
 
-
-
 ### Display settings
 ```python
 import  pandas as pd
@@ -23,6 +21,108 @@ import  pandas as pd
 pd.set_option('display.max_columns', 3)
 pd.set_option('display.max_rows', 10)
 ```
+
+## Reading date/time columns
+
+```python
+# convert date time column to date object
+
+# OPTION 1 - using to_datetime
+df['script_time'] = pd.to_datetime(df['script_time'])
+
+# OPTION 2 - using formatter string as data is loaded
+d_parser = lambda x: pd.datetime.strptime(x, '%Y-%m-%d %I-%p')
+df = pd.read_csv('ETH_1h.csv', parse_dates=['Date'], date_parser=d_parser)
+```
+
+
+```python
+# get first date tiem
+df.loc[0,'script_time']
+
+# get day name
+df.loc[0,'script_time'].day_name()
+
+# view day names of entire date column
+df['Date'].dt.day_name()
+
+# create a new column to show day names
+df['DayofWeek'] = df['Date'].dt.day_name()
+
+# See earliest date
+df['Date'].min()
+
+# See recent date
+df['Date'].max()
+
+# get time delta; show # of days between 2 dates
+df['Date'].max() - df['Date'].min()
+```
+
+### Date Filters
+
+```python
+# filter by date >= 2020
+filt = (df['Date'] >= '2020')
+df.loc[filt]
+
+# filter by date >= 2019 and < 2020
+filt = (df['Date'] >= '2019') & (df['Date'] < '2020')
+df.loc[filt]
+
+# filter by date >= 2019 and < 2020 using datetime func
+filt = (df['Date'] >= pd.to_datetime('2019-01-01')) & (df['Date'] < pd.to_datetime('2020-01-01'))
+df.loc[filt]
+
+```
+
+### Date slicing
+
+```python
+# set index as date
+df.set_index('Date', inplace=True)
+
+# get data for 2010
+df['2019']
+
+df['2020-01':'2020-02']
+
+# get avg closing price
+df['2020-01':'2020-02']['Close'].mean()
+
+# get high for the entire day
+df['2020-01-01']['High'].max()
+
+# re-sample to see high values for each day
+df['High'].resample('D').max() # D = day ; W = week
+
+# re-sample to see high values for each day
+highs = df['High'].resample('D').max()
+highs['2020-01-01']
+
+# resample entire df by week
+df.resample('W').mean()
+
+# using agg method
+df.resample('W').agg({'Close':'mean', 'High':'max', 'Low':'min', 'Volume': 'sum'})
+
+```
+
+### Plot date dfs
+
+```python
+%matplotlib inline
+
+# plot the highs
+highs.plot()
+
+```
+
+
+### References
+- Datetime Formatting Codes - http://bit.ly/python-dt-fmt
+- Pandas Date Offset Codes - http://bit.ly/pandas-dt-fmt
+- Video: https://www.youtube.com/watch?v=UFuo7EHI8zc
 
 ## Preview data
 

@@ -6,7 +6,7 @@ import os
 import math,time
 
 #Set listing start location
-start_path = r"C:\Users\532975\Documents\Automation\AutomationSelenium_DEV"
+start_path = r"C:\Users\532975\Documents\Automation"
 dir_count = 0
 file_count = 0
 
