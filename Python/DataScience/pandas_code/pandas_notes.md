@@ -325,6 +325,45 @@ df = pd.read_csv('yourcsv.csv', index_col='age', na_values=na_vals)
 
 https://www.youtube.com/watch?v=KdmPHEnPJPs&t=214s
 
+### Read/Write to Different sources
+
+```python
+
+import pandas as pd
+df = pd.read_csv('dataset_nba.csv', index_col='Respondent')
+
+# write to csv
+df.to_csv('data/modified.csv')
+
+# write to csv with tab separator
+df.to_csv('data/modified.csv' , sep='\t')
+
+# write to excel
+# install req. libs: pip install xlwt openpyxl xlrd
+df.to_excel('data/modified.xlsx')
+
+# write to json
+df.to_json('data.json')
+
+# write to json - as records on separate lines
+df.to_json('data.json', orient='records', lines=True)
+
+# sql - read postgress db and write
+from sqlalchemy import create_engine
+import psycopg2
+engine = create_engine('postgresql://dbuser:dbpass@localhost:5432/sample_db')
+df.to_sql('sample_table', engine, if_exists='replace')
+df = pd.read_sql('sample_table', engine, index_col='Respondent')
+
+# read sql
+sql_df = pd.read_sql_query('SELECT * FROM sample_table', engine, index_col='Respondent')
+
+# read from url
+posts_df = pd.read_json('https://raw.githubusercontent.com/CoreyMSchafer/code_snippets/master/Python/Flask_Blog/snippets/posts.json')
+```
+
+https://www.youtube.com/watch?v=N6hyN6BW6ao&list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS&index=11
+
 ### Casting Data
 
 - show df types: ```df.dtypes```
