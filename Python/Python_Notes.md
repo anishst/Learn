@@ -50,7 +50,55 @@ Basic Usage
 FORMAT = '%(asctime)s:%(levelname)s:%(message)s:%(module)s:%(filename)s:%(filename)s'
 logging.basicConfig(filename='test.log',level=logging.INFO,format=FORMAT)
 ```
-### Videos
+## Regular Expressions
+
+- . (dot) - any char
+- \w - word char; includes alpha chars and digits; space is not word char
+- \d - one digit
+- \d? Zeor or one digits
+- \d* Zeor or more digits
+- \d+ one more digits
+- \d{3} exactly 3 digits
+- \d{3,5} btwn 3 and 5 digits
+- \d{3,} 3 or more digits
+- \s  whitespace
+- \+ plus to the right of something means one or more
+- .+ - period plus goes all the way to end
+- 0 - zero to the right of something means zero or more
+
+User square brackets to build the character set:
+Example:```[\w.]+@[\w.]+ ```
+
+- this finds email in the format of anish.sebastian@gmail.com
+
+Use parantheses to group results:
+```python
+m = re.search(r'([\w.]+)@([\w.]+)', "blah nick.p@gmail.com")```
+print(m.group(0))
+print(m.group(1)) # get username; 1 refers to 1st paranetheses
+print(m.group(2)) # get domain
+```
+
+ 
+
+### Python Regular Expression Engine
+
+**re.match** - searches from left to right; stops as soon as first match is found
+
+**re.findall** - finds all matches and returns the matches in a list. If parantheses are used, items will be in tuples in the list
+
+**rawstring** - do not do any processing.
+ex. r"[a-zA-Z]+ \d{1}"
+
+### Regex practice
+
+
+- https://regex101.com/
+- http://www.pyregex.com/
+- http://regexr.com
+- https://www.browserling.com/tools/text-from-regex
+
+## Python Videos
 
 -Basics: https://www.youtube.com/watch?v=-ARI4Cz-awo&t=760s
 - Advanced: https://www.youtube.com/watch?v=jxmzY9soFXg
