@@ -125,6 +125,22 @@ git pull origina master
 git pull --downloads from Github
 git merge
 
+## Generate SSH Key for GitHub Deploy Key
+
+1. open up command: ssh-keygen -t rsa
+2. follow prompts
+3. a file will get created under: C:\Users\<userid>\.ssh
+4. public key is in: id_rsa.pub file
+5. copy contents
+6. go to github
+7. in the repo, go to settings > Deploy Keys > give a name and paste the contents and save
+8. clone the repo using ssh 
+
+
+## Switching remote URLs from HTTPS to SSH
+git remote set-url origin git@hostname:USERNAME/REPOSITORY.git
+
+https://help.github.com/en/enterprise/2.20/user/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh
 
 # Troubleshooting
 

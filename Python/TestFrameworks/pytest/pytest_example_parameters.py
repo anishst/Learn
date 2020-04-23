@@ -30,3 +30,17 @@ def test_string_values(string_values):
 class TestOTCnetLogin():
     def test_Login(self, user_role):
         print("User Role: " + user_role)
+
+
+# EXAMPLE 4 - use 2 values for combos
+
+@pytest.mark.parametrize('i', range(4))
+@pytest.mark.parametrize("user_role, env",
+	[
+		('qaec_kiosk_role','qaec_url'),
+		('qaic_kiosk_role','qaic_url'),
+		('qaa_kiosk_role','qaa_url'),
+
+	])
+def test_string_values(user_role, env,i):
+	 print(user_role,env)

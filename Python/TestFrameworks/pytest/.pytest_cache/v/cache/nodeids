@@ -1,12 +1,14 @@
 [
-  "pytest_run_test_n_times.py::test_random[0]",
-  "pytest_run_test_n_times.py::test_random[1]",
-  "pytest_run_test_n_times.py::test_random[2]",
-  "pytest_run_test_n_times.py::test_random[3]",
-  "pytest_run_test_n_times.py::test_random[4]",
-  "pytest_run_test_n_times.py::test_random[5]",
-  "pytest_run_test_n_times.py::test_random[6]",
-  "pytest_run_test_n_times.py::test_random[7]",
-  "pytest_run_test_n_times.py::test_random[8]",
-  "pytest_run_test_n_times.py::test_random[9]"
+  "pytest_example_parameters.py::test_string_values[qaec_kiosk_role-qaec_url-0]",
+  "pytest_example_parameters.py::test_string_values[qaec_kiosk_role-qaec_url-1]",
+  "pytest_example_parameters.py::test_string_values[qaec_kiosk_role-qaec_url-2]",
+  "pytest_example_parameters.py::test_string_values[qaec_kiosk_role-qaec_url-3]",
+  "pytest_example_parameters.py::test_string_values[qaic_kiosk_role-qaic_url-0]",
+  "pytest_example_parameters.py::test_string_values[qaic_kiosk_role-qaic_url-1]",
+  "pytest_example_parameters.py::test_string_values[qaic_kiosk_role-qaic_url-2]",
+  "pytest_example_parameters.py::test_string_values[qaic_kiosk_role-qaic_url-3]",
+  "pytest_example_parameters.py::test_string_values[qaa_kiosk_role-qaa_url-0]",
+  "pytest_example_parameters.py::test_string_values[qaa_kiosk_role-qaa_url-1]",
+  "pytest_example_parameters.py::test_string_values[qaa_kiosk_role-qaa_url-2]",
+  "pytest_example_parameters.py::test_string_values[qaa_kiosk_role-qaa_url-3]"
 ]
