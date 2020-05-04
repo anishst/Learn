@@ -1,7 +1,7 @@
 import pytest
 
 #  SIMPLE
-# @pytest.mark.parametrize("username, password",
+# @pytest_practice.mark.parametrize("username, password",
 # 	[
 # 		('user1', 'pwd1'),
 # 		('user2', 'pwd2'),

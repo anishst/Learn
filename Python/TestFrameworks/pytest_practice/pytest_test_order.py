@@ -1,5 +1,5 @@
 # https://pytest-ordering.readthedocs.io/en/develop/
-# need to install pip install pytest-ordering
+# need to install pip install pytest_practice-ordering
 import pytest
 
 @pytest.fixture()
