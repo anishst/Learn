@@ -142,6 +142,12 @@ git remote set-url origin git@hostname:USERNAME/REPOSITORY.git
 
 https://help.github.com/en/enterprise/2.20/user/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh
 
+# Tips
+
+to reduce cloning time use below syntax to avoid downloading all history
+
+```git clone --branch <name> --single-branch --depth 1 <repourl>```
+
 # Troubleshooting
 
 Issue: get below error when trying to push
