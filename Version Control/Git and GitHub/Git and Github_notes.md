@@ -101,6 +101,14 @@ git push -u origin master
 ## Ignoring files
 use .gitignore file
 
+
+## Revert back to previous commit
+
+```git reset --hard <old-commit-id>```
+
+```git push -f <remote-name> <branch-name>```
+
+
 ## Authentication
 
 ### Personal Access Token
