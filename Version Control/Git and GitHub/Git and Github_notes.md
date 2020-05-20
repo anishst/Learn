@@ -62,7 +62,7 @@ git rm --cached <file>  | removes file already in git
 Command | Description
 -------| -------------
 git clone https://github.com/<username>/<repo>.git | clones an existing repo
-
+git clone --branch master --single-branch --depth 1 *repourl* | cline an existing repo but only pull files in latest commit; skip downloading git history
 
 ### Historical Data
 Command | Description
