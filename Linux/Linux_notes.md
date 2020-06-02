@@ -62,12 +62,54 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 - cd .. - go to parent
 - cd username/
 
+## Wildcards
 
+- a char or string used for pattern matching
+- wildcards be used with many commands
+- '*' - matches zero or more
+- '?' - matches exactly one character
+- [] - character class
+    - maches any of the chars included between the brackets; matches exactly one char
+    - to exculde use ! ; [!aeiou]*
+    - to find a rang use hyphen; [a-g]*
+ - named char classes; ex. [[:alpha:]]
+
+## Input, Output, and Redirection
+
+- standard input - stdin 
+- std output - stdout
+- std errror - stderr
+- '>' rediects to a file. new file
+- '>>' appends to a file
+- '<' redirects input from a file  to a command
+- ```>/dev/nulll``` redirect output to nowhere
+
+## Comparing contents of files
+
+- diff file1 file2 - compares two files
+- sdiff file1 file2 - side-by-side compare
+- vimdiff file1 file2 - hightlight diff in vim
+
+## Searching files
+- grep displays line matching pattern
+- grep pattern file
+- grep -i searchterm file - ignores case
+- grep -c shows count of occurences
+- file <filename - displays file type
+- pipe sysmbol ; cmd-out | cmd-input
+- cat file | grep pattern
+- grep bob /etc/passwd | cut -d: -f1,5 | sort - get username and password and sort it
+
+## Customize shell
+
+- PS1="<\t \u@\h \w>\$ " - display time username@direcotryname
+- to make permanent, add to vi .bash_profile
+    - export PS1="[mycustomterminal \u@\h \w>\$ "
 ## Linux Commands
 |Command | Description 
 |--------|--------------------|
 |ls|list directory contents|
-|ls -l|detailed list dire contents|
+|ls -l|long listing dir contents|
 |pwd|display current work dir|
 |echo| display env vars; echo $PATH|
 |cd| changed directory; cd without args takes you to home dir|
