@@ -147,6 +147,44 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |find . -mtime +3 |find files modified|
 |find . -size +1M|find files 1MB or greater|
 |locate *pattern*|faster than find; queries and index; delay due to index|
+|**Removing File and Directories**||
+|rm file| remove file|
+|rm -r dir|remove files and folders under|
+|rm -f file|remove force|
+|cp src_file dest_file||
+|**Creating collection of files**||
+| tar
+|**Enviornment variables**||
+|printenv|list out all vars|
+|printenv HOME|list out HOME var value|
+|echo $PATH| print value of env var|
+|export VAR="value"| create env; ex: export EDITOR="vi"|
+|export TZ="US/Pacific"| change time zone; check date by doing ```date``` cmd|
+|unset VAR| remove VAR env var|
+| cat ~/.bash_profile | edit value here to make env var permanent|
+|**Processes and Job Control**||
+|ps|display process status; ps -e; ps -f ps -u|
+|ps -u username| display user's processes|
+|command &|start command in background|
+|Ctrl-c|kill foreground process|
+|Ctrl-z|suspends foreground process|
+|kill <jobnum or pID>|kill process|
+|jobs|list jobs|
+|**Cron service**||
+|* * * * * command|crontab format|
+|0 7 * * 1 rpt | run every monday at 7:00|
+|0 0 * * *|daily|
+|0 0 * * 0|weekly|
+|0 0 * * *|midnight|
+|0 * * * *|hourly|
+|crontab -l| list all cron jobs|
+|crontab my-cron|run my-cron file|
+|**Switching User**||
+| whoami|shows current user|
+| su oracle| changes user to oracle|
+|sudo| super user do; execute command as another user; usaully super user|
+|sudo -l |list available commands|
+
 
 https://www.marquette.edu/mathematical-and-statistical-sciences/basic-vi-editor-commands.php
 
