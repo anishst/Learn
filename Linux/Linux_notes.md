@@ -271,8 +271,41 @@ Groups
 http://linuxcommand.org/lc3_lts0090.php
 
 
+## Installing Software
 
+- package 
+    - a collection of files
+    - data / metadata
+        - desc, version , dependenices
+- package manager
+    - install, upgrades and removes package; 
+    - manages dependencies; 
+    - keeps track of what is installed
 
+- package formats
+    - RPM (RedHat Package Manager)
+        - RedHat, CentOS, Fedora, Oracle Linux, scienfic linux
+        - rpm - qa : list all installed packages
+        - rpm -ql package : list packages files
+            -  example: ```rpm -qa | sort | less```
+        - rpm -ivh package .rpm : install package
+        
+        - yum - package mgmt program
+            - ```yum search string```
+            - ```yum install [-y] package```; make sure to switch to admin user first: ```su```
+            - ```yum remove package```
+    - Debian package (DEB)
+        - Debina, Linux Mint, Ubuntu
+        - APT - Advanced Packaging Tool
+            - ```apt-cache search string```
+            - ```apt-get install [-y] package```
+                - example: ```sudo apt-get install gimp```
+            - ```apt-get remove package``` - remove package, leaving configuration
+            - ```apt-get purge package``` - remove package, deleteing configuration
+        - dpkg
+            - dpkg -l - list installed packages
+            - dpkg -S /path/to/file - list file's package
+            - install using .deb file: ```sudo dpkg -i <package.deb>```
 
 ## Debian OS
 
