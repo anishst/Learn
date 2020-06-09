@@ -153,7 +153,8 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |rm -f file|remove force|
 |cp src_file dest_file||
 |**Creating collection of files**||
-| tar
+| tar||
+|tar -xvzf *tarfile*|untar a file|
 |**Enviornment variables**||
 |printenv|list out all vars|
 |printenv HOME|list out HOME var value|
@@ -179,12 +180,14 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |0 * * * *|hourly|
 |crontab -l| list all cron jobs|
 |crontab my-cron|run my-cron file|
-|**Switching User**||
+|**Managings Users**||
 | whoami|shows current user|
 | su oracle| changes user to oracle|
 |sudo| super user do; execute command as another user; usaully super user|
 |sudo -l |list available commands|
-
+| cat /etc/group|shows groups in os|
+| usermod -aG *groupname* *username*| add user to groupname|
+| id *username*| see users group info|
 
 https://www.marquette.edu/mathematical-and-statistical-sciences/basic-vi-editor-commands.php
 
