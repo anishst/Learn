@@ -51,22 +51,44 @@ conftest.py is a special named file that pytest looks for when running tests.
 
 
 
-## Running Tests in Parallel
-
-https://pypi.org/project/pytest-xdist/#description
-
-https://github.com/pytest-dev/pytest-xdist
-
-```
-install xdist: pip install -U pytest-xdist
-py.test -n
-```
-
 ## Reporting with Allure
 
 https://docs.qameta.io/allure/#_pytest
 
 Manual Install for Windows: https://docs.qameta.io/allure/#_manual_installation
+
+## PyTest Plugins
+- **pytest-xdist** - run tests in Parallel
+    -https://pypi.org/project/pytest-xdist/#description
+    - https://github.com/pytest-dev/pytest-xdist
+    - ```install xdist: pip install -U pytest-xdist```
+    - run example: ```py.test -n```
+    - ```-looponfail```: run your tests repeatedly in a subprocess. After each run pytest waits until a file in your project changes and then re-runs the previously failing tests. This is repeated until all tests pass after which again a full run is performed.
+- **pytest-html** - pytest-html is a plugin for pytest that generates a HTML report for the test results.
+    - https://pypi.org/project/pytest-html/
+- pytest repeat
+    - https://pypi.org/project/pytest-repeat/
+- pytest stress
+    - https://pypi.org/project/pytest-stress/
+    - ```pip3 install pytest-stress```
+- pytest sugar 
+    - ```pip install pytest-sugar```
+    - https://pypi.org/project/pytest-sugar/
+    - github: https://github.com/Teemu/pytest-sugar
+- pytest-instafail
+    - https://github.com/pytest-dev/pytest-instafail/ - plugin for pytest that shows failures and errors instantly instead of waiting until the end of test session.
+- pytest-randomly
+    - Pytest plugin to randomly order tests and control random.seed
+    - https://pypi.org/project/pytest-randomly/
+    - ```python -m pip install pytest-randomly```
+- pytest cov
+    - https://pypi.org/project/pytest-cov/
+- pytest timeout
+    - https://pypi.org/project/pytest-timeout/
+- pytest-picked - Run the tests related to the unstaged files or the current branch (according to Git)
+    - https://pypi.org/project/pytest-picked/
+- pytest-freezegun
+    - https://pypi.org/project/pytest-freezegun/
 
 ## Known Issues
 - Issue#1: upgrading to pytest version above 4.0.2 causes issues
