@@ -83,6 +83,7 @@ https://aws.amazon.com/kms/
 
 https://aws.amazon.com/certification/
 
+![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2019/09/20/Certifications_1.png)
 ## Training
 - awesome day: https://aws.amazon.com/events/awsome-day/
 - workshops: https://aws.amazon.com/serverless-workshops/
