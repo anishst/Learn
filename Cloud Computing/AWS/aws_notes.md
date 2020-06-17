@@ -14,6 +14,7 @@ https://image.slidesharecdn.com/hsbcandawsday-awsfoundations-170709164032/95/hsb
 AWS Platform Services
 
 https://image.slidesharecdn.com/getting-started-on-aws-awsome-19b96808-0f60-4c92-96f1-d7937c855042-304968793-180413164036/95/getting-started-on-aws-awsome-day-2018-12-638.jpg?cb=1523637675
+
 ## Amazon DB Services: DB options
 - self-managed
     - db server on EC2; Bring ur own license
@@ -26,33 +27,68 @@ https://image.slidesharecdn.com/getting-started-on-aws-awsome-19b96808-0f60-4c92
 https://infrastructure.aws/
 
 - regions
-    - geo locations
+    - geo locations / isolated from each other
     - consist of at least 2 availablity zone
 - availablity zones
-    - clusters of data centers
+    - clusters of data centers / min 2 AZ in a region
     - isolated from other zones
     - connecte by a low-latency link
     - edge locations host a CDN
+    
+   
 
 https://aws.amazon.com/about-aws/global-infrastructure/
 ## Amazon EC2
 
-- Virtual machines
+- Virtual machines that provides resizable compute capacity in cloud
 - Amazon EC2 Instance Types: https://aws.amazon.com/ec2/instance-types/
 - https://docs.aws.amazon.com/ec2/index.html
 - instance lifecycle: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
     - charged while in rebooting and running state
  - metadata: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
  - Purchase options: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html
+    - on-demand - pay as you go
+    - reserved - 1-3 yr contract
+    - dedicated - dedicated hardware; nonshared
+    - spot - bidding unused instances
 
+### Sample script to setup a web server
 
-## Networking - Virtual Private Cloud
+below script can be used to test an EC2 instance; 
 
+the script will:
+- install apache (httpd)
+- config web server to automatically start on boot
+- activate web server
+- create a simple web page
+```shell script
+#!/bin/bash
+yum -y install httpd
+systemctl enable httpd
+systemctl start httpd
+echo '<html><h1>Hello From Your Web Server!</h1></html>' > /var/www/html/index.html
+```
+Note: make to sure edit security group to allow HTTP access: Security Groups > web server security group > inbound rules tab > edit > add rule > type: HTTP Source: Anywhere > Save rules
+### Getting log from EC2 instance
+
+- Actions > Instance Settings > Get System Log
+
+## Virtual Private Cloud (VPC)
+ - for networking
+ - users private cloud in a region
+ - **Subnets**
+    - logicl grouping of resources within the VPC
+ - **Internet Gateway** connects VPC to internet
+ - IPV4 CIDR 10.0.25.0/24 means the subnet contains ip addresses from 10.0.25.0 to 10.0.25.255
+ - ech subnet is assoicated with a **route table**, which specifies the routes for outbound traffic leaving the subnet
+ - a **network acces control list (ACL)** is an optional layter of security for VPC; usually left with default values; act as firewall for controlling traiffc in/out of subnets
+ - a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
 - Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
 
 
 ## AMI - Amazon Machine Image
- - EC2 is based off AMI
+ - EC2 is based off AMI; similiar to docker image
+ - OS + setup of software pre-installed
  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html
 
 ## ELB - Elastic Load Balancing
@@ -64,7 +100,8 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 
 ## Storage Services
 
-EBS - Elastic Block Storage
+### EBS - Elastic Block Store
+- https://aws.amazon.com/ebs
 
 ### Simple Storage Service(S3)
  
@@ -107,9 +144,9 @@ EBS - Elastic Block Storage
 https://aws.amazon.com/kms/
 
 ## Security
+- AWS AWS Identity and Access Management (IAM)
 - security groups
 - network ACLs
-- AWS IAM
 - white paper: https://d1.awsstatic.com/whitepapers/aws-security-whitepaper.pdf
 - Security, Identity, and Compliance: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/security-services.html
 

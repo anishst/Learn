@@ -188,8 +188,22 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 | cat /etc/group|shows groups in os|
 | usermod -aG *groupname* *username*| add user to groupname|
 | id *username*| see users group info|
+|**Drive related**||
+| df -h|verify size of the file system for each volume|
+|sudo resize2fs /dev/nvme2n1| resize file system to use addional capacity of new drive|
+|lsblk| show info about block devices|
+
+
 
 https://www.marquette.edu/mathematical-and-statistical-sciences/basic-vi-editor-commands.php
+
+## Mounting drives
+echo "/dev/sdf   /mnt/data-store ext3 defaults,noatime 1 2" | sudo tee -a /etc/fstab
+
+cat /etc/fstab
+
+test write to new volume:
+sudo sh -c "echo some text has been written > /mnt/data-store/file.txt"
 
 ## Text Editors
 ### Nano Editor
