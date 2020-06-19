@@ -330,6 +330,12 @@ https://www.debian.org/doc/manuals/debian-reference/pr01.en.html
 - add user to sudo: https://devconnected.com/how-to-add-a-user-to-sudoers-on-debian-10-buster/
 - https://unix.stackexchange.com/questions/179954/username-is-not-in-the-sudoers-file-this-incident-will-be-reported
 
+## Upgrade java
+- check java version: ```java -version```
+- update package manager: ```sudo yum update -y```
+- remove java: ```sudo yum remove java -y```
+- install java new version: ```sudo yum install java-1.8.0-openjdk -y```
+
 ## Resources
 - centOS vdi download https://www.linuxtrainingacademy.com/vdi/
 - https://distrowatch.com/ - keep on new distros

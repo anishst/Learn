@@ -52,6 +52,16 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - dedicated - dedicated hardware; nonshared
     - spot - bidding unused instances
 
+### SSH Into EC2
+
+- create new key pair
+- save PEM file
+- edit Edit inbound rules to allow SSH (SSH /TCP / 25 / Anywhere)
+- form a terminal window go to directly with PEM file and enter this command: ```ssh -i <file.pem> <amazon_ec2_user@ipaddress```
+- on linux you might need give permissionS if get error "bad permissions" : ```chmod 400 file.pem```
+
+Help: https://bah.udemy.com/course/selenium-webdriver-with-docker/learn/lecture/14317256#overview
+
 ### Sample script to setup a web server
 
 below script can be used to test an EC2 instance; 
