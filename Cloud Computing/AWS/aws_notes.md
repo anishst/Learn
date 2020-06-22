@@ -52,15 +52,22 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - dedicated - dedicated hardware; nonshared
     - spot - bidding unused instances
 
-### SSH Into EC2
+### Coonection Options for EC2
+
+SSH
 
 - create new key pair
 - save PEM file
 - edit Edit inbound rules to allow SSH (SSH /TCP / 25 / Anywhere)
 - form a terminal window go to directly with PEM file and enter this command: ```ssh -i <file.pem> <amazon_ec2_user@ipaddress```
 - on linux you might need give permissionS if get error "bad permissions" : ```chmod 400 file.pem```
+- on windows make your the owner of the pem file; disable inheritance and make sure you only have accessa nd have full control
+- Help: https://bah.udemy.com/course/selenium-webdriver-with-docker/learn/lecture/14317256#overview
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html
 
-Help: https://bah.udemy.com/course/selenium-webdriver-with-docker/learn/lecture/14317256#overview
+Via browser using EC2 Instance connect
+
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html
 
 ### Sample script to setup a web server
 
@@ -111,6 +118,7 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 ## Storage Services
 
 ### EBS - Elastic Block Store
+- for storing data on virtual drives
 - https://aws.amazon.com/ebs
 
 ### Simple Storage Service(S3)
