@@ -17,6 +17,7 @@ for child in root.iter('checktype'):
     print(child.tag, child.text)
     # update
     child.text = "2"
+    print(child.tag, child.text)
 
 
 tree.write('input_checks.xml')

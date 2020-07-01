@@ -35,7 +35,7 @@ Representational state transfer (REST) is a software architectural style that de
 ### REST API
 
 - returns a resource
-- stateless; one request cannot depend on any other requests; server only knows aout current request
+- stateless; one request cannot depend on any other requests; server only knows about current request
 
 ## Videos
  - https://bah.udemy.com/course/rest-api-flask-and-python/learn/lecture/5993706#overview
