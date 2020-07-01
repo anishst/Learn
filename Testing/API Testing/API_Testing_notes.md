@@ -106,7 +106,12 @@ https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififia
 
 ### Running from command line
 
-- use newman to run from command line: https://www.npmjs.com/package/newman
+- use newman to run postman request from command line: https://www.npmjs.com/package/newman
+- install newman globally; need node installed: ```npm install -g newman```
+- To run: ```newman run <collections.json>```
+- to run with specific enviornment:
+    - download env var json file; make sure initial value is populated
+    - then run ```newman run -e <envfile.json> <collections.json>```
 
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/
