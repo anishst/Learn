@@ -92,12 +92,21 @@ console.log(pm.variables.get("NAME"))
 
 ### Environments
 
+- allows to switch between environments; ex. url
+- local vs global
+- https://learning.postman.com/docs/postman/variables-and-environments/variables/
+
+
 use SNIPPETS to save time
 
 ### Chrome Extensions
 
 - **Wizdler** Parses the WSDL files and generates SOAP messages for you.
 https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififiakb?hl=en
+
+### Running from command line
+
+- use newman to run from command line: https://www.npmjs.com/package/newman
 
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/

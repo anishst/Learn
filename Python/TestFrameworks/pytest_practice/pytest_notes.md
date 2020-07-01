@@ -38,6 +38,12 @@ conftest.py is a special named file that pytest looks for when running tests.
 | ```pytest -v --result-log=test.txt```| pipe run results to a file|
 | ```pytest --junitxml='results.xml' ```| generate junit xml file; this can be used with Jenkins; shell command: ```pytest --junitxml='BUILD_$(BUILD_NUMBER)_results.xml``` then create a post-buid action to generate rpt using xml file; https://bah.udemy.com/course/elegant-automation-frameworks-with-python-and-pytest/learn/lecture/10176262?start=480#overview |
 | ```pytest --html=reports/report.html --self-contained-html```| generate report with css in same file; see link for more : https://pypi.org/project/pytest-html/
+| ```pytest testname -x```| stop after first failure|
+| ```pytest --maxfail=2```| stop after two failures|
+|```pytest --lf test```| run tests that failed|
+| ```pytest -x --lf```| run failed tests first then run rest of the scripts|
+|```pytest --durations=5```|summary of the longest running tests|
+
 
 ## Using Fixtures
 | Fixture Usage | Description |
