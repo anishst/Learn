@@ -112,6 +112,16 @@ https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififia
 - to run with specific enviornment:
     - download env var json file; make sure initial value is populated
     - then run ```newman run -e <envfile.json> <collections.json>```
+ - use -n option to run multiple times; see doc: https://learning.postman.com/docs/postman/collection-runs/command-line-integration-with-newman/#options
+ 
+### workflows
+
+- https://learning.postman.com/docs/postman/collection-runs/building-workflows/
+
+### Debugging
+
+- https://learning.postman.com/docs/postman/sending-api-requests/debugging-and-logs/
+- use console to monitor and log
 
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/

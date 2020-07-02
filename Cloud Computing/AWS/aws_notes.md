@@ -101,7 +101,7 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
  - a **network acces control list (ACL)** is an optional layter of security for VPC; usually left with default values; act as firewall for controlling traiffc in/out of subnets
  - a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
 - Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
-
+- Security gropus compare: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 
 ## AMI - Amazon Machine Image
  - EC2 is based off AMI; similiar to docker image
@@ -167,7 +167,7 @@ https://aws.amazon.com/kms/
 - network ACLs
 - white paper: https://d1.awsstatic.com/whitepapers/aws-security-whitepaper.pdf
 - Security, Identity, and Compliance: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/security-services.html
-
+- Diagram : https://aws.amazon.com/compliance/shared-responsibility-model/
 ## Networking
 
 ## Resources
