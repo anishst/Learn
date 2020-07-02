@@ -122,6 +122,52 @@ https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififia
 
 - https://learning.postman.com/docs/postman/sending-api-requests/debugging-and-logs/
 - use console to monitor and log
+- pre-requisites tab example:
+```javascript
+var name = "Anish Postman"
+console.log("name is " + name)
+console.info("info for " + name)
+console.warn("warning for " + name)
+console.error("error for " + name)
+// set a global var
+pm.globals.set("test",name);
+console.log("Global var is " + pm.globals.get("test"));
+```
+- pre-requistes can be at individual request level or collection level: https://learning.postman.com/docs/postman/scripts/pre-request-scripts/
+
+### Using Curl
+
+- click Import
+- enter url ```curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2```
+- examples: https://docs.postman-echo.com/?version=latest#intro
+### Getting XML value from XML response
+
+Response:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <S:Body>
+        <OpenSessionResponse xmlns="<url>" xmlns:ns2="<nsurl>">
+            <SessionHeader>
+                <SessionID>60851343195</SessionID>
+            </SessionHeader>
+        </OpenSessionResponse>
+    </S:Body>
+</S:Envelope>
+```
+Getting sessionid from response using Javascript:   
+```javascript
+// convert xml response to JSON format
+var responseJson = xml2Json(responseBody);
+// print entire response
+console.log(responseJson);
+// print session id
+console.log(responseJson["S:Envelope"]["S:Body"]["OpenSessionResponse"]["SessionHeader"]["SessionID"]);```
+// set global variable
+pm.globals.set("SessionID", responseJson["S:Envelope"]["S:Body"]["OpenSessionResponse"]["SessionHeader"]["SessionID"])
+console.log(pm.globals.get("SessionID"));
+```
 
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/
