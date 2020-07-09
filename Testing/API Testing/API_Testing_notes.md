@@ -140,6 +140,7 @@ console.log("Global var is " + pm.globals.get("test"));
 - click Import
 - enter url ```curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2```
 - examples: https://docs.postman-echo.com/?version=latest#intro
+
 ### Getting XML value from XML response
 
 Response:
@@ -168,6 +169,49 @@ console.log(responseJson["S:Envelope"]["S:Body"]["OpenSessionResponse"]["Session
 pm.globals.set("SessionID", responseJson["S:Envelope"]["S:Body"]["OpenSessionResponse"]["SessionHeader"]["SessionID"])
 console.log(pm.globals.get("SessionID"));
 ```
+### Data Driven Testing
 
+Use data files to run requests using a file
+
+https://learning.postman.com/docs/running-collections/working-with-data-files/
+
+
+request forrmat:
+```json
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+```
+CSV data input format:
+```csv
+endpoint,email,password
+api/register/preprod,tes@yahh,hell
+api/register/preprod,sf@yah,hell
+```
+
+JSON data input Format:
+```json
+[
+	{
+		"endpoint": "api/register/preprod",
+		"email": "te@yaho",
+		"password": "password"
+	},
+	{
+		"endpoint": "api/register/preprod",
+		"email": "maine@yaho",
+		"password": "password"
+	}
+]
+
+```
+code to access variable in tests:
+
+```javascript
+// only works when using data file to run
+tests["Contains email"] = responseBody.has(data.email);
+tests["Contains password"] = responseBody.has(data["password"]);
+```
 ### Tool Comparison
 https://www.katalon.com/resources-center/blog/soapui-vs-postman-katalon-api-tools/
