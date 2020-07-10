@@ -1,4 +1,5 @@
 # https://docs.python-zeep.org/en/master/
+# https://www.techcoil.com/blog/how-to-send-a-http-request-with-client-certificate-private-key-password-secret-in-python-3/
 
 import zeep
 
@@ -22,3 +23,4 @@ print(client.service.CapitalCity(**request_data))
 from zeep import Client
 client = Client('http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL')
 node = client.create_message(client.service, 'CapitalCity', sCountryISOCode='IND')
+print(node)
