@@ -339,3 +339,8 @@ https://www.debian.org/doc/manuals/debian-reference/pr01.en.html
 ## Resources
 - centOS vdi download https://www.linuxtrainingacademy.com/vdi/
 - https://distrowatch.com/ - keep on new distros
+
+## Troubleshooting
+
+Issue: wifi keeps disconnection
+Fix: use ```sudo service network-manager restart``` to restart service
