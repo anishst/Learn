@@ -1,0 +1,21 @@
+# Use postgres/example user/password credentials
+# https://medium.com/@etiennerouzeaud/play-databases-with-adminer-and-docker-53dc7789f35f
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_db: mydb
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 5000:8080
