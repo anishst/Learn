@@ -108,3 +108,11 @@ undefined, null, bool, string, symbol, number and object
 -  https://www.quackit.com/javascript/tutorial/
 - Mozilla: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 - Javascript Info: https://javascript.info/
+
+## Plugins for VSCode
+
+- prettier
+- emmet
+- bracket pair colorizer
+- javascript ES6 code snippets
+- live server
