@@ -344,3 +344,10 @@ https://www.debian.org/doc/manuals/debian-reference/pr01.en.html
 
 Issue: wifi keeps disconnection
 Fix: use ```sudo service network-manager restart``` to restart service
+
+Issue: system stuck on below startup prompt due to file corruption
+BusyBox v1.18.5 (Ubuntu 1:1.18.5-1ubuntu4) built-in shell (ash) 
+Enter 'help' for a list of built-in commands.
+(initramfs) 
+Fix: run below command on the failed disk and follow prompts: ```fsck disk```; when done exit to reboot
+https://askubuntu.com/questions/137655/boot-drops-to-a-initramfs-prompts-busybox
