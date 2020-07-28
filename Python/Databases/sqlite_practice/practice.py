@@ -1,7 +1,7 @@
 # https://www.tutorialspoint.com/sqlite/index.htm
 # https://docs.python.org/3.6/library/sqlite3.html
 import sqlite3
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect('my-test.db')
 
 c = conn.cursor()
 
@@ -27,8 +27,6 @@ purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
              ('2006-04-06', 'SELL', 'IBM', 500, 53.00),
             ]
 c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
-
-
 
 
 t = ('IBM',)
