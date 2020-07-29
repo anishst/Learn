@@ -1,0 +1,3 @@
+<ns0:ocps xmlns:ns0="urn:us:gov:treas:fms:ccmm:otcnet:CardPaymentUploadSchema:v1.0">
+  <html:body xmlns:html="http://www.w3.org/1999/xhtml">Hello World</html:body>
+</ns0:ocps>
