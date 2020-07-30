@@ -45,8 +45,7 @@ Python package dependency management tool.
 |Command|	Description|
 |------|-----|
 pip install pipenv|installs pipenv
-|pipenv install <packagename>|creates a new VENV; creates 2 files: Pipfile and Pipfile.lock (shouldn't modify this)
-|
+|pipenv install <packagename>|creates a new VENV; creates 2 files: Pipfile and Pipfile.lock (shouldn't modify this)|
 |pipenv install -r <requirements.txt>|Install from req file|
 |pipenv lock -r|show dependecies:|
 |pipenv install <packagename> --dev| Install this package in only in dev env|
@@ -62,7 +61,8 @@ pipevn check|checks for issues with packages
 
 **Docs**:
 
-https://pipenv.readthedocs.io/en/latest/
+- https://pipenv.readthedocs.io/en/latest/
+- https://realpython.com/pipenv-guide/
 
 **Video Tutorials**:
 - Corey - https://www.youtube.com/watch?v=zDYL22QNiWk
@@ -272,7 +272,7 @@ sudo pip install Flask
 
 - pyinstaller - https://www.pyinstaller.org/
 
-## <a name=#docs></a>Documentation
+## <a name="docs"></a>Documentation
 
 Official Documentation
 - Google Style Guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md
