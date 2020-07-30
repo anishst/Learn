@@ -16,7 +16,8 @@ Make sure pymongo is install: pip install pymongo
 """
 import pymongo  # package for working with MongoDB
 
-client = pymongo.MongoClient("mongodb://192.168.1.35:27017/")
+client = pymongo.MongoClient("mongodb://192.168.1.50:27017/customersdb")
+# client = pymongo.MongoClient("mongodb://admin:password@192.168.1.50:27017")
 # create db
 db = client["customersdb"]
 # create collection called 'customers'
@@ -82,8 +83,8 @@ for x in customers_col.find():
 # list of all collections in your database
 print(db.list_collection_names())
 
-print("Dropping collection....")
-customers_col.drop()
+# print("Dropping collection....")
+# customers_col.drop()
 
 
 
