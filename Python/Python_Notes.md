@@ -1,7 +1,7 @@
 # Python
 
-https://docs.python.org/3/
-
+- [Documentation/Resource](#docs)
+- [PIPENV](#pipenv)
 
 ## Coding Style
 - PEP8 Guide: https://www.python.org/dev/peps/pep-0008/#package-and-module-names
@@ -18,10 +18,13 @@ https://docs.python.org/3/
 - Data Science
     - https://datatofish.com/
 
-## Video Tutorials
-- Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
-- Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
+## Code snippets
 
+shows where python is installed
+```python
+import sys
+sys.executable
+```
 ## PIP Commands
 
 |Shortcut | Description 
@@ -33,6 +36,37 @@ https://docs.python.org/3/
 | pip uninstall package| uninstall pkg|
 | pip freeze > requirements.txt| send packages to a output file |
 |pip install -r requirements.txt | use req files to install|
+
+## Package Manager
+
+### <a name="pipenv"></a>PIPENV
+Python package dependency management tool.
+
+|Command|	Description|
+|------|-----|
+pip install pipenv|installs pipenv
+|pipenv install <packagename>|creates a new VENV; creates 2 files: Pipfile and Pipfile.lock (shouldn't modify this)
+|
+|pipenv install -r <requirements.txt>|Install from req file|
+|pipenv lock -r|show dependecies:|
+|pipenv install <packagename> --dev| Install this package in only in dev env|
+|pipenv uninstall <packagename>|Removing a package|
+|pipenv shell|activate VENV|
+pipevn check|checks for issues with packages
+|pipenv -venv|get path to the VM|
+|pipenv instll|install packages using the pipfile|
+|pipenv --where|shows where my project is|
+|pipenv --rm|remove a VM|
+|pipenv graph|shows a graph of dependcies|
+|pipenv lock|get ready for lock|
+
+**Docs**:
+
+https://pipenv.readthedocs.io/en/latest/
+
+**Video Tutorials**:
+- Corey - https://www.youtube.com/watch?v=zDYL22QNiWk
+- Pretty Printed - https://www.youtube.com/watch?v=tRmmjlVHzno
 
 ## Udemy Trainings
  - https://www.udemy.com/course/data-analysis-with-pandas/
@@ -206,3 +240,52 @@ student = Student.query.get(<id>)
 
 to drop all db tables: ```db.drop_all()```
 
+
+
+## My Favorite Python Libraries
+
+- Pillow - image manipulation lib
+- cx-Oracle (6.2.1) - for working with oracle databases
+- numpy (1.14.1) - data analysis
+- pandas (0.22.0) - data analysis
+- pip (9.0.1) - package install
+- selenium (3.10.0)- web automation
+- Selenium with Python
+- XlsxWriter (1.0.2)- working with excel package
+- virtualenv - for virtual environments
+- pyperclip - for copying text to clipboar
+- pipenv
+- requests-html - for web scraping
+
+## Python on Linux
+
+Most linux version (Ubuntu, ElemOS) come pre-installed with python 2.7 and 3.5 version. to access 3.5 use
+python3
+command; to use python 3 version of packages use
+pip3 install <package name>
+
+Install pip 
+apt install python3-pip
+sudo pip install Flask
+
+## Python Deployement Tools
+
+- pyinstaller - https://www.pyinstaller.org/
+
+## <a name=#docs></a>Documentation
+
+Official Documentation
+- Google Style Guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md
+
+Python Tutorials:
+- https://www.tutorialspoint.com/python3/python_cgi_programming.htm
+- https://realpython.com/
+- Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
+- http://introtopython.org/
+- Python Tips: http://book.pythontips.com/en/latest/index.html
+- Cheat sheet: https://www.pythoncheatsheet.org/
+
+### Video Tutorials
+- Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
+- Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
+- MIT - https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00-introduction-to-computer-science-and-programming-fall-2008/video-lectures/
