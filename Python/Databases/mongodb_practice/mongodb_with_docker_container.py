@@ -16,8 +16,9 @@ Make sure pymongo is install: pip install pymongo
 """
 import pymongo  # package for working with MongoDB
 
-client = pymongo.MongoClient("mongodb://192.168.1.50:27017/customersdb")
-# client = pymongo.MongoClient("mongodb://admin:password@192.168.1.50:27017")
+client = pymongo.MongoClient("mongodb://192.168.1.50:27017")
+# client = pymongo.MongoClient("mongodb://admin:pass@192.168.1.50:27017")
+
 # create db
 db = client["customersdb"]
 # create collection called 'customers'
