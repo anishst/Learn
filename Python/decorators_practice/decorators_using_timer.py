@@ -1,33 +1,25 @@
+# https://medium.com/better-programming/decorators-in-python-72a1d578eac4
+import functools
 import time
-from functools import wraps
-
-def timethis(func):
-	'''
-	Decorator that reports the execution time.
-	'''
-	@wraps(func)
-	def wrapper(*args, **kwargs):
-		start = time.time()
-		result = func(*args, **kwargs)
-		end = time.time()
-		print("Function ",func.__name__, "finished in ", end-start, 'seconds')
-		return result
-	return wrapper
 
 
-#  using the decorator
+def timer(func):
 
-@timethis
-def countdown(n):
-	""" Counts down """
-	while n > 0:
-		n -= 1
-		print(n)
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        value = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        print("Finished {} in {} secs".format(repr(func.__name__), round(run_time, 3)))
+        return value
 
-@timethis
-def wait(sec):
-	time.sleep(sec)
+    return wrapper
 
+@timer
+def doubled_and_add(num):
+    res = sum([i*2 for i in range(num)])
+    print("Result : {}".format(res))
 
-countdown(10000)
-wait(5)
+doubled_and_add(100000)
+doubled_and_add(1000000)
