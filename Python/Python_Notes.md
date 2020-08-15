@@ -25,6 +25,13 @@ shows where python is installed
 import sys
 sys.executable
 ```
+
+## Useful Python Commands
+
+|Shortcut | Description 
+|--------|--------------------|
+|python -m site |shows path locations |
+
 ## PIP Commands
 
 |Shortcut | Description 

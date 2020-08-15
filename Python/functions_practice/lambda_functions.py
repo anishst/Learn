@@ -28,3 +28,10 @@ print(f"Using lamda: {doubled} ")
 # lambda with map function
 doubled = map(lambda x: x *2, sequence)
 print(f"Using lamda with map function: {list(doubled)} ")
+
+
+# lambda with filter function
+# remove even numbers
+nums = range(10)
+a = filter(lambda  x:x%2 !=0, nums)
+print(list(a))
