@@ -351,3 +351,12 @@ Enter 'help' for a list of built-in commands.
 (initramfs) 
 Fix: run below command on the failed disk and follow prompts: ```fsck disk```; when done exit to reboot
 https://askubuntu.com/questions/137655/boot-drops-to-a-initramfs-prompts-busybox
+
+Issue: Linux mint touchpad didn't work
+
+Partial fix: below commands fixed touchpad issue; kb didn't work on hp laptop; external kb worked
+```shell script
+    sudo apt-get install xserver-xorg-input-all
+    sudp apt update
+    sudo apt-get --purge autoremove xserver-xorg-input-all && sudo apt-get install xserver-xorg-input-all
+```

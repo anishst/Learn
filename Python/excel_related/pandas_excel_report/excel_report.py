@@ -55,7 +55,7 @@ wb.save(filename = file_path)
 regions = list(df['Region'].unique())
 
 # Section 09 - Looping Over All Regions
-folder_path =  '.'
+folder_path =  'reports/'
 
 for region in regions:
     filtered = df[df['Region'] == f'{region}']
