@@ -30,6 +30,7 @@ Everything is an object; use Get-Member to see methods/properties
 |$MyCurrentProcess = Get-Process||
 |**Cmdlet - Process related Usage**||
 |get-process | shows all running processes|
+| Get-Proces  &#124; Sort-Object  -Descending WS  &#124; select -first 10| show top 10 memory apps|
 |Get-Process &#124; where-object  {$_.ProcessName -eq 'chrome'}|
 |get-service | show all services running|
 |Get-service &#124; where {$_.Status -eq 'Running'}||
@@ -44,6 +45,7 @@ Everything is an object; use Get-Member to see methods/properties
 |Get-WmiObject -Class Win32_Product -ComputerName . -Filter "Name='Java Auto Updater'"  &#124; Format-List -Property *| apply filters|
 |date | prints date|
 |help get-childitem -online| Get online help for commands|
+| dir &#124; out-null| out-null allows skipping output to console|
 
 Send output to file
 
@@ -80,6 +82,17 @@ $files | where {$_.length -gt 2000}
 
 # iterate mutliple filters
 $files | where {($_.length -lt 50) -and  ($_.name -like 'an*')}
+```
+
+## Read file recursively
+
+```powershell
+
+# read all files under a dir and sub dirs
+$files = Get-ChildItem -recurse
+
+# specify path
+ $files = Get-ChildItem -Path 'C:\temp' -recurse
 ```
 
 ## Loops
@@ -210,3 +223,113 @@ $names | format-table
 $
 
 ```
+
+## Functions
+
+```powershell
+# simple
+function sayHello
+{
+    "Hi there"
+}
+# call
+sayHello
+
+# using params
+
+function sayHello
+{
+    param($name)
+    "Hi there $name"
+}
+# call with param
+sayHello("Anish")
+sayHello "Anish"
+sayHello -name "Anish"
+
+# using return 
+function sayHello
+{
+    param($name)
+    return "Hi there $name"
+}
+$gretting = sayHello -name "Anish"
+$gretting
+
+#  another func example
+
+function get-DirInfo($dir)
+{
+    $results = Get-ChildItem $dir -Recurse |Measure-Object -Property length -Sum
+    # return size in GB
+    return [math]::Round(($results).sum/1GB,2)
+
+
+}
+# call
+get-DirInfo C:\temp
+get-DirInfo Y:\
+```
+
+## Run Script files
+
+
+Run below script: ```myscript.ps1 c:\temp```
+
+```powershell
+# my_script.ps1
+
+# parameters
+param([string]$dir="c:\")
+
+# function
+function get-DirInfo($dir)
+{
+    $results = Get-ChildItem $dir -Recurse |Measure-Object -Property length -Sum
+    # return size in GB
+    return [math]::Round(($results).sum/1GB,2)
+
+
+}
+# run func using passed in param
+get-DirInfo $dir
+```
+
+## Sample Scripts
+
+```powershell
+
+#Create a function named DisplayFolderStatistics to display folder statistics for a directory/path that is passed 
+#to it. Output should include the name of the folder, number of files in the folder, and total size of all files in 
+#that directory.
+function Display-FolderStats([string]$path){
+ $files = dir $path -Recurse | where {!$_.PSIsContainer}
+ $totals = $files | Measure-Object -Property length -sum
+ $stats = "" | Select path,count,size
+ $stats.path = $path
+ $stats.count = $totals.count
+ $stats.size = [math]::round($totals.sum/1MB,2)
+ return $stats
+}
+
+
+#Create a function named CheckFolder that checks for the existence of a specific directory/folder that is passed 
+#to it as a parameter. Also, include a switch parameter named create. If the directory/folder does not exist and 
+#the create switch is specified, a new folder should be created using the name of the folder/directory that was 
+#passed to the function.
+function Check-Folder([string]$path, [switch]$create){
+    $exists = Test-Path $path
+
+    if(!$exists -and $create){
+        #create the directory because it doesn't exist
+        mkdir $path | out-null
+        $exists = Test-Path $path
+    }
+    return $exists
+}
+
+```
+
+### Troubleshooting
+
+Script execution issue in VS Code: https://stackoverflow.com/questions/56199111/visual-studio-code-cmd-error-cannot-be-loaded-because-running-scripts-is-disabl

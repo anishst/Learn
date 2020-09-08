@@ -271,13 +271,28 @@ python3
 command; to use python 3 version of packages use
 pip3 install <package name>
 
+```bash
+# Ubuntu 18.04, Ubuntu 20.04 and above
+sudo apt-get update
+sudo apt-get install python3.8 python3-pip
+
+# Linux Mint and Ubuntu 17 and below:
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.8 python3-pip
+```
+
 Install pip 
 apt install python3-pip
 sudo pip install Flask
 
+https://realpython.com/installing-python/
+
 ## Python Deployement Tools
 
 - pyinstaller - https://www.pyinstaller.org/
+- Breifcase: https://beeware.org/project/projects/tools/briefcase/
+- https://pyoxidizer.readthedocs.io/en/stable/
 
 ## <a name="docs"></a>Documentation
 
