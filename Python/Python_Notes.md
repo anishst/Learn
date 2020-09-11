@@ -20,11 +20,24 @@
 
 ## Code snippets
 
-shows where python is installed
+### shows where python is installed
 ```python
 import sys
 sys.executable
 ```
+### Combine nested for loops
+```python
+
+from itertools import product
+
+list1 = range(1,3)
+list2 = range(4,6)
+list3 = range(7,9)
+
+for l1, l2, l3 in product(list1,list2, list3):
+    print(l1+l2+l3)
+```
+
 
 ## Useful Python Commands
 
