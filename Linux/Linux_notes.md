@@ -29,6 +29,17 @@ Linux Distro examples:
 - SSH - replaced telnet as the way to connect over network
 - PuTTy - terminal emulator
 
+### SSh from windows 10 to linux mint
+
+1. in windows 10 use ``` ssh-keygen``` to generate key
+2. copy contens of ```C:\Users\<user>\.ssh\id_rsa.pub``` to clipboard
+3. loginto linux mint
+4. create a new dir: ```mkdir ~/.ssh```
+5. use below copy pub key to new file: ```echo <copied key contents> >> authorized_keys```
+
+ssh confile file: ```sudo vi /etc/ssh/sshd_config```
+https://serversforhackers.com/c/configuring-sshd-on-the-server
+
 ## Common Directories
 
 like a tree
