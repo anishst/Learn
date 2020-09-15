@@ -1,3 +1,3 @@
 # Learn
 
-Notes
+Notes about different technologies
