@@ -46,6 +46,10 @@ Everything is an object; use Get-Member to see methods/properties
 |date | prints date|
 |help get-childitem -online| Get online help for commands|
 | dir &#124; out-null| out-null allows skipping output to console|
+|**COPY FIles related**||
+|scp "file or dir" user@ipaddr:~/destination|copy files over to another machine|
+
+
 
 Send output to file
 

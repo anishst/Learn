@@ -192,7 +192,11 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |crontab -l| list all cron jobs|
 |crontab my-cron|run my-cron file|
 |**Managings Users**||
+| sudo useradd -m -c "Anish S" -u 1012 anishs| add user called anishs|
+| sudo userdel -r anishs|removes user and home dirs|
+|less /etc/passwd| list users|
 | whoami|shows current user|
+| last| shows recent logins|
 | su oracle| changes user to oracle|
 |sudo| super user do; execute command as another user; usaully super user|
 |sudo -l |list available commands|
@@ -203,7 +207,17 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 | df -h|verify size of the file system for each volume|
 |sudo resize2fs /dev/nvme2n1| resize file system to use addional capacity of new drive|
 |lsblk| show info about block devices|
-
+|**Networking related**||
+| ip -4 addr  grep -oP '(?<=inet\s)\d+(\.\d+){3}' | get ipv4 addess|
+|iwlist scan|scan wifi networks|
+|route| routing table|
+|ping -c 4 www.google.com|ping google 4 times|
+| host www.google.com| find ipv4/v6 addresses|
+|**Running Programs**||
+| nohup /path/to/test.py &| run a program in foreground; runs even after closing terminal; https://janakiev.com/blog/python-background/|
+|ps ax | grep test.py|find the process and its process Id|
+|kill PID| kill PID|
+|sudo nohup python3 python_web_server.py > webserver.log|send output to log file|
 
 
 https://www.marquette.edu/mathematical-and-statistical-sciences/basic-vi-editor-commands.php
@@ -346,6 +360,48 @@ https://www.debian.org/doc/manuals/debian-reference/pr01.en.html
 - update package manager: ```sudo yum update -y```
 - remove java: ```sudo yum remove java -y```
 - install java new version: ```sudo yum install java-1.8.0-openjdk -y```
+## Text Editors
+
+- Nano
+    - https://www.tecmint.com/learn-nano-text-editor-in-linux/
+    - A combination that is shown to start with M means that it needs to be completed by pressing Alt key and the following symbol.
+    - After marking your desired text, copy it by entering (alt+shift+6) or (alt+^).
+
+
+## Shell Scripting
+
+- plain text files
+- start with ```#!/bin/bash```
+- to make a script executable: ```chmod a+x my-script```
+
+Script that add a new user and then deletes it using args passed in
+
+example : scriptname anish
+```shell script
+#!/bin/bash
+echo "add using arg passed "
+echo $1
+useradd -m $1
+passwd $1
+echo "Deleting user"
+userdel  $1
+echo "Deleted user"
+```
+
+Script that add a new user and then deletes it via prompts
+```shell script
+#!/bin/bash
+echo -n "Enter a username:"
+read name
+useradd -m $name
+passwd $name
+echo "Deleting user"
+userdel  $name
+echo "Deleted user: $name"
+```
+
+### Tutorials
+- https://www.tutorialspoint.com/unix/shell_scripting.htm
 
 ## Resources
 - centOS vdi download https://www.linuxtrainingacademy.com/vdi/
