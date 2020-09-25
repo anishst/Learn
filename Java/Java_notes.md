@@ -156,8 +156,8 @@ Sample xml file with 2 test suites:
 
 Maven is a dependency management/build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies. 
 
-https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-
+- https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+- Getting started https://maven.apache.org/guides/getting-started/
 ### Maven setup
 
 - download binary zip archive. 	apache-maven-3.6.3-bin.zip : https://maven.apache.org/download.cgi
