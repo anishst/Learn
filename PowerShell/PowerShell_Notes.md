@@ -48,6 +48,7 @@ Everything is an object; use Get-Member to see methods/properties
 | dir &#124; out-null| out-null allows skipping output to console|
 |**COPY FIles related**||
 |scp "file or dir" user@ipaddr:~/destination|copy files over to another machine|
+|scp -r "Z:\test" ats@192.168.1.36:~/Documents | copy folder recursively|
 
 
 

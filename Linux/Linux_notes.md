@@ -119,6 +119,9 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 ## Linux Commands
 |Command | Description 
 |--------|--------------------|
+|cat /etc/os-release|Get linux version|
+|hostnamectl|check OS name and Linux kernel version|
+|sudo !!| reruns last cmd w/o sudo|
 |ls|list directory contents|
 |ls -l|long listing dir contents|
 |pwd|display current work dir|
@@ -129,11 +132,15 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |exit|exit cmd prompt|
 |which *programname*| display location of program; ```which python3```|
 |mv old_dirname/ new_dirname| rename folder|
+|**Login/out Related**||
+|Ctrl+D|same as typing exit|
 |**Directory ops**||
 |mkdir *dirname*|create dir|
 |mkdir -p *dirname*|create dir and parent dirs| 
 |rmdir *dirname*|remove empty dir|
 |rm -rf *dirname*|remove dir and files recursively|
+|bash -c "rsync -avzh -P --stats --timeout=60  --exclude Downloads . 'my_remote_linux_computer@128.95.170.200:/media/my_remote_linux_computer/LaCie/My\ Documents'"| copy files|
+| bash -c "rsync -avz . 'ats@192.168.1.36:/home/ats/test'"| test|
 |**Listing Files**||
 |ls -l|detailed dir outpu|
 |```ls -l -a``` OR ```ls -al```|show hidden files|
@@ -203,6 +210,7 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 | cat /etc/group|shows groups in os|
 | usermod -aG *groupname* *username*| add user to groupname|
 | id *username*| see users group info|
+|w|shows users logged in|
 |**Drive related**||
 | df -h|verify size of the file system for each volume|
 |sudo resize2fs /dev/nvme2n1| resize file system to use addional capacity of new drive|
@@ -214,10 +222,12 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |ping -c 4 www.google.com|ping google 4 times|
 | host www.google.com| find ipv4/v6 addresses|
 |**Running Programs**||
-| nohup /path/to/test.py &| run a program in foreground; runs even after closing terminal; https://janakiev.com/blog/python-background/|
+| nohup /path/to/test.py &| run a program in foreground; runs even after closing terminal; nohub = "no hang up" https://janakiev.com/blog/python-background/|
+|nohup scp verylargefile.mkv user@remote| copy a large file even if u close terminal|
 |ps ax | grep test.py|find the process and its process Id|
 |kill PID| kill PID|
 |sudo nohup python3 python_web_server.py > webserver.log|send output to log file|
+
 
 
 https://www.marquette.edu/mathematical-and-statistical-sciences/basic-vi-editor-commands.php

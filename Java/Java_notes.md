@@ -18,6 +18,13 @@ To run:
 2. This will create a .class file
 3. To see the output: ```java HelloWorld```
 
+## Common files
+
+- **EAR (Enterprise Application ARchive)** Java EE-based enterprise application; An EAR file requires a fully Java Platform, Enterprise Edition (Java EE)- or Jakarta Enterprise Edition (EE)-compliant application server, such as WebSphere or JBoss, to run
+- **JAR (Java ARchive)** is Java Application Archive that runs a desktop application on a user's machine. contain libs and property file 
+- **WAR (Web Application ARchive)** file is a Web Application Archive which runs inside an application server. A war file is a special jar file that is used to package a web application to make it easy to deploy it on an application server. contains files for servlet container. includes JSP, HTML, JS files 
+- both are zip files created using java tool
+
 ## Temp method for setting Java complier path
 ```set path=C:\Program Files\Java\jdk-11.0.1\bin```
 
