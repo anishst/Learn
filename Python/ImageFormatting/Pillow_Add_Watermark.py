@@ -8,7 +8,7 @@ width, height = image.size
 draw = ImageDraw.Draw(image)
 text = "A watermark"
  
-font = ImageFont.truetype('arial.ttf', 56)
+font = ImageFont.truetype('tahoma.ttf', 56)
 textwidth, textheight = draw.textsize(text, font)
  
 # calculate the x,y coordinates of the text
@@ -16,7 +16,8 @@ margin = 5
 x = width - textwidth - margin
 y = height - textheight - margin
  
-# draw watermark in the bottom right corner
-draw.text((x, y), text, font=font)
+# draw watermark using RBG Color in the bottom right corner
+# color picker: https://htmlcolorcodes.com/
+draw.text((x, y), text, (240, 18, 109 ), font=font)
  
 image.save('images/watermark_test.JPEG')

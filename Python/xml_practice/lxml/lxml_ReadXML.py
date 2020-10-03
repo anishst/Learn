@@ -9,3 +9,4 @@ xmlDoc = ET.parse(file)
 for record in xmlDoc.xpath('//checkdata'):
 	for sf in record.getchildren():
 		print(sf.text)
+

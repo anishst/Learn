@@ -301,6 +301,14 @@ sudo pip install Flask
 
 https://realpython.com/installing-python/
 
+## GUI Dev Options
+
+- tkinter
+- PyQt
+    - qt designer https://build-system.fman.io/qt-designer-download
+    - qt : https://www.qt.io/offline-installers
+    
+    
 ## Python Deployement Tools
 
 - pyinstaller - https://www.pyinstaller.org/

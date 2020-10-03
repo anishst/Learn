@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test dom manipulation</title>
+
+</head>
+
+<body>
+    <h1>Testing JavaScript DOM Methods</h1>
+    <div id="main">
+        <div class="pictureContianer">
+            <img class="theImage" src="https://picsum.photos/100/50" />
+        </div>
+        <div class="pictureContianer">
+            <img class="theImage" src="https://picsum.photos/100/40" />
+        </div>
+        <div class="pictureContianer">
+            <img class="theImage" src="https://picsum.photos/101/50" />
+        </div>
+    </div>
+    <p>Initial text</p>
+    <p>2ND para</p>
+
+    <ul id="mylist">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+    <script>
+        // find div who id is main
+        let element = document.querySelector("#main");
+        console.log("Displaying main id");
+        console.log(element)
+
+        // get attribue value
+        console.log(element.getAttribute("id"));
+
+        // set attribue value
+        element.setAttribute("class", "jsdynamicclass")
+
+        // change bg color
+        let bodyelm = document.querySelector("body")
+        bodyelm.setAttribute("bgcolor", "#fffff3")
+
+        // find all image srcs
+        console.log("Displaying all image srcs....");
+        let images = document.querySelectorAll(".theImage");
+        for (let i = 0; i < images.length; i++) {
+            const element = images[i];
+            console.log(element.getAttribute("src"));
+        }
+
+        // change text of para
+        let paratext = document.querySelector("p")
+        paratext.textContent = "This was modified was using JS"
+
+        //  styling content directly
+        paratext.style.backgroundColor = "gray";
+
+        // increase all para text size
+        let paraelements = document.querySelectorAll("p")
+        for (let i = 0; i < paraelements.length; i++) {
+            paraelements[i].style.fontSize = "34px";
+
+        }
+        // add class values
+
+        let listElem = document.querySelector("#mylist")
+        listElem.classList.add("bar")
+        listElem.classList.add("hello")
+        // remove class value
+        listElem.classList.remove("bar")
+
+        //  checking if a class value exists
+        if (listElem.classList.contains("hello") == true) {
+            console.log("hello class value was found");
+        }
+
+        // checking if a child exists
+        let bodyElement1 = document.querySelector("body")
+        if (bodyElement1.firstChild) {
+            console.log("Child exists!");
+
+        }
+
+        //  get all child elements
+        document.writeln("getting all tags under body tag...<br/>")
+        let bodyElement = document.body;
+        for (let i = 0; i < bodyElement.children.length; i++) {
+            let childElement = bodyElement.children[i];
+            document.writeln(childElement.tagName);
+        }
+
+        // adding a new element
+        let newElement = document.createElement("p")
+        newElement.textContent = "I was added by javascript!"
+        bodyElement.appendChild(newElement);
+
+    </script>
+
+</body>
+
+</html>

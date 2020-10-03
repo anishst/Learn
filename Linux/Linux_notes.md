@@ -189,6 +189,10 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |Ctrl-z|suspends foreground process|
 |kill <jobnum or pID>|kill process|
 |jobs|list jobs|
+| sudo netstat -ltnp | grep -w '80'|show process related to port 80|
+|fuser 80/tcp|show process related to port 80|
+|ps -ef &#124;  grep "python3 python_web_server.py" &#124; awk '{print $2}' |get PID of a python file running|
+|ps -ef  &#124; grep "python3 python_web_server.py"  &#124; awk '{print $2}'  &#124; xargs sudo kill -9 | get PID of a python file running and kill all ids|
 |**Cron service**||
 |* * * * * command|crontab format|
 |0 7 * * 1 rpt | run every monday at 7:00|
@@ -412,6 +416,8 @@ echo "Deleted user: $name"
 
 ### Tutorials
 - https://www.tutorialspoint.com/unix/shell_scripting.htm
+- https://medium.com/better-programming/how-bash-works-8424becc12f3
+- https://codeburst.io/your-perfect-kickstart-to-shell-scripting-857b81c0939b
 
 ## Resources
 - centOS vdi download https://www.linuxtrainingacademy.com/vdi/
@@ -421,7 +427,8 @@ echo "Deleted user: $name"
 
 Issue: wifi keeps disconnection
 Fix: use ```sudo service network-manager restart``` to restart service
-
+ 
+ 
 Issue: system stuck on below startup prompt due to file corruption
 BusyBox v1.18.5 (Ubuntu 1:1.18.5-1ubuntu4) built-in shell (ash) 
 Enter 'help' for a list of built-in commands.
