@@ -52,3 +52,4 @@ ages6 = years.map((el, index) => {
     return `Age element ${index + 1}: ${age}`;
 });
 console.log(ages6);
+

@@ -37,7 +37,13 @@ list3 = range(7,9)
 for l1, l2, l3 in product(list1,list2, list3):
     print(l1+l2+l3)
 ```
+### itertools-library
 
+https://medium.com/fintechexplained/advanced-python-itertools-library-the-gem-of-python-language-99da37dfcca2
+
+### Enum
+
+https://medium.com/better-programming/enumerations-in-python-b01a1fb479de
 
 ## Useful Python Commands
 

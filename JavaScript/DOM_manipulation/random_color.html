@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random color</title>
+    <script>
+        function getRandomColor() {
+            // creating a random number between 0 and 255
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+
+            // going from decimal to hex
+            var hexR = r.toString(16);
+            var hexG = g.toString(16);
+            var hexB = b.toString(16);
+
+            // making sure single character values are prepended with a "0"
+            if (hexR.length == 1) {
+                hexR = "0" + hexR;
+            }
+
+            if (hexG.length == 1) {
+                hexG = "0" + hexG;
+            }
+
+            if (hexB.length == 1) {
+                hexB = "0" + hexB;
+            }
+
+            console.log("It works!!!");
+
+            // creating the hex value by concatenatening the string values
+            var hexColor = "#" + hexR + hexG + hexB;
+            document.writeln("<hr /><b style='font-family: Arial, Helvetica; font-size: 100px; color: #FFF; text-shadow: 0px 0px 11px #333333; margin: 0; padding: 30px;'>RGB Code: " + hexColor + "</b>");
+            return hexColor.toUpperCase();
+        }
+    </script>
+    <style>
+        h2 {
+            font-family: Arial, Helvetica;
+            font-size: 100px;
+            color: #FFF;
+            text-shadow: 0px 0px 11px #333333;
+            margin: 0;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Random<br />Color<br />Generator</h2>
+    <script>
+        var bodyElement = document.querySelector("body");
+        bodyElement.style.backgroundColor = getRandomColor();
+    </script>
+</body>
+
+</html>

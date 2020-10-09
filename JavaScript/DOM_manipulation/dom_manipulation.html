@@ -21,8 +21,12 @@
             <img class="theImage" src="https://picsum.photos/101/50" />
         </div>
     </div>
+    <div id="head2">
+        <h2>Heading 2</h2>
+        <span>some text</span>
+    </div>
     <p>Initial text</p>
-    <p>2ND para</p>
+    <p id="para2">2ND para</p>
 
     <ul id="mylist">
         <li>one</li>
@@ -98,6 +102,23 @@
         let newElement = document.createElement("p")
         newElement.textContent = "I was added by javascript!"
         bodyElement.appendChild(newElement);
+
+        // adding a new elment before
+        let newElement2 = document.createElement("p")
+        newElement2.textContent = "New element added using Javascript before 2nd para"
+        para2 = document.querySelector("#para2")
+        bodyElement.insertBefore(newElement2, para2)
+
+        // remove element - follow same steps to add element or use xisting element then call below method
+        // newElement.remove();
+
+        // cloning elements
+        let item = document.querySelector("#head2")
+        // true clone just element false element and its children
+        let clonedItem = item.cloneNode(true)
+        // add cloned item to DOM
+        bodyElement.appendChild(clonedItem)
+
 
     </script>
 
