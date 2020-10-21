@@ -1,5 +1,7 @@
 # Electron practice app
 
+https://www.electronjs.org/
+
 1. create node package: ```npm init```
 2. install electron: ```npm install --save electron```
 3. create index.js file
