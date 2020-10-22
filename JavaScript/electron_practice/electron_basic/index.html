@@ -2,13 +2,57 @@
 <html lang="en">
 
 <head>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electron app</title>
+    <title>Electron App</title>
 </head>
 
 <body>
-    <h1>My Electron app!</h1>
+    <h1>My Electron App</h1>
+    <form>
+        <div>
+            <label>Select Video</label>
+            <!-- input file that accepts only vidoe files -->
+            <input type="file" accept="video/*" />
+        </div>
+        <!-- button to submit form -->
+        <button type="submit">Get Info</button>
+    </form>
+
+    <h1 id="result"></h1>
+    <script>
+        const electron = require('electron');
+        // alllows IPC comm between window and electron
+        const { ipcRenderer } = electron;
+
+        // event handler
+        document.querySelector('form').addEventListener('submit', (event) => {
+            // prevent default form behavior
+            event.preventDefault();
+
+            // use this to debug code using dev tools
+            // use ESC key to send console window to bottom
+            //debugger
+
+            // get first file
+            // const file = document.querySelector('input').files[0];
+            // console.log(file);
+
+            const { path } = document.querySelector('input').files[0];
+            // send event to IPC; main window to electron app; need info about video
+            ipcRenderer.send('video:submit', path);
+
+
+        });
+
+        // recv vidoe info from electron
+        ipcRenderer.on('video:metadata', (event, duration) => {
+            // display results in h1 tag
+            document.querySelector('#result').innerHTML = `Video is ${duration} seconds`;
+        });
+    </script>
 
 </body>
 
