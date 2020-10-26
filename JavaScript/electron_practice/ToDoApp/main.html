@@ -11,21 +11,29 @@
 
 <body>
     <h1>To Do App</h1>
-    <form>
-        <div>
-            <label>Select Video</label>
-            <!-- input file that accepts only vidoe files -->
-            <input type="file" accept="video/*" />
-        </div>
-        <!-- button to submit form -->
-        <button type="submit">Get Info</button>
-    </form>
-
+    <ul>
+    </ul>
 
     <script>
         const electron = require('electron');
         // alllows IPC comm between window and electron
         const { ipcRenderer } = electron;
+        const list = document.querySelector('ul');
+
+        ipcRenderer.on('todo:add', (event, todo) => {
+            // add li list
+            const li = document.createElement('li');
+            // store value for todo passed from add.html
+            const text = document.createTextNode(todo);
+
+            li.appendChild(text);
+            list.appendChild(li);
+        });
+
+        ipcRenderer.on('todo:clear', () => {
+            // clear out the list
+            list.innerHTML = '';
+        });
 
     </script>
 
