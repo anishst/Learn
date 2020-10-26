@@ -19,6 +19,7 @@ app.on('ready', () => {
 
 // menu template
 // each object in array represents a menu item ; ex. File
+// accelerator = for keyboard shortcuts
 const menuTemplate = [
     {
         label: 'File',
@@ -28,7 +29,13 @@ const menuTemplate = [
             },
             {
                 label: 'Quit',
-                accelerator: 'Command+Q',
+                accelerator: (() => {
+                    if (process.platform === 'darwin') {
+                        return 'Command+Q';
+                    } else {
+                        return 'Ctrl+Q';
+                    }
+                })(),
                 click() {
                     app.quit();
                 }
