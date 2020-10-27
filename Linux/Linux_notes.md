@@ -413,6 +413,29 @@ echo "Deleting user"
 userdel  $name
 echo "Deleted user: $name"
 ```
+## Share Files with Windows 10 
+In Linux machine:
+1. install Samba: ```sudo apt install samba```
+2. set password for samba: ```sudo smbpasswd -a your_username```
+3. ```sudo apt install caja-share``` (Skip if planning to use commandl ine)
+4. create a folder to be shared: ```mkdir /home/<user_name>/<folder_name>```
+5. Make a safe backup copy of the original smb.conf file to your home folder, in case you make an error: ```sudo cp /etc/samba/smb.conf ~```
+6. edit file: ```nano /etc/samba/smb.conf```; Once "smb.conf" has loaded, add this to the very end of the file:
+    ```
+    [<folder_name>]
+    path = /home/<user_name>/<folder_name>
+    valid users = <user_name>
+    read only = no
+    ```
+7. restart samba: ```sudo service smbd restart```
+
+In Windows 10:
+
+1. map network drive: ```\\ipaddress\sharename``` 
+
+- https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!
+
+- https://forums.linuxmint.com/viewtopic.php?t=273183
 
 ### Tutorials
 - https://www.tutorialspoint.com/unix/shell_scripting.htm
