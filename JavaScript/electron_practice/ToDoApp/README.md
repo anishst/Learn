@@ -1,6 +1,6 @@
 # Electron To Do app
 
-Use custom menu objects
+A simple to do app. Uses custom menu objects
 
 any changes made on electron side requires app reload
 
