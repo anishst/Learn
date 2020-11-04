@@ -1,19 +1,47 @@
-import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk
+from tkinter import *
+# using pack
+#
+# root = Tk()
+# scrollbar = Scrollbar(root)
+# scrollbar.pack(side=RIGHT, fill=Y)
+# listbox = Listbox(root)
+# listbox.pack()
+# for i in range(100):
+#     listbox.insert(END, i)
+# # attach listbox to scrollbar
+# listbox.config(yscrollcommand=scrollbar.set)
+# scrollbar.config(command=listbox.yview)
+#
+# root.mainloop()
 
-root = tk.Tk()
-root.geometry('600x400')
+# using grid
+class Application(Frame):
+    def __init__(self,  master=None):
+        Frame.__init__(self, master)
+        self.grid(sticky=N+S+E+W)
+        self.mainframe()
 
-root.grid_columnconfigure(0, weight=1)
-root.grid_rowconfigure(0, weight=1)
+    def mainframe(self):
+        self.data = Listbox(self, bg='red')
+        self.scrollbar = Scrollbar(self.data, orient=VERTICAL)
+        self.data.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.data.yview)
 
-text = tk.Text(root, height=8)
-text.grid(row=0, column=0, sticky="EW")
-text.insert("1.0", "Please enter some...")
+        for i in range(1000):
+            self.data.insert(END, str(i))
 
-text_scroll = ttk.Scrollbar(root,orient="vertical", command=text.yview())
-text_scroll.grid(row=0, column=1, sticky="ns")
-text["vscrollcommand"] = text_scroll.set
+        self.run = Button(self, text="run")
+        self.stop = Button(self, text="stop")
 
-root.mainloop()
+        self.data.grid(row=0, column=0, rowspan=4,
+                   columnspan=2, sticky=N+E+S+W)
+        self.data.columnconfigure(0, weight=1)
+
+        self.run.grid(row=4,column=0,sticky=EW)
+        self.stop.grid(row=4,column=1,sticky=EW)
+
+        self.scrollbar.grid(column=2, sticky=N+S)
+
+a = Application()
+a.mainframe()
+a.mainloop()
