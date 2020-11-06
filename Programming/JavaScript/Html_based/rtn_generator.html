@@ -1,0 +1,62 @@
+<html>
+<head>
+<script type="text/javascript">
+
+	function random_number(min, max) {
+	    var random_num =Math.floor(Math.random() * (+max - +min)) + +min; 
+	    return random_num
+	}
+
+	function create_rtn() {
+		d1= 1
+		d2= 2
+		s = random_number(1,9)
+		d3 =s
+		s = random_number(1,9)
+		d4 =s
+		s = random_number(1,9)
+		d5 =s
+		s = random_number(1,9)
+		d6 =s
+		s = random_number(1,9)
+		d7 =s
+		s = random_number(1,9)
+		d8 =s
+		s = random_number(1,9)
+		d9 =s
+
+
+		validateRTN=(3 * (d1 + d4 + d7) + 7 * (d2 + d5 + d8) + d3 + d6 +d9)
+
+		while (validateRTN % 10 != 0 ) {
+			d3= Int((9 * Rnd) + 1)
+			d4= Int((9 * Rnd) + 1)
+			d5= Int((9 * Rnd) + 1)
+			d6= Int((9 * Rnd) + 1)
+			d7= Int((9 * Rnd) + 1)
+			d8= Int((9 * Rnd) + 1)
+			d9= Int((9 * Rnd) + 1)
+			validateRTN=(3 * (d1 + d4 + d7) + 7 * (d2 + d5 + d8) + d3 + d6 +d9)
+			document.write(validateRTN)
+		}
+
+		rtn = d1&d2&d3&d4&d5&d6&d7&d8&d9
+		document.write("RTN generated is: " + rtn)
+
+
+	}
+
+	// create_rtn()
+	document.write(10 % 10)
+
+
+</script> 
+</head>	
+
+<body>
+	
+
+</body>
+
+</html>
+

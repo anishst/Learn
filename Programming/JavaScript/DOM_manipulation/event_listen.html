@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even listenr</title>
+</head>
+
+<body>
+
+    <button id="mybutton">click to change color!</button>
+
+    <button id="mybutton2">double click me</button>
+    <script>
+        // to remove listerer
+        // document.removeEventListener("click", changeColor, false);
+
+        function changeColor() {
+            document.writeln("You clicked the mouse!")
+            document.body.style.backgroundColor = '#FFC926'
+        }
+
+        function doSomething() {
+            document.writeln("You double clicked the mouse!")
+        }
+
+
+        // change color on click
+        let button = document.querySelector("#mybutton");
+        button.addEventListener("click", changeColor, false);
+        let button2 = document.querySelector("#mybutton2");
+        button2.addEventListener("dblclick", doSomething, false);
+
+        // mouse over/out
+        // button2.addEventListener("mouseover", console.log("You moused over"), true);
+        function mouseMoving(e) {
+            console.log(e.screenX + " " + e.screenY);
+        }
+        // show mouse location
+        // document.addEventListener("mousemove", mouseMoving, false);
+
+        // show which button pressed
+
+        function buttonPress(e) {
+            if (e.button == 0) {
+                console.log("left mouse clicked");
+            } else if (e.button == 1) {
+                console.log("middle mouse clicked");
+            } else if (e.button == 2) {
+                console.log("right mouse clicked");
+            } else {
+                console.log("Something went wrong!");
+            }
+        }
+        document.addEventListener("mousedown", buttonPress, false);
+
+        // keyboard events
+
+        function checkKeyPressed(e) {
+            if (e.keyCode == 65) {
+                console.log("key 'a' is pressed");
+            } else {
+                console.log("some other key is pressed");
+            }
+        }
+        document.addEventListener("keydown", checkKeyPressed, false);
+    </script>
+
+</body>
+
+</html>

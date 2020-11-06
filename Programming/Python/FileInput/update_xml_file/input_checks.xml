@@ -1,0 +1,50 @@
+<checkdata>
+	<scannerserialnumber>5703523</scannerserialnumber>
+	<make>Panini</make>
+	<model>Panini</model>
+	<firmwareversion>16911104</firmwareversion>
+	<checktype>1</checktype>
+	<micr>T011002864T    80009O 0125</micr>
+	<micrlinestatus>0</micrlinestatus>
+	<accountnumber>80009</accountnumber>
+	<banknumber>011002864</banknumber>
+	<checknumber>0125</checknumber>
+	<transitnumber>011002864</transitnumber>
+	<imagesize>1</imagesize>
+	<imagequality>1</imagequality>
+	<countrycode>1</countrycode>
+	<serialnumber />
+	<checkamount />
+	<irn />
+	<datetime />
+	<capturetime />
+	<epc />
+	<imagequalityresult />
+	<imagequalityreport />
+	<base64checkimage />
+</checkdata>
+<checkdata>
+	<scannerserialnumber>5703523</scannerserialnumber>
+	<make>Panini</make>
+	<model>Panini</model>
+	<firmwareversion>16911104</firmwareversion>
+	<checktype>1</checktype>
+	<micr>T011002864T    80009O 0125</micr>
+	<micrlinestatus>0</micrlinestatus>
+	<accountnumber>80009</accountnumber>
+	<banknumber>011002864</banknumber>
+	<checknumber>0125</checknumber>
+	<transitnumber>011002864</transitnumber>
+	<imagesize>1</imagesize>
+	<imagequality>1</imagequality>
+	<countrycode>1</countrycode>
+	<serialnumber />
+	<checkamount />
+	<irn />
+	<datetime />
+	<capturetime />
+	<epc />
+	<imagequalityresult />
+	<imagequalityreport />
+	<base64checkimage />
+</checkdata>

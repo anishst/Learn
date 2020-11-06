@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<ocps:BatchTransmission xmlns:ocps="http://my.de/fault/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ocps:title>The dog and the hog</ocps:title>
+  <ocps:section>
+    <ocps:title>The dog</ocps:title>
+    <ocps:par>Once upon a time, </ocps:par>
+    <ocps:par>And then </ocps:par>
+  </ocps:section>
+  <ocps:section>
+    <ocps:title>The hog</ocps:title>
+    <ocps:par>Sooner or later </ocps:par>
+  </ocps:section>
+</ocps:BatchTransmission>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style type="text/css">
+		
+		body {
+
+			margin: 0;
+		}
+
+		header {
+
+			margin: .5vw;
+			font-size: 0;
+			display: -ms-flexbox;
+			-ms-flexbox-wrap: wrap;
+			-ms-flexbox-direction: column;
+			-webkit-flex-flow: row wrap;
+			flex-flow: row wrap;
+			display: -webkit-box;
+			display: flex;
+
+		}
+
+		header div {
+			-webkit-box-flex: auto;
+			-ms-flex: auto;
+			flex: auto;
+			width: 200px;
+			margin: .5vw;
+
+		}
+
+		header div img {
+			width: 100%;
+			height: auto;
+		}
+
+		@media screen and (max-width: 400px){
+			header div {
+				margin: 0;
+			}
+
+			header{
+				padding: 0;
+			}
+		}
+
+	</style>
+</head>
+<body>
+
+	<header>
+		<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" ></div>
+		<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg"></div>
+		<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" ></div>
+		<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg"></div>
+		<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg"></div>
+	</header>
+</body>
+</html>

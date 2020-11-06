@@ -1,7 +1,0 @@
-<addressbook>
-  <items>
-    <entry>test entry</entry>
-    <entry>test entry 2</entry>
-    <entry name="test">entry 3</entry>
-  </items>
-</addressbook>

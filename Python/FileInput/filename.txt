@@ -1,3 +1,0 @@
-hello world
-Replace1 test
-Replace2 test

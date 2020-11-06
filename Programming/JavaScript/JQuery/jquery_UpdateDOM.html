@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+    $( function() {
+      $("button").click(function(event) {
+        /* Act on the event */
+      //The html() method enables you to get the HTML contents of the first element in the set of matched elements or set the HTML contents of every matched element.
+      $( ".warning" ).html( "<p style='color:red;'><strong>Warning</strong></p>" );
+        });
+
+      // The text() method enables you to get the combined text contents of each element in the set of matched elements, including their descendants, or set the text contents of the matched elements.
+      $("#text").text("some text");
+
+
+
+
+    });
+    </script>
+  </head>
+  <body>
+
+  <div id="text"></div>
+
+  <br/>
+    <button>Test</button>
+  <p class="warning">Click to change me!</p>
+
+  <hr>
+  
+  </body>
+</html>

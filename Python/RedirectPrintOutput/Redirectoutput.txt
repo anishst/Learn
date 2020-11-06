@@ -1,5 +1,0 @@
-Testing
-test sys.stdout
-0
-1
-2

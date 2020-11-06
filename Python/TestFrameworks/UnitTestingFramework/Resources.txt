@@ -1,3 +1,0 @@
-good article
-
-http://www.techbeamers.com/selenium-python-test-suite-unittest/

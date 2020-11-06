@@ -221,8 +221,8 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 ## AWS CloudFormation
 
 - infrastruce as code
-- declarative way of outling your AWS infrastructure
--  
+- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
+-  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
 
 
 ### Glacier

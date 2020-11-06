@@ -1,6 +1,0 @@
-[
-  "test_pytest_conftest_demo1.py::test_methodA",
-  "test_pytest_conftest_demo1.py::test_methodB",
-  "test_pytest_conftest_demo2.py::test_demo2_methodA",
-  "test_pytest_conftest_demo2.py::test_demo2_methodB"
-]

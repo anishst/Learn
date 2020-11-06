@@ -1,0 +1,7 @@
+<addressbook>
+  <items>
+    <entry name="test">entry1</entry>
+    <entry name="test">entry2</entry>
+    <entry name="test">entry3</entry>
+  </items>
+</addressbook>

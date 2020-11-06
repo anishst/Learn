@@ -1,0 +1,23 @@
+{
+    "test_create_mvd_using_udf": [
+        {
+            "type_of_record": "DENIED",
+            "endpoint_name": "auto",
+            "new_var": "auto2",
+            "new_varname": "newvarvalue"
+        }
+    ]
+        ,
+        "test_3": [
+        {
+            "type_of_record": "DENIED",
+            "endpoint_name": "auto"
+        }
+    ],
+            "test_case4": [
+        {
+            "type_of_record": "DENIED",
+            "endpoint_name": "auto"
+        }
+    ]
+}
