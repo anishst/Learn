@@ -108,6 +108,7 @@ the script will:
 - config web server to automatically start on boot
 - activate web server
 - create a simple web page
+
     ```shell script
     #!/bin/bash
     yum -y install httpd
