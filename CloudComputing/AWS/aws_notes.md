@@ -109,13 +109,13 @@ the script will:
 - activate web server
 - create a simple web page
 
-    ```shell script
-    #!/bin/bash
-    yum -y install httpd
-    systemctl enable httpd
-    systemctl start httpd
-    echo "<html><body bgcolor=#D7EDF5><h1>Hello Anish! Welcome to your AWS Web Server $(hostname -f)!</h1></body></html>" > /var/www/html/index.html
-    ```
+```
+#!/bin/bash
+yum -y install httpd
+systemctl enable httpd
+systemctl start httpd
+echo "<html><body bgcolor=#D7EDF5><h1>Hello Anish! Welcome to your AWS Web Server $(hostname -f)!</h1></body></html>" > /var/www/html/index.html
+```
 Note: make to sure edit security group to allow HTTP access: Security Groups > web server security group > inbound rules tab > edit > add rule > type: HTTP Source: Anywhere > Save rules
 
 ### Getting log from EC2 instance
