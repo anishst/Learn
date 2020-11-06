@@ -16,8 +16,23 @@ https://image.slidesharecdn.com/getting-started-on-aws-awsome-19b96808-0f60-4c92
 
 ## AWS Fundamentals: IAM & EC2
 
+### IAM (Identity and Access Management )
+
+- whole AWS security is here; users, groups, role
+- root acct should never be used/shared
+- IAM is global; across regions
+- permissions are govered by poliies (JSON)
+- mfa can be setup
+- IAM Federation; for big enterprises
+    - uses SAML Standard (AD)
+- One IAM User per physicla person
+- one IAM role per application
+- never use ROOT accont except for initial setup
+
+
 ### AWS Management Console
- - use MFA 
+ - use MFA - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
+
  
 ### AMI - Amazon Machine Image
  - EC2 is based off AMI; similiar to docker image
@@ -165,7 +180,7 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - network file system
 - only linux based AMI
 
-### Simple Storage Service(S3)
+## Simple Storage Service(S3)
  
  - object storage and distribtuon for the internet
  - part of Amazon CloudFront
@@ -176,6 +191,37 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - standard - infrequent access
     - glacier
   - versioning: https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+
+## AWS Athena
+
+- serverless service to peroform anlayltic directly again S3 files
+- uses SQL
+- https://aws.amazon.com/premiumsupport/knowledge-center/analyze-logs-athena/
+
+## AWS CloudFront
+
+- Content delivery network (CDN)
+- improves read performance, content is cahced at edge
+- https://aws.amazon.com/cloudfront/features/    
+- https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
+
+## Amazon Elastic Container Service (ECS)
+- https://aws.amazon.com/ecs/
+- fully managed container orchestration service
+
+## AWS Elastic Beanstalk
+- easy-to-use service for deploying and scaling web applications and services
+- platform as a service; managed service; developer responsible for code only
+- beansstalk itself is free; pay for resources that make up app
+- https://aws.amazon.com/elasticbeanstalk/
+- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+
+## AWS CloudFormation
+
+- infrastruce as code
+- declarative way of outling your AWS infrastructure
+-  
+
 
 ### Glacier
 
@@ -226,6 +272,43 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - can store user sessions
         
 - DynamoDB - NoSQL DB
+
+## AWS CLI
+
+https://aws.amazon.com/cli/
+
+1. Log into aws: create Access keys (access key ID and secret access key)
+2. go to command prompt: ```aws configure```, follow prompts
+    - to see configs: ```~/.aws/credentials```
+    - more info: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
+3. you can test access by trying to connect to one of the services; 
+    - example show all s3 buckets: ```aws s3 ls``` 
+    - list files in bucket: ```aws s3 ls s3://anishbucket2020```
+    - make a new bucket: ```aws s3 mb s3://testbyanish```
+    - remove bucket: ```aws s3 rb s3://testbyanish```
+    - and more: https://docs.aws.amazon.com/cli/latest/reference/s3/
+    
+- NEVER configure CLI access key in EC2 instance! use IAM user policy instead
+- you can assign policy to EC2 instance to give the needed permissions
+- EC2 Instance metadata
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+    - internal ip; http://169.254.169.254/latest/meta-data/
+        - can get data about EC2 instances
+- AWS CLI profile
+    - ```aws configure --profile myotherawsacct```
+    - to run a command using other: ```aws s3 ls --profile myotherawsacct```
+- AWS CLI MFA
+    - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_cliapi.html
+    - https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html
+- AWS SDK
+    - perfomr actions on AWS directly from your app w/o using CLI
+    -https://aws.amazon.com/tools/
+    - AWS CLI uses Python SDK (boto3)
+- AWS Limits (quotas)
+    - API rate limits
+    - service quota
+
+
 ## Compliance
 
 - https://aws.amazon.com/compliance/

@@ -24,6 +24,11 @@ Linux Distro examples:
 - Red Hat Enterprise (RHEL)
 - CentOS - same as REHEL - branding/logos
 
+## Keep machine updated
+
+```sudo apt update && sudo apt upgrade -y```
+This command tells APT to update the cache and upgrade all the necessary components of the system at one fell swoop.
+
 ## Connecting over the network
 
 - SSH - replaced telnet as the way to connect over network
