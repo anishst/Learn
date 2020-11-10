@@ -1,17 +1,39 @@
 # Data Science
 
+- data wrangling
+
+
 ## Role
 
 - Data Scientist
 - Data Analyst - uses BI tools
 - Data Engineer - env
 
+## Common Statistics Terms
+
+- **Probability** is the branch of mathematics concerning numerical descriptions of how likely an event is to occur, or how likely it is that a proposition is true.
+- measures of central tendency
+    - mean - arithmetic average
+    - median - middle value; if even number then average of 2 middle values 
+    - mode - most frequent value
 
 ## Common Libraries
 
 - NumPy
+    - support for large n-dimensional arrays (ndarray)
+    - written in C lang
+    - faster than python Lists; more memory efficient
+    - get help : ```help(np.genfromtxt)```
+    - Examples
+        - calc median of each row ```np.mean(dataset, axis=0)```
+        - ```np.sort(dataset)```
+        - find out shape: ```dataset.shape```
+        - reshape: ```x.reshape(1,3)```
+        
 - SciPy
-- pandas
+- Pandas
+    - built on top of NumPy
+    - easy to use than NumPy
 - Scikit-learn : built on top of SciPy
 - matplotlib
 
@@ -127,3 +149,9 @@ https://scikit-learn.org/stable/
 
 	
 
+## Tools
+
+- Tableau
+- R/RStudio
+- Jupyter
+- Matlab

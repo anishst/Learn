@@ -224,8 +224,24 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
 -  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
 
+## AWS Monitoring and Audit
 
-### Glacier
+### CloudWatch
+
+Amazon CloudWatch monitors your Amazon Web Services (AWS) resources and the applications you run on AWS in real time. You can use CloudWatch to collect and track metrics, which are variables you can measure for your resources and applications; https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
+
+### X-Ray
+
+AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. 
+
+https://aws.amazon.com/xray/
+
+### CloudTrail
+
+AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. 
+https://aws.amazon.com/cloudtrail/
+
+##  Glacier
 
    - archving service
 

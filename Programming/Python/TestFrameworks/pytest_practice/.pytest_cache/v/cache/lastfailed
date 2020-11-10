@@ -1,3 +1,4 @@
 {
-  "pytest_example_parameters.py": true
+  "pytest_example_parameters.py": true,
+  "pytest_fixtures_db_example.py::test_with_sample_data2": true
 }
