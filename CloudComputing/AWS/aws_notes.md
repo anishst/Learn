@@ -241,6 +241,22 @@ https://aws.amazon.com/xray/
 AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. 
 https://aws.amazon.com/cloudtrail/
 
+## AWS Lambda
+
+AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
+
+https://aws.amazon.com/lambda/
+
+- serverless
+
+## DynamoDB 
+
+- NoSQL serverless DB
+- fully managed by AWS w/ replication across 3 AZ
+- Made of tables; 
+
+https://aws.amazon.com/dynamodb/
+
 ##  Glacier
 
    - archving service
@@ -289,7 +305,7 @@ https://aws.amazon.com/cloudtrail/
     - RDS for caches; relieves load on RDS
     - can store user sessions
         
-- DynamoDB - NoSQL DB
+
 
 ## AWS CLI
 

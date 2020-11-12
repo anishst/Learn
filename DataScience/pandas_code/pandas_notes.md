@@ -1,6 +1,15 @@
 # Pandas
 
 
+## Display settings
+```python
+import  pandas as pd
+# setting how many rows/columsn to show
+pd.set_option('display.max_columns', 3)
+pd.set_option('display.max_rows', 10)
+```
+
+## Commands
 |Command | Description |
 |--------|-------------|
 | ```df.head()```| shows first values|
@@ -11,18 +20,29 @@
 |```df.loc[df['col'].str.contains('text'), 'Transaction Amount'].sum()```| sum based on value of another column|
 |```df[df['col'].str.contains('text')].sum()```| sum based on value of another column|
 |```df.groupby(df['Transaction Date'].dt.strftime('%B'))['Transaction Amount'].sum().sort_values()```| group by month|
+| **Data Slicing**||
+|df[-1:]|get last row|
+|df.iloc[-1]|get last row using iloc|
+| df.iloc[0:10] | slice first 10 rows|
+|df.loc["USA", "India"]| slice of rows  USA and India|
+|df.loc["USA", "India"]["1929","1980"]| get subset values|
+| **Data Filtering**||
+| df.filter(items=["1990"])| only column 1990|
+| df[df.filter(items=["1990"] < 10)]| only column 1990 population density < 10 |
+| df.filter(like="8", axis=1)| Years containing an 8|
+| df.filter(regex="a$", axis=0)| countries ending with a|
+| **Data Sorting**||
+| df.sort_values(by=["1990"])| sort by   1990|
 
+## Basic operations
 
-
-### Display settings
+### iterate data frame
 ```python
-import  pandas as pd
-# setting how many rows/columsn to show
-pd.set_option('display.max_columns', 3)
-pd.set_option('display.max_rows', 10)
+for index, row in df.iterrows():
+    print(index, row)
 ```
 
-## Reading date/time columns
+### Reading date/time columns
 
 ```python
 # convert date time column to date object
@@ -198,7 +218,10 @@ df['salary'].nsmallest(10)
 df.nsmallest(10, 'salary')
 ````
 
-### Filter Data
+## Filter Data
+
+
+### using loc
 ```python
 import  pandas as pd
 df = pd.read_csv('survey_results_public.csv', index_col='Respondent')
@@ -373,6 +396,28 @@ https://www.youtube.com/watch?v=N6hyN6BW6ao&list=PL-osiE80TeTsWmV9i9c58mdDCSskIF
 ## Pandas stat
 - df1.hist() - histogram of all columns
 - df1.corr() correlation
+
+## Matplotlib
+
+Plotting library
+
+https://matplotlib.org/
+
+```python
+
+import pandas as pd 
+google = pd.read_csv("google.csv")
+plt.plot('date', 'close', data=google)
+plt.show()
+plt.show(blocking=False) # to prevent 
+```
+
+plt.xticks(np.linspace)
+plt.grid()
+plt.legend()
+
+plt.figure(0 is used to create a new fiture)
+
 
 ## Resources
 - Tutorial: 
