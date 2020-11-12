@@ -1,6 +1,8 @@
 # Pandas
 
 
+[Matplotlib](#matplot)
+
 ## Display settings
 ```python
 import  pandas as pd
@@ -397,28 +399,254 @@ https://www.youtube.com/watch?v=N6hyN6BW6ao&list=PL-osiE80TeTsWmV9i9c58mdDCSskIF
 - df1.hist() - histogram of all columns
 - df1.corr() correlation
 
+<a name="#matplot"></a>
 ## Matplotlib
 
 Plotting library
 
 https://matplotlib.org/
 
-```python
+**pyplot** is an interface which allows users to create visualizations to plot the data without explicitly configuring the Figure and Axes. They are implicitly and automatically configured to achieve the desired output
 
-import pandas as pd 
-google = pd.read_csv("google.csv")
-plt.plot('date', 'close', data=google)
+https://matplotlib.org/3.3.2/api/_as_gen/matplotlib.pyplot.plot.html
+
+**plt.figure()** is used to create a new Figure, which returns a Figure instance but it is also passed to the backend.
+
+## Plot Examples
+
+### simple plot
+
+```python
+plt.plot([1, 2, 4, 5], [1, 3, 4, 3], '-o')
 plt.show()
-plt.show(blocking=False) # to prevent 
+```
+ 
+### stock data
+
+data sample format
+
+```csv
+date,open,high,low,close,volume,Name
+2013-02-08,390.4551,393.7283,390.1698,393.0777,6031199,GOOGL
+2013-02-11,389.5892,391.8915,387.2619,391.6012,4330781,GOOGL
+2013-02-12,391.2659,394.344,390.0747,390.7403,3714176,GOOGL
 ```
 
-plt.xticks(np.linspace)
+```python
+
+# Import statements
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+%matplotlib inline
+
+# load datasets
+google = pd.read_csv('./data/GOOGL_data.csv')
+facebook = pd.read_csv('./data/FB_data.csv')
+apple = pd.read_csv('./data/AAPL_data.csv')
+amazon = pd.read_csv('./data/AMZN_data.csv')
+microsoft = pd.read_csv('./data/MSFT_data.csv')
+
+# Create figure
+plt.figure(figsize=(16, 8), dpi=300)
+# Plot data
+plt.plot('date', 'close', data=google, label='Google')
+plt.plot('date', 'close', data=facebook, label='Facebook')
+plt.plot('date', 'close', data=apple, label='Apple')
+plt.plot('date', 'close', data=amazon, label='Amazon')
+plt.plot('date', 'close', data=microsoft, label='Microsoft')
+# Specify ticks for x- and y-axis
+plt.xticks(np.arange(0, 1260, 40), rotation=70)
+plt.yticks(np.arange(0, 1450, 100))
+# Add title and label for y-axis
+plt.title('Stock trend', fontsize=16)
+plt.ylabel('Closing price in $', fontsize=14)
+# Add grid
 plt.grid()
+# Add legend
 plt.legend()
+# Show plot
+plt.show()
+```
 
-plt.figure(0 is used to create a new fiture)
+### Movie ratings
+
+Data
+```csv
+,MovieTitle,Tomatometer,AudienceScore
+0,The Shape of Water,91,73
+1,Black Panther,97,79
+2,Dunkirk,92,81
+3,The Martian,91,91
+4,The Hobbit: An Unexpected Journey,64,83
+```
+Plot
+```python
+# Create figure
+plt.figure(figsize=(10, 5), dpi=300)
+# Create bar plot
+pos = np.arange(len(movie_scores['MovieTitle']))
+width = 0.3
+plt.bar(pos - width / 2, movie_scores['Tomatometer'], width, label='Tomatometer')
+plt.bar(pos + width / 2, movie_scores['AudienceScore'], width, label='Audience Score')
+# Specify ticks
+plt.xticks(pos, rotation=10)
+plt.yticks(np.arange(0, 101, 20))
+# Get current Axes for setting tick labels and horizontal grid
+ax = plt.gca()
+# Set tick labels
+ax.set_xticklabels(movie_scores['MovieTitle'])
+ax.set_yticklabels(['0%', '20%', '40%', '60%', '80%', '100%'])
+# Add minor ticks for y-axis in the interval of 5
+ax.set_yticks(np.arange(0, 100, 5), minor=True)
+# Add major horizontal grid with solid lines
+ax.yaxis.grid(which='major')
+# Add minor horizontal grid with dashed lines
+ax.yaxis.grid(which='minor', linestyle='--')
+# Add title
+plt.title('Movie comparison')
+# Add legend
+plt.legend()
+# Show plot
+plt.show()
+```
+- plot multiple data pairs : ```plt.plot([2, 4, 6, 8], 'o', [1, 5, 9, 13], 's')```
+- pandas df: ```plt.plot('x_key', 'y_key', data=df)```
+- show supported formats: ```plt.gcf().canvas.get_supported_filetypes()```
+
+## Types of Charts
+
+### Bar
+- plt.bar(x, height, [width]) creates a vertical bar plot
+    - x - x cordinates
+    - ex. ```plt.bar(['A','B', 'C'], [10, 30,23], color='green')```
+    - ex. ```plt.bar(['A','B', 'C'], [10, 30,23], color=['green', 'blue', 'red'])```
+    - control width between ```plt.bar(['A','B', 'C'], [10, 30,23], color=['green', 'blue', 'red'], width=.5)```
+    - alpha ```plt.bar(['A','B', 'C'], [10, 30,23], color=['green', 'blue', 'red'], alpha=.7)```
+    
+- plt.barh() creates a horizontal bars plot
+
+### Pie Chart
+- plt.pie(x, [explode], [labels], [autopct]) 
+
+data
+```csv
+,Usage,Percentage
+0,Leak,12
+1,Clothes Washer,17
+2,Faucet,19
+3,Shower,20
+4,Toilet,24
+5,Other,8
+
+```
+plot
+```python
+data = pd.read_csv('./data/water_usage.csv')
+# Create figure
+plt.figure(figsize=(8, 8), dpi=300)
+# Create pie plot
+plt.pie('Percentage', explode=(0, 0, 0.1, 0, 0, 0), labels='Usage', data=data, autopct='%.0f%%')
+# Add title
+plt.title('Water usage')
+# Show plot
+plt.show()
+```
+
+### Stacked Area Chart
+
+- plt.stackplot(x, y) creates a stacked area plot.
+
+data
+```csv
+,Quarter,Apple,Samsung,Huawei,Xiaomi,OPPO
+0,3Q16,43001,71734,32490,14926,24591
+1,4Q16,77039,76783,40804,15751,26705
+2,1Q17,51993,78776,34181,12707,30922
+3,2Q17,44315,82855,35964,21179,26093
+4,3Q17,45442,85605,36502,26853,29449
+5,4Q17,73175,74027,43887,28188,25660
+6,1Q18,54059,78565,40426,28498,28173
+7,2Q18,44715,72336,49847,32826,28511
+
+```
+plot
+```python
+sales = pd.read_csv('./data/smartphone_sales.csv')
+# Create figure
+plt.figure(figsize=(10, 6), dpi=300)
+# Create stacked area chart
+labels = sales.columns[1:]
+plt.stackplot('Quarter', 'Apple', 'Samsung', 'Huawei', 'Xiaomi', 'OPPO', data=sales, labels=labels)
+# Add legend
+plt.legend()
+# Add labels and title
+plt.xlabel('Quarters')
+plt.ylabel('Sales units in thousands')
+plt.title('Smartphone sales units')
+# Show plot
+plt.show()
+```
+### Histogram
+
+plt.hist(x) creates a histogram.
+
+```python
+# IQ samples
+iq_scores = [126,  89,  90, 101, 102,  74,  93, 101,  66, 120, 108,  97,  98,
+            105, 119,  92, 113,  81, 104, 108,  83, 102, 105, 111, 102, 107,
+            103,  89,  89, 110,  71, 110, 120,  85, 111,  83, 122, 120, 102,
+            84, 118, 100, 100, 114,  81, 109,  69,  97,  95, 106, 116, 109,
+            114,  98,  90,  92,  98,  91,  81,  85,  86, 102,  93, 112,  76,
+            89, 110,  75, 100,  90,  96,  94, 107, 108,  95,  96,  96, 114,
+            93,  95, 117, 141, 115,  95,  86, 100, 121, 103,  66,  99,  96,
+            111, 110, 105, 110,  91, 112, 102, 112,  75]
+
+# Create figure
+plt.figure(figsize=(6, 4), dpi=150)
+# Create histogram
+plt.hist(iq_scores, bins=10)
+plt.axvline(x=100, color='r')
+plt.axvline(x=115, color='r', linestyle= '--')
+plt.axvline(x=85, color='r', linestyle= '--')
+# Add labels and title
+plt.xlabel('IQ score')
+plt.ylabel('Frequency')
+plt.title('IQ scores for a test group of a hundred adults')
+# Show plot
+plt.show()
+```
+
+### Box Plot
+- plt.boxplot(x) creates a box plot.
+
+### Scatter Plot
+
+- plt.scatter(x, y) creates a scatter plot of y versus x, varying in marker size and/or color
+
+### Bubble Plot
+
+-plt.scatter creates a bubble plot. The parameters c (color) and s (scale) are used to visualize the third and fourth parameter.
 
 
+### Layouts
+
+- Subplots are multiple Axes within a figure.
+    - plt.subplots(nrows, ncols) – creates a Figure and a set of subplots.
+    - plt.subplot(nrows, ncols, index) - adds a subplot to the current Figure.
+    - Figure.subplots(nrows, ncols) adds a set of subplots to the specified Figure.
+    - Figure.add_subplot(nrows, ncols, index) adds a subplot to the specified Figure.
+    - examples: https://matplotlib.org/3.1.0/gallery/subplots_axes_and_figures/subplots_demo.html
+
+## Seaborn
+
+Seaborn is a Python data visualization library based on matplotlib. 
+
+https://seaborn.pydata.org/
+
+
+    
 ## Resources
 - Tutorial: 
 - Code snippets: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Pandas
