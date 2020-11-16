@@ -7,6 +7,7 @@ def before():
  
 def test_1(before):
     print('test_1()')
+    assert False
  
 def test_2(before):
     print('test_'

@@ -14,6 +14,8 @@
   "pytest_fixtures_db_example.py::test_with_sample_data2",
   "pytest_fixtures_with_yield.py::test_connection",
   "pytest_fixtures_with_yield.py::test_methodA",
+  "test_pytest_assert_behavior.py::test_1",
+  "test_pytest_assert_behavior.py::test_2",
   "test_pytest_skipif.py::test_1",
   "test_pytest_skipif.py::test_2"
 ]

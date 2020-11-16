@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 
 
 def app():
-    st.title('APP2')
+    st.title('COVID Data')
     st.write('Welcome to app2')
     state_csv_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv'
     us_total_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv'
