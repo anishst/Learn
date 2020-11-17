@@ -155,6 +155,13 @@ $(document).ready(function(){
 - Mozilla: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 - Javascript Info: https://javascript.info/
 - JavaScript and CSS minifier: https://www.minifier.org/
+- command line: https://www.learnenough.com/command-line-tutorial/basics
+
+
+## Tools
+
+- https://hyper.is/
+
 ## Plugins for VSCode
 
 - prettier

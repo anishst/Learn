@@ -90,6 +90,24 @@ pipevn check|checks for issues with packages
 - https://pipenv.readthedocs.io/en/latest/
 - https://realpython.com/pipenv-guide/
 
+## Data Classes
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Coordinate:
+    x: int
+    y: int
+    z: int
+```
+- @dataclass decorator is used to create a data class. x, y and z are fields in our data class. 
+- By default, data classes come with __init__, __repr__ and __eq__ methods implemented so you don’t have to implement these methods by yourself.
+- By default, data classes are mutable which means you can assign value to your fields. 
+- Resources:
+    - https://towardsdatascience.com/data-classes-in-python-8d1a09c1294b
+    
+    
 **Video Tutorials**:
 - Corey - https://www.youtube.com/watch?v=zDYL22QNiWk
 - Pretty Printed - https://www.youtube.com/watch?v=tRmmjlVHzno

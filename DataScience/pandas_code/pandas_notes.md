@@ -639,11 +639,6 @@ plt.show()
     - Figure.add_subplot(nrows, ncols, index) adds a subplot to the specified Figure.
     - examples: https://matplotlib.org/3.1.0/gallery/subplots_axes_and_figures/subplots_demo.html
 
-## Seaborn
-
-Seaborn is a Python data visualization library based on matplotlib. 
-
-https://seaborn.pydata.org/
 
 
     
@@ -651,6 +646,23 @@ https://seaborn.pydata.org/
 - Tutorial: 
 - Code snippets: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Pandas
 
-## Python packages
+## Python Packages
 
-- pandassql
+### Seaborn
+
+Seaborn is a Python data visualization library based on matplotlib. 
+
+https://seaborn.pydata.org/
+
+### pandassql
+
+pandasql allows you to query pandas DataFrames using SQL syntax. 
+
+https://pypi.org/project/pandasql/
+
+
+### Geopandas
+
+GeoPandas is an open source project to make working with geospatial data in python easier.
+
+https://geopandas.org/index.html
