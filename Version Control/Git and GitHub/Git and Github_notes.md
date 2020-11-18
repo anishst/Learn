@@ -52,11 +52,13 @@ git commit -m [filename] | commit changes for given file
 git commit -m "msg" . | commit all changed files; -m is for comment
 git rm [filename]  | to remove a file
 git commit rm "removing [filename]" | remove file
-git mv [filename] <source> | move file
+git mv [filename] *source* | move file
 git pull | 2 command in one; includes fetch
 git fetch | use to get updates from remote
-git rm -r --cached <foler> | removes folders already in git
-git rm --cached <file>  | removes file already in git
+git rm -r --cached *folder* | removes folders already in git
+git rm --cached *file*  | removes file already in git
+git checkout *file* | allows you to get the latest copy from master branch
+
 
 ### Cloning
 Command | Description
