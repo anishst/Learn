@@ -648,11 +648,122 @@ plt.show()
 
 ## Python Packages
 
-### Seaborn
+## Seaborn
 
 Seaborn is a Python data visualization library based on matplotlib. 
 
 https://seaborn.pydata.org/
+
+### Examples
+
+water usage example:
+
+data: water_usage.csv
+
+```csv
+,Usage,Percentage
+0,Leak,12
+1,Clothes Washer,17
+2,Faucet,19
+3,Shower,20
+4,Toilet,24
+5,Other,8
+```
+
+Graph:
+```python
+%matplotlib inline
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import squarify
+
+mydata = pd.read_csv("water_usage.csv")
+# Create figure
+plt.figure(dpi=200)
+# Create tree map
+labels = mydata['Usage'] + ' (' + mydata['Percentage'].astype('str') + '%)'
+squarify.plot(sizes=mydata['Percentage'], label=labels, color=sns.light_palette('green', mydata.shape[0]))
+plt.axis('off')
+# Add title
+plt.title('Water usage')
+# Show plot
+plt.show()
+
+```
+
+## Bokeh
+
+```python
+# importing the necessary dependencies
+import pandas as pd
+from bokeh.plotting import figure, show
+
+# make bokeh display figures inside the notebook
+from bokeh.io import output_notebook
+output_notebook()
+
+# loading the Dataset with geoplotlib
+dataset = pd.read_csv('./data/world_population.csv', index_col=0)
+
+# preparing our data for Germany
+years = [year for year in dataset.columns if not year[0].isalpha()]
+de_vals = [dataset.loc[['Germany']][year] for year in years]
+
+# plotting the population density change in Germany in the given years
+plot = figure(title='Population Density of Germany', x_axis_label='Year', y_axis_label='Population Density')
+
+plot.line(years, de_vals, line_width=2, legend='Germany')
+
+show(plot)
+
+
+# preparing the data for the second country
+ch_vals = [dataset.loc[['Switzerland']][year] for year in years]
+
+# plotting the data for Germany and Switzerland in one visualization, 
+# adding circles for each data point for Switzerland
+plot = figure(title='Population Density of Germany and Switzerland', x_axis_label='Year', y_axis_label='Population Density')
+
+plot.line(years, de_vals, line_width=2, legend='Germany')
+plot.line(years, ch_vals, line_width=2, color='orange', legend='Switzerland')
+plot.circle(years, ch_vals, size=4, line_color='orange', fill_color='white', legend='Switzerland')
+
+show(plot)
+
+# display the plots next to each other instead if having them stacked.
+# plotting the Germany and Switzerland plot in two different visualizations
+# that are interconnected in terms of view port
+from bokeh.layouts import gridplot
+
+plot_de = figure(
+    title='Population Density of Germany', 
+    x_axis_label='Year', 
+    y_axis_label='Population Density',
+    plot_height=300)
+
+plot_ch = figure(
+    title='Population Density of Switzerland', 
+    x_axis_label='Year', 
+    y_axis_label='Population Density',
+    plot_height=300,
+    x_range=plot_de.x_range, 
+    y_range=plot_de.y_range)
+
+plot_de.line(years, de_vals, line_width=2)
+plot_ch.line(years, ch_vals, line_width=2)
+
+plot = gridplot([[plot_de, plot_ch]])
+
+show(plot)
+
+# plotting the above declared figures in a vertical manner
+plot_v = gridplot([[plot_de], [plot_ch]])
+
+show(plot_v)
+
+```
 
 ### pandassql
 
@@ -666,3 +777,189 @@ https://pypi.org/project/pandasql/
 GeoPandas is an open source project to make working with geospatial data in python easier.
 
 https://geopandas.org/index.html
+
+
+## Geoplotlib
+
+Geoplotlib is an open-source Python library for geospatial data visualizations which contains a wide range of geographical visualizations. It has a simple interface.
+
+```pip install geoplotlib```
+
+you may also need: ```python -m pip install pyglet```
+
+### Examples
+
+data
+```csv
+id_report,date_report,description,created_date,lat,lon
+138,01/01/2005 12:00:00 AM,Poaching incident,2005/01/01 12:00:00 AM,-7.049359, 34.84144
+4,01/20/2005 12:00:00 AM,Poaching incident,2005/01/20 12:00:00 AM,-7.65084, 34.48001
+43,01/20/2005 12:00:00 AM,Poaching incident,2005/02/20 12:00:00 AM,-7.843201803, 34.00570378
+98,01/20/2005 12:00:00 AM,Poaching incident,2005/02/21 12:00:00 AM,-7.745846318, 33.94852605
+```
+
+graph:
+
+```python
+# importing the necessary dependencies
+import geoplotlib
+from geoplotlib.utils import read_csv
+
+# loading the Dataset with geoplotlib
+dataset = read_csv('./data/poaching_points_cleaned.csv')
+# plotting our dataset with points
+geoplotlib.dot(dataset)
+geoplotlib.show()
+
+# plotting our dataset as a histogram
+geoplotlib.hist(dataset, binsize=20)
+geoplotlib.show()
+
+# plotting a voronoi map
+geoplotlib.voronoi(dataset, cmap='Blues_r', max_area=1e5, alpha=255)
+geoplotlib.show()
+```
+
+population data
+
+```csv
+Country,City,AccentCity,Region,Population,Latitude,Longitude
+ad,aixas,Aixàs,6,,42.4833333,1.4666667
+ad,aixirivali,Aixirivali,6,,42.4666667,1.5
+ad,aixirivall,Aixirivall,6,,42.4666667,1.5
+ad,aixirvall,Aixirvall,6,,42.4666667,1.5
+ad,aixovall,Aixovall,6,,42.4666667,1.4833333
+ad,andorra,Andorra,7,,42.5,1.5166667
+ad,andorra la vella,Andorra la Vella,7,20430,42.5,1.5166667
+```
+
+graph
+
+```python
+import numpy as np
+import pandas as pd
+import geoplotlib
+
+# loading the Dataset (make sure to have the dataset downloaded)
+dataset = pd.read_csv('./data/world_cities_pop.csv', dtype={'Region': np.str})
+
+# mapping Latitude to lat and Longitude to lon
+dataset['lat'] = dataset['Latitude']
+dataset['lon'] = dataset['Longitude']
+
+# plotting the whole dataset with dots
+geoplotlib.dot(dataset)
+geoplotlib.show()
+
+# filter for countries with a population entry (Population > 0)
+dataset_with_pop = dataset[(dataset['Population'] > 0)]
+
+print('Full dataset:', len(dataset))
+print('Cities with population information:', len(dataset_with_pop))
+
+
+# showing all cities with a defined population with a dot density plot
+geoplotlib.dot(dataset_with_pop)
+geoplotlib.show()
+
+# dataset with cities with population of >= 100k
+dataset_100k = dataset_with_pop[(dataset_with_pop['Population'] >= 100_000)]
+
+print('Cities with a population of 100k or more:', len(dataset_100k))
+
+# displaying all cities >= 100k population with a fixed bounding box (WORLD) in a dot density plot
+from geoplotlib.utils import BoundingBox
+
+geoplotlib.dot(dataset_100k)
+geoplotlib.set_bbox(BoundingBox.WORLD)
+geoplotlib.show()
+
+#  show only US; use BoundingBox to show certain areas
+geoplotlib.dot(dataset_100k)
+geoplotlib.set_bbox(BoundingBox.USA)
+geoplotlib.show()
+
+```
+
+```python
+# https://catalog.data.gov/dataset/national-obesity-by-state-b181b
+
+# importing the necessary dependencies
+import json
+import geoplotlib
+from geoplotlib.colors import ColorMap
+from geoplotlib.utils import BoundingBox
+
+# plotting the information from the geojson file
+geoplotlib.geojson('data/National_Obesity_By_State.geojson')
+geoplotlib.show()
+
+# converting the obesity into a color
+cmap = ColorMap('Reds', alpha=255, levels=40)
+
+def get_color(properties):
+    return cmap.to_color(properties['Obesity'], maxvalue=40,scale='lin')
+
+# plotting the shaded states and adding another layer which plots the state outlines in white
+# our BoundingBox should focus the USA
+geoplotlib.geojson('data/National_Obesity_By_State.geojson', fill=True, color=get_color)
+geoplotlib.geojson('data/National_Obesity_By_State.geojson', fill=False, color=[255, 255, 255, 255])
+
+geoplotlib.set_bbox(BoundingBox.USA)
+geoplotlib.show()
+```
+
+**Visually comparing different tile providers¶**
+
+Geoplotlib offers the possibility to switch between several providers of map tiles.
+This means we can try out different map tile styles that fit our visualization
+
+Other examples of popular free tile providers are:
+
+- Stamen Watercolor => watercolor
+- Stamen Toner => toner
+- Stamen Toner Lite => toner-lite
+- DarkMatter => darkmatter
+
+More free tile providers for OpenStreetMap can be found here:
+https://wiki.openstreetmap.org/wiki/Tile_servers
+
+```python
+
+# importing the necessary dependencies
+import geoplotlib
+
+# displaying the map with the default tile provider
+geoplotlib.show()
+
+# using map tiles from the dark matter tile provider
+geoplotlib.tiles_provider('darkmatter')
+geoplotlib.show()
+
+# using custom object to set up tile provider
+geoplotlib.tiles_provider({
+    'url': lambda zoom, xtile, ytile: 'http://a.tile.openstreetmap.fr/hot/%d/%d/%d.png' % (zoom, xtile, ytile),
+    'tiles_dir': 'custom_tiles',
+    'attribution': 'Custom Tiles Provider - Humanitarian map style | Packt Courseware'
+})
+geoplotlib.show()
+
+```
+
+foucs on USA using co-ordinates
+
+```python
+# displaying the map with the default tile provider
+import geoplotlib
+from geoplotlib.utils import BoundingBox
+geoplotlib.tiles_provider('watercolor')
+bb = BoundingBox(45, -125, 22, -65)
+geoplotlib.set_bbox(bb)
+geoplotlib.show()
+
+# to save
+geoplotlib.savefig(r'c:/temp/filename.png')
+
+help(geoplotlib)
+```
+
