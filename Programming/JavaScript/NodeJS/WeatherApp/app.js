@@ -6,7 +6,6 @@ const port = 3000
 
 
 app.get('/', (req, res) => {
-    res.send('Server is up and running.')
 
     // make a request to weather app; use units=imperial to get Fahrenheit
     // https://openweathermap.org/current#data
@@ -29,7 +28,14 @@ app.get('/', (req, res) => {
             const temp = weatherData.main.temp
             // get weather description
             const description = weatherData.weather[0].description
+            const icon = weatherData.weather[0].icon
             console.log(temp, description)
+            // display in browser
+            res.write("<p>The weather is currently " + description + "</p>")
+            res.write("<h1>The temperature in Tysons is " + temp + "</h1>")
+            // display iconv - https://openweathermap.org/weather-conditions
+            res.write(`<img src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`)
+            res.send()
 
         })
 
