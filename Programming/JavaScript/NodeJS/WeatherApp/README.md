@@ -7,5 +7,6 @@ make sure to save your API in environment variable: ```OPEN_WEATHER_API_KEY```
 2. create files:  app.js, index.html
 3. initialize project cmd line: ```npm init```; follow prompts to create the package.json
 4. install express: ```npm install express```; will add a new dependency to package.json
-5. run app : ```node server.js```
+5. insall boby-parser: ```npm install body-parser```; allows to look thru body of the post request
+6. run app : ```node server.js```
 

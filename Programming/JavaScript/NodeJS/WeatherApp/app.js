@@ -1,29 +1,34 @@
 const express = require('express')
 // add https native lib for requests
 const https = require('https')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
+// allows parsing form data
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
 
+    res.sendFile(__dirname + '/index.html')
+})
+
+app.post("/", (req, res) => {
+
     // make a request to weather app; use units=imperial to get Fahrenheit
-    // https://openweathermap.org/current#data
 
     // read API key from environment variable
     const api_key = process.env['OPEN_WEATHER_API_KEY']
-    URL = `https:api.openweathermap.org/data/2.5/weather?q=Tysons&units=imperial&appid=${api_key}`
+    const query = req.body.cityName
+    const unit = 'imperial' // imperial = Fahrenheit // https://openweathermap.org/current#data
+    URL = `https:api.openweathermap.org/data/2.5/weather?q=${query}&units=${unit}&appid=${api_key}`
     https.get(URL, (response) => {
 
         response.on('data', (data) => {
-            // print hex value of data retured
-            console.log(data)
-            // conver to JSON
+            // conver hex value to JSON
             const weatherData = JSON.parse(data)
             // print JSON data
             console.log(weatherData)
-            //  you can use JSON.stringify to pack data into a string
-
             // get temp 
             const temp = weatherData.main.temp
             // get weather description
@@ -32,18 +37,11 @@ app.get('/', (req, res) => {
             console.log(temp, description)
             // display in browser
             res.write("<p>The weather is currently " + description + "</p>")
-            res.write("<h1>The temperature in Tysons is " + temp + "</h1>")
+            res.write("<h1>The temperature in " + query + " is: " + temp + "</h1>")
             // display iconv - https://openweathermap.org/weather-conditions
             res.write(`<img src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`)
             res.send()
-
         })
-
-        // log response
-        console.log(response)
-        // log statusCode
-        // see code info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-        console.log(response.statusCode)
     })
 })
 

@@ -48,3 +48,4 @@ to run app using nodemon: ```nodemon <appname>```
 
 ## Tutorials
 - https://www.tutorialsteacher.com/nodejs/nodejs-tutorials
+- https://www.appbrewery.co/p/web-development-course-resources
