@@ -1,38 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('header'); -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/styles.css" </head>
+<div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+</div>
 
-<body>
-    <div class="box" id="heading">
-        <h1> <%= kindOfDay %> </h1>
+<div class="box">
+
+
+    <!-- add new item to the list using for loop -->
+    <% for (let i = 0; i < newListItems.length; i++) { %>
+    <div class="item">
+        <input type="checkbox">
+        <p><%= newListItems[i] %></p>
     </div>
+    <% } %>
 
-    <div class="box">
+    <form action="/" method="post" class="item">
+        <input id="newItem" type="text" name="newItem" placeholder="New item" autocomplete="off" />
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
 
-
-        <!-- add new item to the list using for loop -->
-        <% for (let i = 0; i < newListItems.length; i++) { %>
-        <div class="item">
-            <input type="checkbox">
-            <p><%= newListItems[i] %></p>
-        </div>
-        <% } %>
-
-        <form action="/" method="post" class="item">
-            <input id="newItem" type="text" name="newItem" placeholder="New item" autocomplete="off" />
-            <button type="submit" name="button">+</button>
-        </form>
-
-    </div>
+</div>
 
 
 
-
-</body>
-
-</html>
+<%- include('footer'); -%>
