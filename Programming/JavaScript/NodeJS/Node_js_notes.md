@@ -46,6 +46,12 @@ install locally: ```npm i nodemon
 
 to run app using nodemon: ```nodemon <appname>```
 
+## Templating
+
+https://ejs.co/
+
+
+
 ## Tutorials
 - https://www.tutorialsteacher.com/nodejs/nodejs-tutorials
 - https://www.appbrewery.co/p/web-development-course-resources
