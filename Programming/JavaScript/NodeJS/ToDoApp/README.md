@@ -1,7 +1,8 @@
 # To Do App
 
-to practice templating
-
+- to practice templating using EJS
+- use templates
+- create our own module and then export them to use in our application
 - ejs docs: https://ejs.co/#docs
 - https://github.com/mde/ejs/wiki/Using-EJS-with-Express
 

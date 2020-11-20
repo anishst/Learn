@@ -2,6 +2,9 @@ const express = require('express')
 // add https native lib for requests
 const https = require('https')
 const bodyParser = require('body-parser')
+// use custom date module
+const date = require(__dirname + "/date.js")
+console.log(date)
 const app = express()
 const port = 3000
 
@@ -18,15 +21,8 @@ app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 
-    var todays = new Date()
-
-    var options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    }
-
-    var day = new Date().toLocaleString("en-US", options)
+    // call the getDate from custom module
+    let day = date.getDate()
     //  send value to list template file
     res.render("list", { listTitle: day, newListItems: items })
 })
