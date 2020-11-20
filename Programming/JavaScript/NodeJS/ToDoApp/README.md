@@ -2,7 +2,8 @@
 
 to practice templating
 
-https://github.com/mde/ejs/wiki/Using-EJS-with-Express
+- ejs docs: https://ejs.co/#docs
+- https://github.com/mde/ejs/wiki/Using-EJS-with-Express
 
 
 1. create folder 

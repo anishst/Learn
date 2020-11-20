@@ -5,8 +5,15 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
+// array to store items
+let items = ["Buy Food"]
+
 // use EJS in express app
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({ extended: true }))
+//  tell express to use files from public folder
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 
@@ -20,12 +27,17 @@ app.get('/', (req, res) => {
 
     var day = new Date().toLocaleString("en-US", options)
     //  send value to list template file
-    res.render("list", {
-        kindOfDay: day
-    })
+    res.render("list", { kindOfDay: day, newListItems: items })
 })
 
+app.post("/", (req, res) => {
 
+    console.log(req.body.newItem)
+    //  add to array
+    items.push(req.body.newItem)
+    res.redirect("/");
+
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

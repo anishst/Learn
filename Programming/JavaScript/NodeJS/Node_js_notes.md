@@ -20,6 +20,11 @@ Node.js is an open-source server side runtime environment built on Chrome's V8 J
 2. run ```npm init --yes```
 3. install express: ```npm i express```
 
+### Express notes
+- by default only servers files in root and views folder
+-  create a public directory
+    - ```app.use(express.static('public'))```
+
 ## Node Commands
 
 Command | Description

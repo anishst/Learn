@@ -5,15 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
-</head>
+    <link rel="stylesheet" href="css/styles.css" </head>
 
 <body>
+    <div class="box" id="heading">
+        <h1> <%= kindOfDay %> </h1>
+    </div>
 
-    <h1> <%= kindOfDay %> </h1>
+    <div class="box">
 
-    <ul>
-        <li>Buy food</li>
-    </ul>
+
+        <!-- add new item to the list using for loop -->
+        <% for (let i = 0; i < newListItems.length; i++) { %>
+        <div class="item">
+            <input type="checkbox">
+            <p><%= newListItems[i] %></p>
+        </div>
+        <% } %>
+
+        <form action="/" method="post" class="item">
+            <input id="newItem" type="text" name="newItem" placeholder="New item" autocomplete="off" />
+            <button type="submit" name="button">+</button>
+        </form>
+
+    </div>
+
+
 
 
 </body>
