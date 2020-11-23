@@ -1,6 +1,6 @@
 // testing custom module
 
-module.exports.getDate = getDate;
+exports.getDate = getDate;
 
 function getDate() {
     let today = new Date();
@@ -14,7 +14,7 @@ function getDate() {
     return today.toLocaleString("en-US", options);
 }
 
-module.exports.getDay = getDay;
+exports.getDay = getDay;
 
 function getDay() {
     let today = new Date();

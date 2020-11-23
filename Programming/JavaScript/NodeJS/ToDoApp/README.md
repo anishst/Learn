@@ -10,6 +10,6 @@
 1. create folder 
 2. create files:  app.js, index.html
 3. initialize project cmd line: ```npm init```; follow prompts to create the package.json
-4. install express body parser and ejs: ```npm install express body-parser ejs```
+4. install express body parser and ejs: ```npm install express body-parser ejs mongoose```
 6. run app : ```node server.js```
 
