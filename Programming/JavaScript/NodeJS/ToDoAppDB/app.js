@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect("mongodb://192.168.1.25:27017/todolistDB", { useNewUrlParser: true, useUnifiedTopology: true });
+// using cloud atlas db
+// mongoose.connect("mongodb+srv://<cloud usernamepwd and server ip>/todolistDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 // new schema
 const itemsSchema = {
@@ -61,6 +63,7 @@ app.get("/", function (req, res) {
       res.redirect("/");
     } else {
       console.log("List is not empty")
+      console.log(foundItems);
       res.render("list", { listTitle: "Today", newListItems: foundItems });
     }
   });

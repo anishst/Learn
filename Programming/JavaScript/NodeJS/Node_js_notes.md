@@ -78,6 +78,10 @@ to run app using nodemon: ```nodemon <appname>```
 https://ejs.co/
 
 
+## Deployement
+
+- Using Heroku - https://devcenter.heroku.com/articles/deploying-nodejs
+    - guide: https://bah.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12386014#overview
 
 ## Tutorials
 - https://www.tutorialsteacher.com/nodejs/nodejs-tutorials
