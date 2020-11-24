@@ -24,6 +24,8 @@ Node.js is an open-source server side runtime environment built on Chrome's V8 J
 - by default only servers files in root and views folder
 -  create a public directory
     - ```app.use(express.static('public'))```
+- routing : https://expressjs.com/en/guide/routing.html 
+    - allows chaining routes
 
 ## Node Commands
 
