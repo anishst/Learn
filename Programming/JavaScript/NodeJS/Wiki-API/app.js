@@ -27,6 +27,9 @@ const articleSchema = {
 // crate article model
 const Article = mongoose.model("Article", articleSchema);
 
+
+//***********************************requests targetting all articles ************************************************** */ 
+
 //  chain routes - https://expressjs.com/en/guide/routing.html
 app.route("/articles")
     .get(function (req, res) {
@@ -69,6 +72,62 @@ app.route("/articles")
     });
 
 
+//***********************************requests targetting specific article ************************************************** */ 
+
+app.route("/articles/:articleTitle")
+    .get(function (req, res) {
+        Article.findOne({ title: req.params.articleTitle }, function (err, foundArticle) {
+            if (foundArticle) {
+                res.send(foundArticle);
+            } else {
+                res.send("Article not found");
+            }
+        });
+
+    })
+    .put(function (req, res) {
+        console.log(req.params.articleTitle);
+        Article.update(
+            { title: req.params.articleTitle },
+            { title: req.body.title, content: req.body.content },
+            { overwrite: true },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully updated article");
+                } else {
+                    res.send("Error updating article");
+                }
+            }
+        );
+    })
+    .patch(function (req, res) {
+
+        Article.update(
+            { title: req.params.articleTitle },
+            // parse javascript object based on field passed in
+            { $set: req.body },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully updated article");
+                } else {
+                    res.send("Error updating article");
+                }
+            }
+        );
+    })
+    .delete(function (req, res) {
+
+        Article.deleteOne(
+            { title: req.params.articleTitle },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully deleted article");
+                } else {
+                    res.send("Error deleting article");
+                }
+            }
+        );
+    });
 
 app.listen(port, function () {
     console.log(`Server started on port ${port}`);
