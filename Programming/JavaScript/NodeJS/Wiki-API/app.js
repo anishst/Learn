@@ -27,49 +27,47 @@ const articleSchema = {
 // crate article model
 const Article = mongoose.model("Article", articleSchema);
 
-// create get route - get all articles
-app.get("/articles", function (req, res) {
-    Article.find({}, function (err, foundArticles) {
-        console.log(foundArticles);
-        if (!err) {
-            res.send(foundArticles);
-        } else {
-            res.send(err);
-        }
+//  chain routes - https://expressjs.com/en/guide/routing.html
+app.route("/articles")
+    .get(function (req, res) {
+        Article.find({}, function (err, foundArticles) {
+            console.log(foundArticles);
+            if (!err) {
+                res.send(foundArticles);
+            } else {
+                res.send(err);
+            }
+
+        })
+    })
+    .post(function (req, res) {
+
+        const newArticle = new Article({
+            title: req.body.title,
+            content: req.body.content
+        });
+
+        newArticle.save(function (err) {
+            if (!err) {
+                res.send("Successfully saved article");
+            } else {
+                res.send(err);
+            }
+        });
 
     })
-})
+    .delete(function (req, res) {
 
-// create post route - new article
-app.post("/articles", function (req, res) {
+        Article.deleteMany(function (err) {
+            if (!err) {
+                res.send("Successfully deleted article");
+            } else {
+                res.send("Error deleting article");
+            }
+        })
 
-    const newArticle = new Article({
-        title: req.body.title,
-        content: req.body.content
     });
 
-    newArticle.save(function (err) {
-        if (!err) {
-            res.send("Successfully saved article");
-        } else {
-            res.send(err);
-        }
-    });
-
-})
-
-// delete  article
-app.delete("/articles", function (req, res) {
-
-    Article.deleteMany(function (err) {
-        if (!err) {
-            res.send("Successfully deleted article");
-        } else {
-            res.send("Error deleting article");
-        }
-    })
-
-})
 
 
 app.listen(port, function () {
