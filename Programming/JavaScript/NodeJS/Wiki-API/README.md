@@ -51,7 +51,7 @@ data example:
 - fetch specific article: localhost:3000/articles/REST
 - fetch specific article with space: localhost:3000/articles/Jack%20Bauer
     - URL encoding: https://www.w3schools.com/tags/ref_urlencode.ASP
-- new article: l
+- use **Postman** to post new articles
 # resources
 
 - https://github.com/londonappbrewery/Build-Your-Own-RESTful-API
