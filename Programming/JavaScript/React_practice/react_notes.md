@@ -7,6 +7,16 @@ A JavaScript library for building user interfaces
 
 https://reactjs.org/
 
+## Create React App
+
+- https://reactjs.org/docs/create-a-new-react-app.html
+- https://github.com/facebook/create-react-app/blob/master/packages/cra-template/template/README.md
+
+## Deployment
+
+- https://create-react-app.dev/docs/deployment/
+
+
 ## Simple App 
 ```html
 <!-- index.html -->
@@ -141,7 +151,88 @@ ReactDOM.render(<App />, document.getElementById("root"));
 - https://reactjs.org/docs/introducing-jsx.html
 - https://www.w3schools.com/react/react_jsx.asp
 
+## React Props
 
+https://reactjs.org/docs/components-and-props.html
+
+- good for pages with similiar items with same attributes
+
+```javascript
+//  without Props
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <div>
+    <h1>My Contacts</h1>
+
+    <h2>Beyonce</h2>
+    <img
+      src="https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg"
+      alt="avatar_img"
+    />
+    <p>+123 456 789</p>
+    <p>b@beyonce.com</p>
+
+    <h2>Jack Bauer</h2>
+    <img
+      src="https://pbs.twimg.com/profile_images/625247595825246208/X3XLea04_400x400.jpg"
+      alt="avatar_img"
+    />
+    <p>+987 654 321</p>
+    <p>jack@nowhere.com</p>
+
+    <h2>Chuck Norris</h2>
+    <img
+      src="https://i.pinimg.com/originals/e3/94/47/e39447de921955826b1e498ccf9a39af.png"
+      alt="avatar_img"
+    />
+    <p>+918 372 574</p>
+    <p>gmail@chucknorris.com</p>
+  </div>,
+  document.getElementById("root")
+);
+
+
+//  With props
+import React from "react";
+import ReactDOM from "react-dom";
+
+function Card(props) {
+  return (
+    <div>
+      <h2>{props.name}</h2>
+      <img src={props.img} alt="avatar_img" />
+      <p>{props.tel}</p>
+      <p>{props.email}</p>
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <div>
+    <h1>My Contacts</h1>
+    <Card
+      name="Beyonce"
+      img="https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg"
+      tel="+123 456 789"
+      email="b@beyonce.com"
+    />
+    <Card
+      name="Jack Bauer"
+      img="https://pbs.twimg.com/profile_images/625247595825246208/X3XLea04_400x400.jpg"
+      tel="+7387384587"
+      email="jack@nowhere.com"
+    />
+  </div>,
+  document.getElementById("root")
+);
+
+```
+## Mapping Data to Components
+
+- https://reactjs.org/docs/lists-and-keys.html
 
 ## Babel
 
@@ -155,8 +246,11 @@ https://babeljs.io/
 - https://www.appbrewery.co/p/web-development-course-resources/
 - HTML Global Attributes - he global attributes are attributes that can be used with all HTML elements; https://www.w3schools.com/tags/ref_standardattributes.asp
 - Airbnb Style Guide for React - https://github.com/airbnb/javascript/tree/master/react
+
 ## Tools
 - Online code editor:  https://codesandbox.io/
+- React Developer Tools - chrome extension
+
 
 
 
