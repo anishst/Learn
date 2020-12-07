@@ -215,8 +215,12 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - easy-to-use service for deploying and scaling web applications and services
 - platform as a service; managed service; developer responsible for code only
 - beansstalk itself is free; pay for resources that make up app
+- Beanstalk lifecycle policy
+    - beanstak can store 1000 application versions
+- Elastic Beanstalk - Single  Docker; not ECS uses EC2
 - https://aws.amazon.com/elasticbeanstalk/
 - deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
 
 ## AWS CloudFormation
 

@@ -15,12 +15,17 @@ pd.set_option('display.max_rows', 10)
 |Command | Description |
 |--------|-------------|
 | ```df.head()```| shows first values|
+|```df.count()```|counts rows|
+|```df.fillna(0)```|Replace null values| 
 | ```df.dtypes```| shows data types|
 | ```df.values.tolist()``` | convert df to list|
 | ```df['Transaction Date']=pd.to_datetime(df['Transaction Date'])``` | convert date col into dattime type|
 |```df['col'].sum()```| print sum of a column|
 |```df.loc[df['col'].str.contains('text'), 'Transaction Amount'].sum()```| sum based on value of another column|
 |```df[df['col'].str.contains('text')].sum()```| sum based on value of another column|
+| **Group By**||
+|```df.groupby(['column1', 'column2']).sum()```|get sum|
+|```df.groupby(['column1', 'column2']).count()```|get count|
 |```df.groupby(df['Transaction Date'].dt.strftime('%B'))['Transaction Amount'].sum().sort_values()```| group by month|
 | **Data Slicing**||
 |df[-1:]|get last row|
@@ -29,12 +34,19 @@ pd.set_option('display.max_rows', 10)
 |df.loc["USA", "India"]| slice of rows  USA and India|
 |df.loc["USA", "India"]["1929","1980"]| get subset values|
 | **Data Filtering**||
+|```df[df['column_name'] == 0]```|Filtering a particular column based on a particular value or string|
 | df.filter(items=["1990"])| only column 1990|
 | df[df.filter(items=["1990"] < 10)]| only column 1990 population density < 10 |
 | df.filter(like="8", axis=1)| Years containing an 8|
 | df.filter(regex="a$", axis=0)| countries ending with a|
 | **Data Sorting**||
 | df.sort_values(by=["1990"])| sort by   1990|
+|```df.drop_duplicates()```| drop duplicates|
+|```df.join(lookup_dataframe, on='column_name')```|join your main dataframe df with another dataframe, we’ll call this lookup_dataframe on the column 'column_name' which appears in both df and lookup_dataframe. The join method has the default parameter how='left'|
+| **Plotting**||
+|```data['Gender'].value_counts().plot.pie()```| plot pie char of gender|
+|```data['Neighbourhood'].value_counts(sort=True).nlargest(10).plot.bar()```|bar chart|
+
 
 ## Basic operations
 
@@ -643,7 +655,7 @@ plt.show()
 
     
 ## Resources
-- Tutorial: 
+- Officila Guide: https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html
 - Code snippets: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Pandas
 
 ## Python Packages

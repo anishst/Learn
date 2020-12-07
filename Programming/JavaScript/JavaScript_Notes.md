@@ -111,6 +111,11 @@ A callback is a function passed as an argument to another function
 
 https://www.w3schools.com/js/js_callback.asp
 
+## Scope
+
+- ```var``` declared inside for/while has Global scope; avoid using var
+-  ```let``` or ```const``` declared inside for/while has local scope
+
 ## DOM Manipulation
 
 - ````document.querySelector("h1");```
