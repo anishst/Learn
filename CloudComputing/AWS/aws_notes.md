@@ -347,24 +347,64 @@ https://aws.amazon.com/cli/
     - service quota
 
 
-## Compliance
+## Security & Compliance
 
 - https://aws.amazon.com/compliance/
 - https://aws.amazon.com/compliance/programs/
 - https://aws.amazon.com/artifact/
 
-## Encryption
+### Encryption
 
 https://aws.amazon.com/kms/
 
-## Security
+###  Security
 - AWS AWS Identity and Access Management (IAM)
 - security groups
 - network ACLs
 - white paper: https://d1.awsstatic.com/whitepapers/aws-security-whitepaper.pdf
 - Security, Identity, and Compliance: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/security-services.html
 - Diagram : https://aws.amazon.com/compliance/shared-responsibility-model/
+
+### Amazon Macie
+
+ Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII).
+
+### AWS Secrets Manager
+AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
+
 ## Networking
+
+## AWS Well-Architected Framework
+
+The AWS Well-Architected Framework helps you understand the pros and cons of decisions you make while building systems on AWS. By using the Framework you will learn architectural best practices for designing and operating reliable, secure, efficient, and cost-effective systems in the cloud. It provides a way for you to consistently measure your architectures against best practices and identify areas for improvement.
+
+The AWS Well-Architected Framework is based on five pillars — Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization.
+
+## Serverless
+
+Serverless is the native architecture of the cloud that enables you to shift more of your operational responsibilities to AWS, increasing your agility and innovation. Serverless allows you to build and run applications and services without thinking about servers. It eliminates infrastructure management tasks such as server or cluster provisioning, patching, operating system maintenance, and capacity provisioning.
+
+https://aws.amazon.com/serverless/
+
+## Shared Responsibility Model 
+
+Security and Compliance is a shared responsibility between AWS and the customer. This shared model can help relieve the customer’s operational burden as AWS operates, manages and controls the components from the host operating system and virtualization layer down to the physical security of the facilities in which the service operates.
+
+- AWS is responsible for Security "of" the Cloud 
+- For a service like Amazon EC2, that falls under Infrastructure as a Service, AWS is responsible for maintaining guest operating system 
+- Configuration Management is the responsibility of the customer 
+- AWS is responsible for training AWS and customer employees on AWS products and services
+- https://aws.amazon.com/compliance/shared-responsibility-model/
+
+### AWS Acceptable Use Policy
+
+The Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services, Inc. and its affiliates (the “Services”) and the website located at http://aws.amazon.com (the “AWS Site”). This policy is present at https://aws.amazon.com/aup/ and is updated on a need basis by AWS.
+
+https://aws.amazon.com/aup/
+
+### AWS Trusted Advisor
+
+AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement. Whether establishing new workflows, developing applications, or as part of ongoing improvement, recommendations provided by Trusted Advisor regularly help keep your solutions provisioned optimally. Trusted Advisor does not describe prohibited uses of the web services offered by Amazon Web Services.
 
 ## Resources
 - Getting started: https://aws.amazon.com/getting-started/
@@ -375,7 +415,8 @@ https://aws.amazon.com/kms/
 -  AWS Total Cost of Ownership (TCO) Calculators - https://aws.amazon.com/tco-calculator/
 - new pricing: https://calculator.aws/#/
 - simple monthly calculator: https://calculator.s3.amazonaws.com/index.html
-- Shared Responsibility Model https://aws.amazon.com/compliance/shared-responsibility-model/
+- six advantages of cloud computing: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
+
 - workspaces (virtual desktop) https://aws.amazon.com/workspaces/
 
 ## Certifications

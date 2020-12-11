@@ -121,7 +121,9 @@ np.st*?
 
 - Goodle colabs: https://colab.research.google.com/
 - Jupyter notebooks
-
+- Google Data Studio - https://datastudio.google.com/
+    - Tutorials:
+        - https://towardsdatascience.com/how-to-build-a-great-dashboard-ee0518c3d3f7
 ## Vidoes
 
 - https://www.youtube.com/watch?v=_P7X8tMplsw&t=29s
@@ -155,3 +157,4 @@ https://scikit-learn.org/stable/
 - R/RStudio
 - Jupyter
 - Matlab
+- Google Data Studio

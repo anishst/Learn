@@ -1,0 +1,1 @@
+https://medium.com/swlh/add-log-decorators-to-your-python-project-84094f832181

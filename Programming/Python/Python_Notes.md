@@ -128,6 +128,14 @@ Basic Usage
 FORMAT = '%(asctime)s:%(levelname)s:%(message)s:%(module)s:%(filename)s:%(filename)s'
 logging.basicConfig(filename='test.log',level=logging.INFO,format=FORMAT)
 ```
+
+## Mock Tests
+
+Mocking is the practice of replacing real objects with mocked objects, which mimic their behavior, at runtime. So, instead of a sending a real HTTP request over the network, we just return an expected response when the mocked method is called.
+
+Examples:
+  - https://testdriven.io/blog/testing-python/
+  - [pytest monkeypatch info](https://docs.pytest.org/en/stable/monkeypatch.html)
 ## Regular Expressions
 
 - . (dot) - any char
@@ -190,6 +198,30 @@ ex. r"[a-zA-Z]+ \d{1}"
 ### Guides
 https://realpython.com/python-logging/#basic-configurations
 
+## GUI Frameworks
+
+Top 10: https://towardsdatascience.com/top-10-python-gui-frameworks-for-developers-adca32fbe6fc
+
+###TKInter
+- https://docs.python.org/3.6/library/tk.html
+- https://wiki.python.org/moin/TkInter
+
+### PyQt
+- https://riverbankcomputing.com/software/pyqt/intro
+- https://wiki.python.org/moin/PyQt
+- http://doc.qt.io/
+
+### kivy
+- https://kivy.org/#home
+- good for mobile/games
+- looks different than typical application
+
+### BeeWare
+- https://pybee.org/
+- new
+
+### PyGame
+- https://www.pygame.org/news
 
 ## Build Tools
 ###  pyinstaller 
@@ -356,3 +388,5 @@ Python Tutorials:
 - Corey S Videos: https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7
 - Google Python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk&list=PLC8825D0450647509
 - MIT - https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00-introduction-to-computer-science-and-programming-fall-2008/video-lectures/
+
+
