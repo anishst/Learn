@@ -351,7 +351,8 @@ http://linuxcommand.org/lc3_lts0090.php
             -  example: ```rpm -qa | sort | less```
         - rpm -ivh package .rpm : install package
         
-        - yum - package mgmt program
+        - 
+         - package mgmt program
             - ```yum search string```
             - ```yum install [-y] package```; make sure to switch to admin user first: ```su```
             - ```yum remove package```

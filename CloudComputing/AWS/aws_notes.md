@@ -211,8 +211,405 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - https://aws.amazon.com/ecs/
 - fully managed container orchestration service
 
+## AWS CloudFormation
+
+- infrastruce as code
+- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
+-  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
+- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+- AWS TaskCat
+    - tests cloudformation templates
+- Template examples: https://aws.amazon.com/cloudformation/resources/templates/
+```yaml
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  AWS CloudFormation Simple Infrastructure Template
+  VPC_Single_Instance_In_Subnet: This template will show how to create a VPC and
+  add an EC2 instance with an Elastic IP address and a security group.
+Parameters:
+  VPCCIDR:
+    Description: CIDR Block for VPC
+    Type: String
+    Default: 10.199.0.0/16
+    AllowedValues:
+      - 10.199.0.0/16
+  PUBSUBNET1:
+    Description: Public Subnet 1
+    Type: String
+    Default: 10.199.10.0/24
+    AllowedValues:
+      - 10.199.10.0/24
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: t2.nano
+    AllowedValues:
+      - t2.nano
+      - t2.micro
+      - t2.small
+    ConstraintDescription: must be a valid EC2 instance type.
+  KeyName:
+    Description: Keyname for the keypair that Qwiklab will use to launch EC2 instances
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: must be the name of the provided existing EC2 KeyPair.
+  SSHLocation:
+    Description: ' The IP address range that can be used to SSH to the EC2 instances'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  LatestAmiId:
+    Description: Find the current AMI ID using System Manager Parameter Store
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
+  QwiklabLocale:
+    Default: en
+    Description: >-
+      The locale of the student will be passed in to this parameter via the
+      Qwiklab platform (via the student's browser)
+    Type: String
+Resources:
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VPCCIDR
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: CF lab environment
+  Subnet:
+    Type: 'AWS::EC2::Subnet'
+    DependsOn: VPC
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PUBSUBNET1
+      MapPublicIpOnLaunch: 'true'
+      AvailabilityZone: !Select 
+        - '0'
+        - !GetAZs ''
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: Public Subnet
+  InternetGateway:
+    Type: 'AWS::EC2::InternetGateway'
+    DependsOn: VPC
+    Properties:
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  AttachGateway:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    DependsOn: VPC
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+  RouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    DependsOn: VPC
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  Route:
+    Type: 'AWS::EC2::Route'
+    DependsOn:
+      - VPC
+      - AttachGateway
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  SubnetRouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      SubnetId: !Ref Subnet
+      RouteTableId: !Ref RouteTable
+  NetworkAcl:
+    Type: 'AWS::EC2::NetworkAcl'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  InboundHTTPNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '80'
+        To: '80'
+  InboundSSHNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '101'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '22'
+        To: '22'
+  InboundResponsePortsNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '102'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1024'
+        To: '65535'
+  OutBoundHTTPNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '80'
+        To: '80'
+  OutBoundHTTPSNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '101'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '443'
+        To: '443'
+  OutBoundResponsePortsNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    DependsOn:
+      - VPC
+      - InternetGateway
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '102'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1024'
+        To: '65535'
+  SubnetNetworkAclAssociation:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref Subnet
+      NetworkAclId: !Ref NetworkAcl
+  IPAddress:
+    Type: 'AWS::EC2::EIP'
+    DependsOn: AttachGateway
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref WebServerInstance
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref VPC
+      GroupDescription: Enable SSH access via port 22 and HTTP via port 80
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref SSHLocation
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+  WebServerInstance:
+    Type: 'AWS::EC2::Instance'
+    DependsOn: AttachGateway
+    Metadata:
+      Comment: Install a simple application
+      'AWS::CloudFormation::Init':
+        config:
+          packages:
+            yum:
+              httpd: []
+          files:
+            /var/www/html/index.html:
+              content: !Join 
+                - |+
+
+                - - >-
+                    <h1>Congratulations, you have successfully deployed a simple
+                    infrastructure using AWS CloudFormation.</h1>
+              mode: '000644'
+              owner: root
+              group: root
+            /etc/cfn/cfn-hup.conf:
+              content: !Join 
+                - ''
+                - - |
+                    [main]
+                  - stack=
+                  - !Ref 'AWS::StackId'
+                  - |+
+
+                  - region=
+                  - !Ref 'AWS::Region'
+                  - |+
+
+              mode: '000400'
+              owner: root
+              group: root
+            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
+              content: !Join 
+                - ''
+                - - |
+                    [cfn-auto-reloader-hook]
+                  - |
+                    triggers=post.update
+                  - >
+                    path=Resources.WebServerInstance.Metadata.AWS::CloudFormation::Init
+                  - 'action=/opt/aws/bin/cfn-init -v '
+                  - '         --stack '
+                  - !Ref 'AWS::StackName'
+                  - '         --resource WebServerInstance '
+                  - '         --region '
+                  - !Ref 'AWS::Region'
+                  - |+
+
+                  - |
+                    runas=root
+              mode: '000400'
+              owner: root
+              group: root
+          services:
+            sysvinit:
+              httpd:
+                enabled: 'true'
+                ensureRunning: 'true'
+              cfn-hup:
+                enabled: 'true'
+                ensureRunning: 'true'
+                files:
+                  - /etc/cfn/cfn-hup.conf
+                  - /etc/cfn/hooks.d/cfn-auto-reloader.conf
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref LatestAmiId
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: Lab Host
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref InstanceSecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref Subnet
+      UserData: !Base64 
+        'Fn::Join':
+          - ''
+          - - |
+              #!/bin/bash -xe
+            - |
+              yum update -y aws-cfn-bootstrap
+            - '/opt/aws/bin/cfn-init -v '
+            - '         --stack '
+            - !Ref 'AWS::StackName'
+            - '         --resource WebServerInstance '
+            - '         --region '
+            - !Ref 'AWS::Region'
+            - |+
+
+            - '/opt/aws/bin/cfn-signal -e $? '
+            - '         --stack '
+            - !Ref 'AWS::StackName'
+            - '         --resource WebServerInstance '
+            - '         --region '
+            - !Ref 'AWS::Region'
+            - |+
+
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT15M
+Outputs:
+  URL:
+    Value: !Join 
+      - ''
+      - - 'http://'
+        - !GetAtt 
+          - WebServerInstance
+          - PublicIp
+    Description: Newly created application URL
+
+```  
+
+stack launch example
+
+```aws cloudformation create-stack --stack-name AWSStudent-Lab1 --template-body file://[simple-infrastructure-file-name] --parameters ParameterKey=KeyName,ParameterValue=[paste KeyPair name here] ParameterKey=InstanceType,ParameterValue=t2.micro```
+
+Get info on stack
+
+```aws cloudformation describe-stacks --stack-name AWSStudent-Lab1```
+
+Delete stack
+
+```aws cloudformation delete-stack --stack-name AWSStudent-Lab1```
+
+Drift detection to identify resourced modifed outside AWS CloudFormation manageent
+
+```aws cloudformation detect-stack-drift --stack-name AWSStudent-Lab1```
+
+create change set
+
+```aws cloudformation create-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet --template-body file://simple-infrastructure-CS.yaml --parameters ParameterKey=KeyName,ParameterValue=qwikLABS-L3644-5438 ParameterKey=InstanceType,ParameterValue=t2.micro```
+execute change set
+
+```aws cloudformation execute-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet```
+
 ## AWS Elastic Beanstalk
 - easy-to-use service for deploying and scaling web applications and services
+- uses Cloud Formation in backend
 - platform as a service; managed service; developer responsible for code only
 - beansstalk itself is free; pay for resources that make up app
 - Beanstalk lifecycle policy
@@ -222,11 +619,6 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
 - [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
 
-## AWS CloudFormation
-
-- infrastruce as code
-- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
--  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
 
 ## AWS Monitoring and Audit
 
@@ -313,7 +705,7 @@ https://aws.amazon.com/dynamodb/
 
 ## AWS CLI
 
-https://aws.amazon.com/cli/
+- [https://aws.amazon.com/cli/](https://aws.amazon.com/cli/)
 
 1. Log into aws: create Access keys (access key ID and secret access key)
 2. go to command prompt: ```aws configure```, follow prompts
@@ -342,10 +734,20 @@ https://aws.amazon.com/cli/
     - perfomr actions on AWS directly from your app w/o using CLI
     -https://aws.amazon.com/tools/
     - AWS CLI uses Python SDK (boto3)
+- AWS SAM CLI
+    - for serverless only
+- AWS Cloud Dev Kit (AWS CDK)  
+    - [aws cdk constructs](https://docs.aws.amazon.com/cdk/latest/guide/constructs.html)
 - AWS Limits (quotas)
     - API rate limits
     - service quota
-
+- commands
+    - ```aws ?``` - shows services
+    - ```aws configure get region``` - show my region
+    - ```aws ec2 describe-instances``` - show instance details
+    - ```aws ec2 wait instance-running ...``` - use wait to add wait for ec2 to get loaded
+    - ```aws ec2 describe-key-pairs``` - get key pair name
+    - query language for JSON - https://jmespath.org/
 
 ## Security & Compliance
 
@@ -353,6 +755,33 @@ https://aws.amazon.com/cli/
 - https://aws.amazon.com/compliance/programs/
 - https://aws.amazon.com/artifact/
 
+## AWS Cloud9
+
+- free shared IDE using browser; real time; direct terminal access
+- option to run: ec2 + aws cloud9 OR your server + aws cloud9
+- for versioing use AWS codecommit or other remote rep (GitHub, etc)
+- [https://aws.amazon.com/cloud9/](https://aws.amazon.com/cloud9/)
+
+## AWS CodeStar
+
+[https://aws.amazon.com/codestar/](https://aws.amazon.com/codestar/)
+
+## AWS CodeCommit
+
+fully-managed source control service that hosts secure Git-based repositories.
+
+- free; backed by S3
+- [https://aws.amazon.com/codecommit/](https://aws.amazon.com/codecommit/)
+- [Setup](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up.html)
+
+## AWS CodeBuild
+
+fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy. 
+
+[https://aws.amazon.com/codebuild/](https://aws.amazon.com/codebuild/)
+
+ - alternative to Jenkins, Bamboo, TeamCity
+ - [Build Spec YAML File](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
 ### Encryption
 
 https://aws.amazon.com/kms/
@@ -396,6 +825,7 @@ Security and Compliance is a shared responsibility between AWS and the customer.
 - AWS is responsible for training AWS and customer employees on AWS products and services
 - https://aws.amazon.com/compliance/shared-responsibility-model/
 
+
 ### AWS Acceptable Use Policy
 
 The Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services, Inc. and its affiliates (the “Services”) and the website located at http://aws.amazon.com (the “AWS Site”). This policy is present at https://aws.amazon.com/aup/ and is updated on a need basis by AWS.
@@ -429,3 +859,6 @@ AWS Trusted Advisor is an online tool that provides you real-time guidance to he
 - https://amazon.qwiklabs.com/catalog
 - awesome day: https://aws.amazon.com/events/awsome-day/
 - workshops: https://aws.amazon.com/serverless-workshops/
+
+## AWS DevOps
+
