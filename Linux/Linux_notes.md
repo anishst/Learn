@@ -175,6 +175,7 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |rm -r dir|remove files and folders under|
 |rm -f file|remove force|
 |cp src_file dest_file||
+|unzip CodeDeployHeartbeatDemo.zip && rm -f CodeDeployHeartbeatDemo.zip|unzip file and remove|
 |**Creating collection of files**||
 | tar||
 |tar -xvzf *tarfile*|untar a file|

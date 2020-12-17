@@ -114,10 +114,20 @@ Beginning January, 2018, new ADA regulations for web accessibility will go into 
 ## Blogs
 
 - https://karlgroves.com/category/accessibility-testing
-## Automation
 
-### Tools
 
+## Tools
+
+### Automation
+- Selenium
+- UFTOne
+- Katalon
+- [Ghost inspector](https://ghostinspector.com/)
+- MicroFocus storm runner
+- NuSum
+### Performance
+- JMeter
+- Gatling
 ### TestComplete
 - record and playback options
 - has JIRA and Jenkins integration

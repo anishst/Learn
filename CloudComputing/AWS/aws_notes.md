@@ -1,4 +1,4 @@
-# Amazon Web Services (AWS)
+ # Amazon Web Services (AWS)
 
 - AWS was launched in 2006
 
@@ -6,13 +6,12 @@ Amazon Products: https://aws.amazon.com/products/
 
 Service Summary - https://i.imgur.com/k013j1R.png
 
+- serverless computing
+    - no infrastructure, less management
+    - automatical scaling
+    - highly available and secure
+    - pay for value
 
-AWS Foundtions services
-https://image.slidesharecdn.com/hsbcandawsday-awsfoundations-170709164032/95/hsbc-and-aws-day-aws-foundations-7-638.jpg?cb=1499618785
-
-AWS Platform Services
-
-https://image.slidesharecdn.com/getting-started-on-aws-awsome-19b96808-0f60-4c92-96f1-d7937c855042-304968793-180413164036/95/getting-started-on-aws-awsome-day-2018-12-638.jpg?cb=1523637675
 
 ## AWS Fundamentals: IAM & EC2
 
@@ -41,7 +40,7 @@ https://image.slidesharecdn.com/getting-started-on-aws-awsome-19b96808-0f60-4c92
  - use AMI TO pre-install software > faster boot
     - AMI is region based
     
-### Setup
+### AWS Global Infrastructure
 
 https://infrastructure.aws/
 
@@ -53,6 +52,7 @@ https://infrastructure.aws/
     - isolated from other zones
     - connecte by a low-latency link
     - edge locations host a CDN
+- EC2 instance must have AMI in the same region; or copy over to new region    
     
 https://aws.amazon.com/about-aws/global-infrastructure/
 
@@ -220,369 +220,6 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - AWS TaskCat
     - tests cloudformation templates
 - Template examples: https://aws.amazon.com/cloudformation/resources/templates/
-```yaml
-AWSTemplateFormatVersion: 2010-09-09
-Description: >-
-  AWS CloudFormation Simple Infrastructure Template
-  VPC_Single_Instance_In_Subnet: This template will show how to create a VPC and
-  add an EC2 instance with an Elastic IP address and a security group.
-Parameters:
-  VPCCIDR:
-    Description: CIDR Block for VPC
-    Type: String
-    Default: 10.199.0.0/16
-    AllowedValues:
-      - 10.199.0.0/16
-  PUBSUBNET1:
-    Description: Public Subnet 1
-    Type: String
-    Default: 10.199.10.0/24
-    AllowedValues:
-      - 10.199.10.0/24
-  InstanceType:
-    Description: WebServer EC2 instance type
-    Type: String
-    Default: t2.nano
-    AllowedValues:
-      - t2.nano
-      - t2.micro
-      - t2.small
-    ConstraintDescription: must be a valid EC2 instance type.
-  KeyName:
-    Description: Keyname for the keypair that Qwiklab will use to launch EC2 instances
-    Type: 'AWS::EC2::KeyPair::KeyName'
-    ConstraintDescription: must be the name of the provided existing EC2 KeyPair.
-  SSHLocation:
-    Description: ' The IP address range that can be used to SSH to the EC2 instances'
-    Type: String
-    MinLength: '9'
-    MaxLength: '18'
-    Default: 0.0.0.0/0
-    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
-    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-  LatestAmiId:
-    Description: Find the current AMI ID using System Manager Parameter Store
-    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
-  QwiklabLocale:
-    Default: en
-    Description: >-
-      The locale of the student will be passed in to this parameter via the
-      Qwiklab platform (via the student's browser)
-    Type: String
-Resources:
-  VPC:
-    Type: 'AWS::EC2::VPC'
-    Properties:
-      CidrBlock: !Ref VPCCIDR
-      EnableDnsSupport: 'true'
-      EnableDnsHostnames: 'true'
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-        - Key: Name
-          Value: CF lab environment
-  Subnet:
-    Type: 'AWS::EC2::Subnet'
-    DependsOn: VPC
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: !Ref PUBSUBNET1
-      MapPublicIpOnLaunch: 'true'
-      AvailabilityZone: !Select 
-        - '0'
-        - !GetAZs ''
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-        - Key: Name
-          Value: Public Subnet
-  InternetGateway:
-    Type: 'AWS::EC2::InternetGateway'
-    DependsOn: VPC
-    Properties:
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-  AttachGateway:
-    Type: 'AWS::EC2::VPCGatewayAttachment'
-    DependsOn: VPC
-    Properties:
-      VpcId: !Ref VPC
-      InternetGatewayId: !Ref InternetGateway
-  RouteTable:
-    Type: 'AWS::EC2::RouteTable'
-    DependsOn: VPC
-    Properties:
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-  Route:
-    Type: 'AWS::EC2::Route'
-    DependsOn:
-      - VPC
-      - AttachGateway
-    Properties:
-      RouteTableId: !Ref RouteTable
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref InternetGateway
-  SubnetRouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      SubnetId: !Ref Subnet
-      RouteTableId: !Ref RouteTable
-  NetworkAcl:
-    Type: 'AWS::EC2::NetworkAcl'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-  InboundHTTPNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '100'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '80'
-        To: '80'
-  InboundSSHNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '101'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '22'
-        To: '22'
-  InboundResponsePortsNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '102'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '1024'
-        To: '65535'
-  OutBoundHTTPNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '100'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'true'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '80'
-        To: '80'
-  OutBoundHTTPSNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '101'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'true'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '443'
-        To: '443'
-  OutBoundResponsePortsNetworkAclEntry:
-    Type: 'AWS::EC2::NetworkAclEntry'
-    DependsOn:
-      - VPC
-      - InternetGateway
-    Properties:
-      NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '102'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'true'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '1024'
-        To: '65535'
-  SubnetNetworkAclAssociation:
-    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
-    Properties:
-      SubnetId: !Ref Subnet
-      NetworkAclId: !Ref NetworkAcl
-  IPAddress:
-    Type: 'AWS::EC2::EIP'
-    DependsOn: AttachGateway
-    Properties:
-      Domain: vpc
-      InstanceId: !Ref WebServerInstance
-  InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      VpcId: !Ref VPC
-      GroupDescription: Enable SSH access via port 22 and HTTP via port 80
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: !Ref SSHLocation
-        - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
-          CidrIp: 0.0.0.0/0
-  WebServerInstance:
-    Type: 'AWS::EC2::Instance'
-    DependsOn: AttachGateway
-    Metadata:
-      Comment: Install a simple application
-      'AWS::CloudFormation::Init':
-        config:
-          packages:
-            yum:
-              httpd: []
-          files:
-            /var/www/html/index.html:
-              content: !Join 
-                - |+
-
-                - - >-
-                    <h1>Congratulations, you have successfully deployed a simple
-                    infrastructure using AWS CloudFormation.</h1>
-              mode: '000644'
-              owner: root
-              group: root
-            /etc/cfn/cfn-hup.conf:
-              content: !Join 
-                - ''
-                - - |
-                    [main]
-                  - stack=
-                  - !Ref 'AWS::StackId'
-                  - |+
-
-                  - region=
-                  - !Ref 'AWS::Region'
-                  - |+
-
-              mode: '000400'
-              owner: root
-              group: root
-            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
-              content: !Join 
-                - ''
-                - - |
-                    [cfn-auto-reloader-hook]
-                  - |
-                    triggers=post.update
-                  - >
-                    path=Resources.WebServerInstance.Metadata.AWS::CloudFormation::Init
-                  - 'action=/opt/aws/bin/cfn-init -v '
-                  - '         --stack '
-                  - !Ref 'AWS::StackName'
-                  - '         --resource WebServerInstance '
-                  - '         --region '
-                  - !Ref 'AWS::Region'
-                  - |+
-
-                  - |
-                    runas=root
-              mode: '000400'
-              owner: root
-              group: root
-          services:
-            sysvinit:
-              httpd:
-                enabled: 'true'
-                ensureRunning: 'true'
-              cfn-hup:
-                enabled: 'true'
-                ensureRunning: 'true'
-                files:
-                  - /etc/cfn/cfn-hup.conf
-                  - /etc/cfn/hooks.d/cfn-auto-reloader.conf
-    Properties:
-      InstanceType: !Ref InstanceType
-      ImageId: !Ref LatestAmiId
-      KeyName: !Ref KeyName
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
-        - Key: Name
-          Value: Lab Host
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref InstanceSecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref Subnet
-      UserData: !Base64 
-        'Fn::Join':
-          - ''
-          - - |
-              #!/bin/bash -xe
-            - |
-              yum update -y aws-cfn-bootstrap
-            - '/opt/aws/bin/cfn-init -v '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource WebServerInstance '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - |+
-
-            - '/opt/aws/bin/cfn-signal -e $? '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource WebServerInstance '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - |+
-
-    CreationPolicy:
-      ResourceSignal:
-        Timeout: PT15M
-Outputs:
-  URL:
-    Value: !Join 
-      - ''
-      - - 'http://'
-        - !GetAtt 
-          - WebServerInstance
-          - PublicIp
-    Description: Newly created application URL
-
-```  
 
 stack launch example
 
@@ -640,10 +277,37 @@ https://aws.amazon.com/cloudtrail/
 ## AWS Lambda
 
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
-
 https://aws.amazon.com/lambda/
 
-- serverless
+- serverless event-driven code execution
+- 15 min run time
+- scales automatically
+- monitor/log using CloudWatch
+
+## AWS ECS
+
+- fully managed container orchestration service
+
+[https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/)
+
+## AWS ECR
+
+Amazon Elastic Container Registry (ECR) is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere
+
+[https://aws.amazon.com/ecr/](https://aws.amazon.com/ecr/)
+
+- amazon version of Docker Hub
+## AWS EKS
+
+Amazon Elastic Kubernetes Service (Amazon EKS) gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises.
+
+[https://aws.amazon.com/eks/](https://aws.amazon.com/eks/)
+
+## AWS Fargate
+
+AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
+
+[https://aws.amazon.com/fargate/?nc=sn&loc=1](https://aws.amazon.com/fargate/?nc=sn&loc=1)
 
 ## DynamoDB 
 
@@ -780,8 +444,42 @@ fully managed continuous integration service that compiles source code, runs tes
 
 [https://aws.amazon.com/codebuild/](https://aws.amazon.com/codebuild/)
 
- - alternative to Jenkins, Bamboo, TeamCity
- - [Build Spec YAML File](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
+- No build servers to manage
+- Monitor build throught CloudWatch events
+- alternative to Jenkins, Bamboo, TeamCity, [AWS QuickStart](https://aws.amazon.com/quickstart)
+- [Build Spec YAML File](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
+
+## AWS CodeDeploy 
+
+CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services.
+
+- You can deploy a nearly unlimited variety of application content, such as code, web and configuration files, executable files, packages, scripts, multimedia files, and so on. 
+- deploy application content stored in Amazon Simple Storage Service (Amazon S3) buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use CodeDeploy. 
+- rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.
+- [AppSpec config file YAML](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
+- [blue/green deployment](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#welcome-deployment-overview-blue-green)
+- lifecycle hooks
+- [Docs](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html)
+
+### Sample steps:
+
+1. get code files: ```wget https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-TF-200-DEVOPS/v3.0.9/lab-2-CodeDeploy/bundles/CodeDeployHeartbeatDemo.zip -P CodeDeployHeartbeatDemo```
+2. create bucket: ```aws s3 mb s3://heartbeat-codedeploy-artifacts-ats-22043```
+3. Deploy code to s3: ```aws deploy push --application-name CodeDeploy-Demo --source HeartBeat-App --s3-location s3://heartbeat-codedeploy-artifacts-ats-22043/HeartBeat-App.zip```
+4. create deployment and push to s3 bucket: ```aws deploy create-deployment --application-name CodeDeploy-Demo --deployment-group-name HeartBeat-Deployment --deployment-config-name CodeDeployDefault.AllAtOnce --description "Initial Deployment" --s3-location bucket=heartbeat-codedeploy-artifacts-ats-22043,key=HeartBeat-App.zip,bundleType=zip```
+
+## AWS CodePipeline
+
+- fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. 
+- CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This enables you to rapidly and reliably deliver features and updates. You can easily integrate AWS CodePipeline with third-party services such as GitHub or with your own custom plugin. With AWS CodePipeline, you pay for only what you use. There are no upfront fees or long-term commitments.
+- [Docs](https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html)
+- [Actions](https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html)
+    - parallel/sequential/manual approvals
+
+## AWS Security, Identity, & Compliance services
+
+- [Overview](https://aws.amazon.com/products/security/)
+
 ### Encryption
 
 https://aws.amazon.com/kms/
@@ -832,13 +530,41 @@ The Acceptable Use Policy describes prohibited uses of the web services offered 
 
 https://aws.amazon.com/aup/
 
+
+## Migration
+- AWS Migration Hub
+- AWS Database Migration Service
+- AWS Server Migration Service
+
+## AWS Support
+
+###  Support Plans
+- [Support Plans](https://aws.amazon.com/premiumsupport/plans/)
+
 ### AWS Trusted Advisor
 
-AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement. Whether establishing new workflows, developing applications, or as part of ongoing improvement, recommendations provided by Trusted Advisor regularly help keep your solutions provisioned optimally. Trusted Advisor does not describe prohibited uses of the web services offered by Amazon Web Services.
+- Trusted Advisor is an online resource that helps to reduce cost, increase performance and improve security by optimizing your AWS environment.
+- Trusted Advisor provides real time guidance to help you provision your resources following best practices.
+- Advisor will advise you on Cost Optimization, Performance, Security, and Fault Tolerance.
+
+- scans your AWS infrastructure and compares is to AWS best practices in five categories:
+    - Cost Optimization
+    - Performance
+    - Security
+    - Fault Tolerance
+    - Service Limits
+    
+### AWS Personal Health Dashboard
+
+AWS Personal Health Dashboard provides alerts and remediation guidance when AWS is experiencing events that may impact you.
+
 
 ## Resources
+
 - Getting started: https://aws.amazon.com/getting-started/
-- Free tier info: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc
+- [Hands-On](https://aws.amazon.com/getting-started/hands-on/)
+- [Break a Monolith Application into Microservices ](https://aws.amazon.com/getting-started/hands-on/break-monolith-app-microservices-ecs-docker-ec2/)
+- [Free tier info](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc)
 - Documentation: https://docs.aws.amazon.com/
 - What's New with AWS? https://aws.amazon.com/new/?whats-new-content-all.sort-by=item.additionalFields.postDateTime&whats-new-content-all.sort-order=desc
 - Free Tier Monitoring: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html#free-budget
@@ -852,6 +578,8 @@ AWS Trusted Advisor is an online tool that provides you real-time guidance to he
 ## Certifications
 
 - https://aws.amazon.com/certification/
+- [Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf)
+- [examp prep cheat sheets](https://digitalcloud.training/certification-training/aws-certified-cloud-practitioner)
 
 ![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2019/09/20/Certifications_1.png)
 ## Training
@@ -860,5 +588,11 @@ AWS Trusted Advisor is an online tool that provides you real-time guidance to he
 - awesome day: https://aws.amazon.com/events/awsome-day/
 - workshops: https://aws.amazon.com/serverless-workshops/
 
-## AWS DevOps
+## DevOps on AWS
 
+- [Deployment Strategies](https://docs.aws.amazon.com/whitepapers/latest/introduction-devops-aws/deployment-strategies.html)
+- [CD](https://aws.amazon.com/devops/continuous-delivery/)
+ - [Working with deployment configurations in CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html)
+ - [Testing](https://aws.amazon.com/blogs/devops/tag/testing/)
+ - [DevSecOps](https://aws.amazon.com/blogs/security/tag/devsecops/)
+    - [Definition](https://www.ibm.com/cloud/learn/devsecops)
