@@ -6,6 +6,7 @@ Amazon Products: https://aws.amazon.com/products/
 
 Service Summary - https://i.imgur.com/k013j1R.png
 
+- [Types of Cloud Computing](https://aws.amazon.com/types-of-cloud-computing/)
 - serverless computing
     - no infrastructure, less management
     - automatical scaling
@@ -27,7 +28,9 @@ Service Summary - https://i.imgur.com/k013j1R.png
 - One IAM User per physicla person
 - one IAM role per application
 - never use ROOT accont except for initial setup
-
+- Users can be assigned an access key ID and secret access key for programmatic access to the AWS API, CLI, SDK, and other development tools and a password for access to the management console.
+- Access keys are long-term credentials for an IAM user or the AWS account root user. You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
+- Server certificates are **SSL/TLS certificates** that you can use to authenticate with some AWS services.
 
 ### AWS Management Console
  - use MFA - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
@@ -47,6 +50,8 @@ https://infrastructure.aws/
 - regions
     - geo locations / isolated from each other
     - consist of at least 2 availablity zone
+    - Data stored within an AWS region is not replicated outside of that region automatically
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
 - availablity zones
     - clusters of data centers / min 2 AZ in a region
     - isolated from other zones
@@ -60,6 +65,9 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 
 - Virtual machines that provides resizable compute capacity in cloud
 - Amazon EC2 Instance Types: https://aws.amazon.com/ec2/instance-types/
+   - EC2 Dedicated Host
+       - allows an organization to bring their own licensing on host hardware that is physically isolated from other AWS accounts
+    
 - https://docs.aws.amazon.com/ec2/index.html
 - instance lifecycle: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
     - charged while in rebooting and running state
@@ -67,12 +75,17 @@ https://aws.amazon.com/about-aws/global-infrastructure/
  - Purchase options: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html
  - EC2 Launch modes:
     - on-demand - pay as you go
-    - reserved - 1-3 yr contract
+    - reserved - 1 or 3 yr terms
+        - Benfits
+            - reserver capacity
+            - [reduced cost](https://aws.amazon.com/ec2/pricing/reserved-instances/)
     - dedicated - dedicated hardware; nonshared
     - spot - bidding unused instances
+    - launch instances within a VPC across multiple AZs. It cannot launch resources into another AWS Region.
 - billed by the second; t2.micro is free tier
 - security groups can reference other security groups instead of IP ranges
 - default user accounts: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
+- pricing - https://aws.amazon.com/ec2/pricing/
 
 #### Connection Options for EC2
 
@@ -124,6 +137,8 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 
 ## Virtual Private Cloud (VPC)
  - for networking
+- spans all the Availability Zones in the region
+- VPC Flow logs
  - users private cloud in a region
  - **Subnets**
     - logicl grouping of resources within the VPC
@@ -136,7 +151,6 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
  - a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
 - Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
 - Security gropus compare: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
-- VPC Flow logs
     - capture ip traffic info
 - VPC Peering
     - connect 2 VPCs privately using AWS network
@@ -167,7 +181,8 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - goal is to survive data center loss
 
 ### ELB - Elastic Load Balancing
-
+   - automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, Lambda functions, and virtual appliances.
+   - https://aws.amazon.com/elasticloadbalancing 
 ## Direct Connect
 
 ##  EC2 Storage - EBS & EFS
@@ -193,13 +208,41 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - standard - infrequent access
     - glacier
   - versioning: https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+  - replication 
+    - S3 Cross-Region Replication (CRR) is used to copy objects across Amazon S3 buckets in different AWS Regions
+  - Bucket policies are used for controlling access to buckets
+  - Lifecycle management 
+    - create rules to control the transfer of objects between different storage classes
+    - https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+## Amazon EMR
 
+- big data
+- process vast amounts of data using open source tools such as Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto.
+ 
+## AWS Storage Gateway
+- **hybrid cloud storage** service that gives you **on-premises** access to virtually unlimited cloud storage
+- three different types of gateways 
+    - File Gateway
+        - Store and access objects in Amazon S3 from NFS or SMB file-based applications with local caching
+    - Tape Gateway
+        - Backup and archive on-premises data to virtual tapes in AWS
+    - Volume Gateway 
+        - Hybrid cloud block storage with local caching
+    
 ## AWS Athena
 
 - serverless service to peroform anlayltic directly again S3 files
 - uses SQL
 - https://aws.amazon.com/premiumsupport/knowledge-center/analyze-logs-athena/
 
+## Route 53
+
+- https://aws.amazon.com/route53/
+- services
+    - DNS
+    - Traffic flow
+    - domain registration
+    - routing policies (not IP routing)
 ## AWS CloudFront
 
 - Content delivery network (CDN)
@@ -259,20 +302,26 @@ execute change set
 
 ## AWS Monitoring and Audit
 
-### CloudWatch
+### [CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)
 
-Amazon CloudWatch monitors your Amazon Web Services (AWS) resources and the applications you run on AWS in real time. You can use CloudWatch to collect and track metrics, which are variables you can measure for your resources and applications; https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
-
+- monitors applications  in real time. 
+- collect and track metrics
+- allows billing alarms
+-  performs **app performance** monitoring and can monitor custom metrics generated by applications and the **operational health** of your AWS resources
 ### X-Ray
 
 AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. 
 
 https://aws.amazon.com/xray/
 
+## AWS Web Application Firewall (WAF) 
+- protect web applications or APIs against common web exploits. Rules can be created that block traffic based on source IP address.
+ 
 ### CloudTrail
 
 AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. 
 https://aws.amazon.com/cloudtrail/
+- used for logging who does what in AWS by recording API calls. It is used for auditing, not performance or system operational monitoring.
 
 ## AWS Lambda
 
@@ -314,13 +363,26 @@ AWS Fargate is a serverless compute engine for containers that works with both A
 - NoSQL serverless DB
 - fully managed by AWS w/ replication across 3 AZ
 - Made of tables; 
+- Amazon DynamoDB Accelerator (DAX) 
+    - provides in-memory acceleration to tables that result in significant performance improvements
 
 https://aws.amazon.com/dynamodb/
+
+## Reservations
+   - Amazon ElastiCache and Amazon Redshift 
 
 ##  Glacier
 
    - archving service
+   - data access
+        - expedited: 1-5 mins
+        - standard 3-5 hours
+        - bulk; 5-12 hours
+        - https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html
 
+## Amazon Elasticsearch 
+- Service is involved with operational analytics such as application monitoring, log analytics and clickstream analytics. 
+   
 ### Automation Tools
 - AWS Elastic beanstalk - deoploy code to cluod
 - opswork - mange infrastructure
@@ -430,6 +492,9 @@ https://aws.amazon.com/dynamodb/
 
 [https://aws.amazon.com/codestar/](https://aws.amazon.com/codestar/)
 
+## AWS Step Functions 
+ - lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly. 
+
 ## AWS CodeCommit
 
 fully-managed source control service that hosts secure Git-based repositories.
@@ -496,16 +561,36 @@ https://aws.amazon.com/kms/
 
  Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII).
 
+## Amazon Guard​Duty
+
+- threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts, workloads, and data stored in Amazon S3. 
+
 ### AWS Secrets Manager
 AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
+
+## AWS Organizations
+
+- https://aws.amazon.com/organizations/
+- centrally manage and govern your environment as you grow and scale your AWS resources
+- Automate the creation of AWS accounts and categorize workloads using groups
+
+### Consoldate billing
+
+https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html
+
 
 ## Networking
 
 ## AWS Well-Architected Framework
 
-The AWS Well-Architected Framework helps you understand the pros and cons of decisions you make while building systems on AWS. By using the Framework you will learn architectural best practices for designing and operating reliable, secure, efficient, and cost-effective systems in the cloud. It provides a way for you to consistently measure your architectures against best practices and identify areas for improvement.
 
-The AWS Well-Architected Framework is based on five pillars — Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization.
+The [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected) is based on five pillars: 
+
+- Operational Excellence
+- Security
+- [Reliability](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html)
+- [Performance Efficiency](https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/design-principles.html)
+- Cost Optimization.
 
 ## Serverless
 
@@ -540,7 +625,18 @@ https://aws.amazon.com/aup/
 
 ###  Support Plans
 - [Support Plans](https://aws.amazon.com/premiumsupport/plans/)
-
+- All support plans provide 24×7 access to customer service, documentation, whitepapers, and support forums.
+- Basic – billing and account support only (access to forums only).
+- Developer – business hours support via email.
+- Business – 24×7 email, chat and phone support.
+- Enterprise – 24×7 email, chat and phone support.
+    - TAM
+        - Technical Account Manager provides expert monitoring and optimization for your environment and coordinates access to other programs and experts.
+- AWS Concierge
+    - support AWS customers on an Enterprise support plan with account issues
+- APN Consulting Partners 
+    - help an organization to design, build, and manage their workloads on AWS
+    - 
 ### AWS Trusted Advisor
 
 - Trusted Advisor is an online resource that helps to reduce cost, increase performance and improve security by optimizing your AWS environment.
@@ -553,12 +649,41 @@ https://aws.amazon.com/aup/
     - Security
     - Fault Tolerance
     - Service Limits
-    
+- https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
+
+### AWS Inspector 
+- automated security assessment service that helps improve the security and compliance of applications deployed on AWS
+
 ### AWS Personal Health Dashboard
 
-AWS Personal Health Dashboard provides alerts and remediation guidance when AWS is experiencing events that may impact you.
+- provides alerts and remediation guidance when AWS is experiencing events that may impact you.
 
+## AWS Systems Manager
+- gives you visibility and control of your infrastructure on AWS. 
+- provides a unified user interface so you can view operational data from multiple AWS services and **allows you to automate operational tasks** across your AWS resources.
 
+## AWS OpsWorks
+- configuration management service that provides managed instances of Chef and Puppet.
+
+## AWS Glue
+- serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development.
+
+## Amazon Neptune
+- a fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets. 
+
+## AWS Snowball 
+suitcase-sized data migration and edge computing device that comes in two device options: Compute Optimized and Storage Optimized. Snowball Edge Storage Optimized devices provide 40 vCPUs of compute capacity coupled with 80 terabytes of usable block or Amazon S3-compatible object storage. 
+-  move up to 80TB per device. AWS call this a “petabyte-scale data transfer service”.
+
+## AWS Snowmobile
+- move 100PB per snowmobile. AWS call this an “Exabyte-scale data transfer service”.
+- **shipping container**  moved with a tractor-trailer. These services can assist with data migration, disaster recovery, data center shutdown, and remote data collection projects.
+
+## AWS Config 
+- fully-managed service that provides you with an AWS resource inventory, configuration history, and configuration change notifications to enable security and regulatory compliance.
+
+## AWS Artifact 
+- central resource for compliance-related information. This service can be used to get compliance information related to AWS’ certifications/attestations.
 ## Resources
 
 - Getting started: https://aws.amazon.com/getting-started/
