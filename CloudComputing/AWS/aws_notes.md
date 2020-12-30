@@ -13,29 +13,22 @@ Service Summary - https://i.imgur.com/k013j1R.png
     - highly available and secure
     - pay for value
 
+## Cloud Computing
 
-## AWS Fundamentals: IAM & EC2
+- Deployment models for cloud computing
+    - cloud-based
+    - on premises
+        - private cloud deployment.
+    - hybrid
+- Benefits of cloud computing
+    - Stop spending money to run and maintain data centers
+    - Stop guessing capacity
+    - Benefit from massive economies of scale
+    - Increase speed and agility
+    - Go global in minutes
 
-### IAM (Identity and Access Management )
+## Compute
 
-- whole AWS security is here; users, groups, role
-- root acct should never be used/shared
-- IAM is global; across regions
-- permissions are govered by poliies (JSON)
-- mfa can be setup
-- IAM Federation; for big enterprises
-    - uses SAML Standard (AD)
-- One IAM User per physicla person
-- one IAM role per application
-- never use ROOT accont except for initial setup
-- Users can be assigned an access key ID and secret access key for programmatic access to the AWS API, CLI, SDK, and other development tools and a password for access to the management console.
-- Access keys are long-term credentials for an IAM user or the AWS account root user. You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
-- Server certificates are **SSL/TLS certificates** that you can use to authenticate with some AWS services.
-
-### AWS Management Console
- - use MFA - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
-
- 
 ### AMI - Amazon Machine Image
  - EC2 is based off AMI; similiar to docker image
  - OS + setup of software pre-installed
@@ -52,27 +45,65 @@ https://infrastructure.aws/
     - consist of at least 2 availablity zone
     - Data stored within an AWS region is not replicated outside of that region automatically
     - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+    - factors affecting region selection
+        - Compliance with data governance and legal requirements
+        - Proximity to your customers
+        - Available services within a Region
+        - Pricing
+
 - availablity zones
     - clusters of data centers / min 2 AZ in a region
     - isolated from other zones
     - connecte by a low-latency link
     - edge locations host a CDN
+    - best practice is to run applications across at least two Availability Zones in a Region.
+ - **Edge locations**
+    - site that Amazon CloudFront uses to store cached copies of your content closer to your customers for faster delivery.
+    - **AWS CloudFront**
+        - AWS Content delivery network (CDN)
+        - improves read performance, content is cahced at edge
+        - https://aws.amazon.com/cloudfront/features/    
+        - https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
+    - **Route 53**
+        - https://aws.amazon.com/route53/
+        - services
+            - DNS
+            - Traffic flow
+            - domain registration
+            - routing policies (not IP routing)
+    - **AWS Outposts**      
+        - service that enables you to run infrastructure in a hybrid cloud approach
+        - Extends AWS infrastructure and services to your on-premises data center.
+
 - EC2 instance must have AMI in the same region; or copy over to new region    
     
 https://aws.amazon.com/about-aws/global-infrastructure/
 
-### Amazon EC2
+### Amazon EC2 (Elastic Compute Cloud)
 
 - Virtual machines that provides resizable compute capacity in cloud
-- Amazon EC2 Instance Types: https://aws.amazon.com/ec2/instance-types/
-   - EC2 Dedicated Host
+- [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)
+    - Compute optimized instances
+    - Memory optimized instances
+    - Accelerated computing instances
+    - Storage optimized instance
+- EC2 Dedicated Host
        - allows an organization to bring their own licensing on host hardware that is physically isolated from other AWS accounts
     
 - https://docs.aws.amazon.com/ec2/index.html
 - instance lifecycle: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
     - charged while in rebooting and running state
  - metadata: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
- - Purchase options: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html
+ - [Purchase options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
+    - on-demand
+    - saving-plans
+    - reservered instances
+        - 1 or 3 yr terms
+    - spot instances
+        - 2 min warning before terminated
+    - dedicated hosts
+        - physical machines
+        
  - EC2 Launch modes:
     - on-demand - pay as you go
     - reserved - 1 or 3 yr terms
@@ -135,40 +166,55 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 
 - Actions > Instance Settings > Get System Log
 
-## Virtual Private Cloud (VPC)
- - for networking
-- spans all the Availability Zones in the region
-- VPC Flow logs
- - users private cloud in a region
+## Networking
+
+### Connectivity to AWS
+- **Virtual Private Cloud (VPC)**
+    - for networking; establish boundaries around your AWS Resource
+    - spans all the Availability Zones in the region
+    - VPC Flow logs
+    - users private cloud in a region
  - **Subnets**
     - logicl grouping of resources within the VPC
     - public subnet - can access from interent
     - private subnet
  - **Internet Gateway** connects VPC to internet
- - IPV4 CIDR 10.0.25.0/24 means the subnet contains ip addresses from 10.0.25.0 to 10.0.25.255
- - each subnet is assoicated with a **route table**, which specifies the routes for outbound traffic leaving the subnet
- - a **network acces control list (ACL)** is an optional layter of security for VPC; usually left with default values; act as firewall for controlling traiffc in/out of subnets
- - a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
+ - Virutal Private Gateway
+    - allows access to private resources in a VPC
+ - AWS **Direct Connect**
+    - dedicated private/physical connection between your data center and a VPC
+
+### Subnets and network acces control list (ACL)
+
+- **Subnets**
+    - section of a VPC ; group resources based on a security or operational needs
+    - public and private subnets
+    - each subnet is assoicated with a **route table**, which specifies the routes for outbound traffic leaving the subnet
+- **Network Acces Control List (ACL)** 
+    - VPC component that checks packet permissions
+    - optional layter of security for VPC; usually left with default values; act as firewall for controlling traiffc in/out of subnets
+    - stateless packet filtering; allows all inbound/outboutnd traffic
+- a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
 - Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
-- Security gropus compare: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
-    - capture ip traffic info
+- **Security Groups** 
+    - virtual firewall that controls inbound/outboutnd traffic for EC2 instance
+    - Secures EC2 instances in the subnet
+    - stateful packet filtering; denies all inbound/outboutnd traffic by default 
+    - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 - VPC Peering
-    - connect 2 VPCs privately using AWS network
-    - not transitive 
+-   connect 2 VPCs privately using AWS network
+-   not transitive 
 - VPC Endpoints
-    - allows you to connect to AWS services using private network 
-    - VPC Endpoit gateway: give VPC access to S3, DynamoDB
+-   allows you to connect to AWS services using private network 
+- VPC Endpoit gateway: give VPC access to S3, DynamoDB
 - Site to Site VPN & Direct Connect
+- IPV4 CIDR 10.0.25.0/24 means the subnet contains ip addresses from 10.0.25.0 to 10.0.25.255
 
-## Amazon DB Services: DB options
-- self-managed
-    - db server on EC2; Bring ur own license
-- fully managed
-    - amazon RDS / amazon aurora
-    - Amazon dynamodb
-    - amazon redshift
+### Global networking
 
-
+- DNS (Route 53)
+    - uses route 53 routing policies
+    
 ## High Availability and Scalability: ELB & ASG
 
 - Vertical scalability 
@@ -183,37 +229,162 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 ### ELB - Elastic Load Balancing
    - automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, Lambda functions, and virtual appliances.
    - https://aws.amazon.com/elasticloadbalancing 
-## Direct Connect
 
-##  EC2 Storage - EBS & EFS
+### Messaging and queuing
+
+- aim for loosely coupled architecture
+- Amazon Simple Notification Service (Amazon SNS)
+    - publish/subscribe service. 
+- Amazon Simple Queue Service (Amazon SQS)
+    - message queuing service
+    
+### Serverless computing
+
+- “serverless” means that your code runs on servers, but you do not need to provision or manage these servers. 
+- AWS Lambda is a service that lets you run code without needing to provision or manage servers. 
+
+#### AWS Lambda
+
+AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
+https://aws.amazon.com/lambda/
+
+- serverless event-driven code execution; 
+- trigger invokes lamda function 
+- 15 min run time
+- scales automatically
+- monitor/log using CloudWatch        
+
+#### Amazon Elastic Container Service (ECS)
+- https://aws.amazon.com/ecs/
+- fully managed container orchestration service
+
+#### AWS EKS
+
+Amazon Elastic Kubernetes Service (Amazon EKS) gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises.
+
+[https://aws.amazon.com/eks/](https://aws.amazon.com/eks/)
+
+#### AWS Fargate
+
+AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
+
+[https://aws.amazon.com/fargate/?nc=sn&loc=1](https://aws.amazon.com/fargate/?nc=sn&loc=1)
+
+#### AWS ECR
+
+Amazon Elastic Container Registry (ECR) is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere
+
+[https://aws.amazon.com/ecr/](https://aws.amazon.com/ecr/)
+
+- amazon version of Docker Hub
+
+
+##  Storage and Databases
+
+### Instance store 
+
+- provides temporary block-level storage for an Amazon EC2 instance
+- lost when EC2 instance is terminated
 
 ### EBS - Elastic Block Store
-- network drive you can attach to your instance while they run
-- locked to AZ 
+- block-level storage volumes that you can use with Amazon EC2 instances
+- allows incremental snapshot backups
+- EBS volumes store data within a single Availability Zone
+- need to be same AZ to attach EC2 instances
 - https://aws.amazon.com/ebs
 - Making an Amazon EBS volume available for use on Linux - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
 
-### EFS - Elastic File System
-- network file system
-- only linux based AMI
 
-## Simple Storage Service(S3)
+### AWS S3 - Simple Storage Service
  
- - object storage and distribtuon for the internet
+ - object level storage and distribtuon for the internet
+    - In object storage, each object consists of data, metadata, and a key.
+ - max size is 5 TB
  - part of Amazon CloudFront
  - 99.999999 % durability
- - can be used to shift static content from web instances
+ - static web site hosting
  - storage classes
-    - standard
-    - standard - infrequent access
-    - glacier
-  - versioning: https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+    - S3 Standard
+        - Stores data in a minimum of three Availability Zones
+    - S3 Standard-Infrequent Access (S3 Standard-IA)
+        - access less frequently but rapid access
+    - S3 One Zone-Infrequent Access (S3 One Zone-IA)
+        - Stores data in a single Availability Zone and lower cost
+    - S3 Intelligent-Tiering
+        - Ideal for data with unknown or changing access patterns
+    - S3 Glacier
+        - Low-cost storage designed for data archiving
+        - Able to retrieve objects within a few minutes to hours
+    - S3 Glacier Deep Archive
+        - Lowest-cost object storage class ideal for archiving
+        - Able to retrieve objects within 12 hours
+  - Allows [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html)
   - replication 
     - S3 Cross-Region Replication (CRR) is used to copy objects across Amazon S3 buckets in different AWS Regions
   - Bucket policies are used for controlling access to buckets
   - Lifecycle management 
-    - create rules to control the transfer of objects between different storage classes
+    - create rules to automatically transfer objects between different storage classes
     - https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+- S3 Transfer Acceleration
+
+### EFS - Elastic File System
+- file storage
+- EFS file systems store data across multiple Availability Zones.
+- mutliple resources can access the same data at the same time
+- only linux based AMI
+- automatically scales
+
+### Databases
+
+
+- **Amazon RDS - RelationAL Database Service**
+    - https://aws.amazon.com/rds/
+    - managed DB by AWS
+        - Postgress, MySQL, mariadb, oracle, ms sql, Aurora (aws db)
+    - Automatic backup
+    - DB snapshots - triggerd by user
+    - RDS Read replicas for read scalability
+        - up to 5; ASYNC replication
+    - FREE-TIER Compatible
+        - MySQL
+        - Each calendar month, the free tier will allow you to use the Amazon RDS resources listed below for free:
+            - 750 hrs of Amazon RDS in a Single-AZ db.t2.micro Instance.
+            - 20 GB of General Purpose Storage (SSD).
+            - 20 GB for automated backup storage and any user-initiated DB Snapshots.
+    - you can use this tool to make queries: https://sqlectron.github.io/
+    - you will need Endpoint and port found under: Connectivity & security in your DB instance in AWS.
+    - RDS Security - encryption
+        - at reset
+        - in-flight
+    - RDS - IAM Auth: no pwd needed; token lifetime of 15 mins
+    - **Amazon Aurora**
+        - fully managed; proprietary DB technology from AWS
+        - mysql and psql
+        - Automatically grows; 10GB increments
+        - up to 15 replicas
+        - aurora serverless - only runs when u need it
+- **DynamoDB**
+    - serverless db
+    - nonrelational; nosql key/value db
+    - highly scalable
+- **AWS Redshift**    
+    - data warehousing service that you can use for big data analytics
+    - columnar db, petabyte warehouse; 1000 TB = 1 PB
+    - can be reserved
+- Additional database services
+    - **Amazon DynamoDB Accelerator (DAX)** is an in-memory cache for DynamoDB. 
+    - **Netptune**
+        - managed Graph db
+    - **AWS ElaticCache**
+        - in memory databases; Redis or MemCached
+        - RDS for caches; relieves load on RDS
+        - can store user sessions
+### AWS Database Migration Service (AWS DMS)
+
+- enables you to migrate relational databases, nonrelational databases, and other types of data stores.
+- move data between a source database and a target database
+-  The source and target databases can be of the same type or different types
+
 ## Amazon EMR
 
 - big data
@@ -234,70 +405,6 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
 - serverless service to peroform anlayltic directly again S3 files
 - uses SQL
 - https://aws.amazon.com/premiumsupport/knowledge-center/analyze-logs-athena/
-
-## Route 53
-
-- https://aws.amazon.com/route53/
-- services
-    - DNS
-    - Traffic flow
-    - domain registration
-    - routing policies (not IP routing)
-## AWS CloudFront
-
-- Content delivery network (CDN)
-- improves read performance, content is cahced at edge
-- https://aws.amazon.com/cloudfront/features/    
-- https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
-
-## Amazon Elastic Container Service (ECS)
-- https://aws.amazon.com/ecs/
-- fully managed container orchestration service
-
-## AWS CloudFormation
-
-- infrastruce as code
-- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
--  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
-- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-- AWS TaskCat
-    - tests cloudformation templates
-- Template examples: https://aws.amazon.com/cloudformation/resources/templates/
-
-stack launch example
-
-```aws cloudformation create-stack --stack-name AWSStudent-Lab1 --template-body file://[simple-infrastructure-file-name] --parameters ParameterKey=KeyName,ParameterValue=[paste KeyPair name here] ParameterKey=InstanceType,ParameterValue=t2.micro```
-
-Get info on stack
-
-```aws cloudformation describe-stacks --stack-name AWSStudent-Lab1```
-
-Delete stack
-
-```aws cloudformation delete-stack --stack-name AWSStudent-Lab1```
-
-Drift detection to identify resourced modifed outside AWS CloudFormation manageent
-
-```aws cloudformation detect-stack-drift --stack-name AWSStudent-Lab1```
-
-create change set
-
-```aws cloudformation create-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet --template-body file://simple-infrastructure-CS.yaml --parameters ParameterKey=KeyName,ParameterValue=qwikLABS-L3644-5438 ParameterKey=InstanceType,ParameterValue=t2.micro```
-execute change set
-
-```aws cloudformation execute-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet```
-
-## AWS Elastic Beanstalk
-- easy-to-use service for deploying and scaling web applications and services
-- uses Cloud Formation in backend
-- platform as a service; managed service; developer responsible for code only
-- beansstalk itself is free; pay for resources that make up app
-- Beanstalk lifecycle policy
-    - beanstak can store 1000 application versions
-- Elastic Beanstalk - Single  Docker; not ECS uses EC2
-- https://aws.amazon.com/elasticbeanstalk/
-- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
-- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
 
 
 ## AWS Monitoring and Audit
@@ -323,15 +430,7 @@ AWS CloudTrail is a service that enables governance, compliance, operational aud
 https://aws.amazon.com/cloudtrail/
 - used for logging who does what in AWS by recording API calls. It is used for auditing, not performance or system operational monitoring.
 
-## AWS Lambda
 
-AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
-https://aws.amazon.com/lambda/
-
-- serverless event-driven code execution
-- 15 min run time
-- scales automatically
-- monitor/log using CloudWatch
 
 ## AWS ECS
 
@@ -339,24 +438,6 @@ https://aws.amazon.com/lambda/
 
 [https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/)
 
-## AWS ECR
-
-Amazon Elastic Container Registry (ECR) is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere
-
-[https://aws.amazon.com/ecr/](https://aws.amazon.com/ecr/)
-
-- amazon version of Docker Hub
-## AWS EKS
-
-Amazon Elastic Kubernetes Service (Amazon EKS) gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises.
-
-[https://aws.amazon.com/eks/](https://aws.amazon.com/eks/)
-
-## AWS Fargate
-
-AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
-
-[https://aws.amazon.com/fargate/?nc=sn&loc=1](https://aws.amazon.com/fargate/?nc=sn&loc=1)
 
 ## DynamoDB 
 
@@ -392,47 +473,14 @@ https://aws.amazon.com/dynamodb/
 - https://chrome.google.com/webstore/detail/console-recorder-for-aws/ganlhgooidfbijjidcpkeaohjnkeicba?hl=en
 - console recorder: https://addons.mozilla.org/en-CA/firefox/addon/console-recorder/#:~:text=Extension%20Metadata&text=Click%20the%20orange%20Console%20Recorder,click%20the%20Start%20Recording%20button.
 
+## Ways To Interact with/Provision AWS Services
 
-## Databases
+### AWS Management Console
+ - use MFA - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
 
-
-- **Amazon RDS - RelationAL Database Service**
-    - https://aws.amazon.com/rds/
-    - managed DB by AWS
-        - Postgress, MySQL, mariadb, oracle, ms sql, Aurora (aws db)
-    - Automatic backup
-    - DB snapshots - triggerd by user
-    - RDS Read replicas for read scalability
-        - up to 5; ASYNC replication
-    - FREE-TIER Compatible
-        - MySQL
-        - Each calendar month, the free tier will allow you to use the Amazon RDS resources listed below for free:
-            - 750 hrs of Amazon RDS in a Single-AZ db.t2.micro Instance.
-            - 20 GB of General Purpose Storage (SSD).
-            - 20 GB for automated backup storage and any user-initiated DB Snapshots.
-    - you can use this tool to make queries: https://sqlectron.github.io/
-    - you will need Endpoint and port found under: Connectivity & security in your DB instance in AWS.
-    - RDS Security - encryption
-        - at reset
-        - in-flight
-    - RDS - IAM Auth: no pwd needed; token lifetime of 15 mins
-
-- **Amazon Aurora**
-    - proprietary DB technology from AWS
-    - Automatically grows; 10GB increments
-    - up to 15 replicas
-
-- **AWS ElaticCache**
-    - in memory databases; Redis or MemCached
-    - RDS for caches; relieves load on RDS
-    - can store user sessions
-        
-
-
-## AWS CLI
+### AWS CLI
 
 - [https://aws.amazon.com/cli/](https://aws.amazon.com/cli/)
-
 1. Log into aws: create Access keys (access key ID and secret access key)
 2. go to command prompt: ```aws configure```, follow prompts
     - to see configs: ```~/.aws/credentials```
@@ -456,10 +504,7 @@ https://aws.amazon.com/dynamodb/
 - AWS CLI MFA
     - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_cliapi.html
     - https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html
-- AWS SDK
-    - perfomr actions on AWS directly from your app w/o using CLI
-    -https://aws.amazon.com/tools/
-    - AWS CLI uses Python SDK (boto3)
+
 - AWS SAM CLI
     - for serverless only
 - AWS Cloud Dev Kit (AWS CDK)  
@@ -475,6 +520,58 @@ https://aws.amazon.com/dynamodb/
     - ```aws ec2 describe-key-pairs``` - get key pair name
     - query language for JSON - https://jmespath.org/
 
+### AWS SDK
+- perfomr actions on AWS directly from your app w/o using CLI
+-https://aws.amazon.com/tools/
+- AWS CLI uses Python SDK (boto3)
+
+### AWS Elastic Beanstalk
+- easy-to-use service for deploying and scaling web applications and services
+- uses Cloud Formation in backend
+- platform as a service; managed service; developer responsible for code only
+- beansstalk itself is free; pay for resources that make up app
+- Beanstalk lifecycle policy
+    - beanstak can store 1000 application versions
+- Elastic Beanstalk - Single  Docker; not ECS uses EC2
+- https://aws.amazon.com/elasticbeanstalk/
+- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
+
+### AWS CloudFormation
+
+- infrastruce as code
+- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
+-  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
+- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+- AWS TaskCat
+    - tests cloudformation templates
+- Template examples: https://aws.amazon.com/cloudformation/resources/templates/
+
+stack launch example
+
+```aws cloudformation create-stack --stack-name AWSStudent-Lab1 --template-body file://[simple-infrastructure-file-name] --parameters ParameterKey=KeyName,ParameterValue=[paste KeyPair name here] ParameterKey=InstanceType,ParameterValue=t2.micro```
+
+Get info on stack
+
+```aws cloudformation describe-stacks --stack-name AWSStudent-Lab1```
+
+Delete stack
+
+```aws cloudformation delete-stack --stack-name AWSStudent-Lab1```
+
+Drift detection to identify resourced modifed outside AWS CloudFormation manageent
+
+```aws cloudformation detect-stack-drift --stack-name AWSStudent-Lab1```
+
+create change set
+
+```aws cloudformation create-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet --template-body file://simple-infrastructure-CS.yaml --parameters ParameterKey=KeyName,ParameterValue=qwikLABS-L3644-5438 ParameterKey=InstanceType,ParameterValue=t2.micro```
+execute change set
+
+```aws cloudformation execute-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet```
+
+    
+    
 ## Security & Compliance
 
 - https://aws.amazon.com/compliance/
@@ -544,6 +641,23 @@ CodeDeploy is a deployment service that automates application deployments to Ama
 ## AWS Security, Identity, & Compliance services
 
 - [Overview](https://aws.amazon.com/products/security/)
+
+### IAM (Identity and Access Management )
+
+- whole AWS security is here; users, groups, role
+- root acct should never be used/shared
+- IAM is global; across regions
+- permissions are govered by poliies (JSON)
+- mfa can be setup
+- IAM Federation; for big enterprises
+    - uses SAML Standard (AD)
+- One IAM User per physicla person
+- one IAM role per application
+- never use ROOT accont except for initial setup
+- Users can be assigned an access key ID and secret access key for programmatic access to the AWS API, CLI, SDK, and other development tools and a password for access to the management console.
+- Access keys are long-term credentials for an IAM user or the AWS account root user. You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
+- Server certificates are **SSL/TLS certificates** that you can use to authenticate with some AWS services.
+
 
 ### Encryption
 
@@ -697,7 +811,6 @@ suitcase-sized data migration and edge computing device that comes in two device
 - new pricing: https://calculator.aws/#/
 - simple monthly calculator: https://calculator.s3.amazonaws.com/index.html
 - six advantages of cloud computing: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
 - workspaces (virtual desktop) https://aws.amazon.com/workspaces/
 
 ## Certifications
@@ -705,6 +818,7 @@ suitcase-sized data migration and edge computing device that comes in two device
 - https://aws.amazon.com/certification/
 - [Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf)
 - [examp prep cheat sheets](https://digitalcloud.training/certification-training/aws-certified-cloud-practitioner)
+- [AWS Glossary](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html)
 
 ![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2019/09/20/Certifications_1.png)
 ## Training
