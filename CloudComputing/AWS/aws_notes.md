@@ -41,21 +41,42 @@ The [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-ar
     - ability to run workloads effectively and gain insights into their operations
 - **Security**
     - data integrity/encryption
-    - Automate security best practices when possible.
-    - Apply security at all layers.
-    - Protect data in transit and at rest
-- [**Reliability**](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html)
+    - There are six design principles for security in the cloud:
+        – Implement a strong identity foundation
+        – Enable traceability
+        – Apply security at all layers
+        – Automate security best practices
+        – Protect data in transit and at rest
+        – Prepare for security events
+ - [**Reliability**](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html)
     - Recover from infrastructure or service disruptions
     - Dynamically acquire computing resources to meet demand
     - Mitigate disruptions such as misconfigurations or transient network issues
     - focuses on the ability of a workload to consistently and correctly perform its intended functions
+    - five design principles for reliability in the cloud:
+        - Test recovery procedures
+        - Automatically recover from failure
+        - Scale horizontally to increase aggregate system availability
+        - Stop guessing capacity
+– Manage change in automation.
 - [**Performance Efficiency**](https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/design-principles.html)
     - focuses on using computing resources efficiently to meet system requirements and to maintain that efficiency as demand changes and technologies evolve.
         - ex. using right EC2 instances
+    - There are five design principles for performance efficiency in the cloud
+        – Democratize advanced technologies
+        – Go global in minutes
+        – Use serverless architectures
+        – Experiment more often
+        – Mechanical sympathy.        
 - **Cost Optimization**
     - control where money is spent
     - ability to run systems to deliver business value at the lowest price point.
-
+    - five design principles for cost optimization in the cloud
+        – Adopt a consumption model
+        – Measure overall efficiency
+        – Stop spending money on data center operations
+        – Analyze and attribute expenditure
+        – Use managed services to reduce cost of ownership
 
 ## Compute
 
@@ -129,10 +150,18 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - saving-plans
     - reservered instances
         - 1 or 3 yr terms
+        - Reserved Instances (RIs) provide you with a significant discount (up to 72%) compared to On-Demand instance pricing. Standard reserved instances offer the most cost savings. RIs are based on a 1 or 3 year contract so they are suitable for workloads that will run for the duration of the contract period.
+        - https://aws.amazon.com/ec2/pricing/reserved-instances/
+        - **Standard RIs**: These provide the most significant discount (up to 75% off On-Demand) and are best suited for steady-state usage.
+        - **Convertible RIs**: These provide a discount (up to 54% off On-Demand) and the capability to change the attributes of the RI as long as the exchange results in the creation of Reserved Instances of equal or greater value. Like Standard RIs, Convertible RIs are best suited for steady-state usage.
+        - **Scheduled RIs**: These are available to launch within the time windows you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.
     - spot instances
         - 2 min warning before terminated
     - dedicated hosts
         - physical machines
+- billing
+  - Amazon EC2 instances running Linux are billed in one second increments, with a minimum of 60 seconds.
+  - Reserved and Spot Amazon EC2 Linux instances are charged per second with a minimum charge of 1 minute.
         
  - EC2 Launch modes:
     - on-demand - pay as you go
@@ -147,6 +176,11 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 - security groups can reference other security groups instead of IP ranges
 - default user accounts: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
 - pricing - https://aws.amazon.com/ec2/pricing/
+- benefits of using reserved instances
+    - https://aws.amazon.com/ec2/pricing/reserved-instances/
+    - reduced cost
+    - reserver capcaicty
+    
 
 #### Connection Options for EC2
 
@@ -213,6 +247,11 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - allows access to private resources in a VPC
  - AWS **Direct Connect**
     - dedicated private/physical connection between your data center and a VPC
+    - Benefits of AWS Direct Connect
+        – Reduce cost when using large volumes of traffic.
+        – Increase reliability (predictable performance).
+        – Increase bandwidth (predictable bandwidth).
+        – Decrease latency.
 
 ### Subnets and network acces control list (ACL)
 
@@ -332,6 +371,8 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
  - max size is 5 TB
  - part of Amazon CloudFront
  - 99.999999 % durability
+ - security
+    - IAM Policy, S3 encyrption, bucket policy
  - static web site hosting
  - storage classes
     - S3 Standard
@@ -342,6 +383,14 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
         - Stores data in a single Availability Zone and lower cost
     - S3 Intelligent-Tiering
         - Ideal for data with unknown or changing access patterns
+    - Glacier
+        - archving service
+        - data access
+            - expedited: 1-5 mins
+            - standard 3-5 hours
+            - bulk; 5-12 hours
+
+            - https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html
     - S3 Glacier
         - Low-cost storage designed for data archiving
         - Able to retrieve objects within a few minutes to hours
@@ -351,12 +400,24 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
   - Allows [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html)
   - replication 
     - S3 Cross-Region Replication (CRR) is used to copy objects across Amazon S3 buckets in different AWS Regions
+    - must have versioning enabled
   - Bucket policies are used for controlling access to buckets
   - Lifecycle management 
     - create rules to automatically transfer objects between different storage classes
     - https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
 - S3 Transfer Acceleration
+    - enables fast, easy, and secure transfers of files over long distances between a client and an Amazon S3 bucket
 
+## AWS Storage Gateway
+- **hybrid cloud storage** service that gives you **on-premises** access to virtually unlimited cloud storage
+- three different types of gateways 
+    - File Gateway
+        - Store and access objects in Amazon S3 from NFS or SMB file-based applications with local caching
+    - Tape Gateway
+        - Backup and archive on-premises data to virtual tapes in AWS
+    - Volume Gateway 
+        - Hybrid cloud block storage with local caching
+        
 ### EFS - Elastic File System
 - file storage
 - EFS file systems store data across multiple Availability Zones.
@@ -419,30 +480,17 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
 
 - big data
 - process vast amounts of data using open source tools such as Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto.
- 
-## AWS Storage Gateway
-- **hybrid cloud storage** service that gives you **on-premises** access to virtually unlimited cloud storage
-- three different types of gateways 
-    - File Gateway
-        - Store and access objects in Amazon S3 from NFS or SMB file-based applications with local caching
-    - Tape Gateway
-        - Backup and archive on-premises data to virtual tapes in AWS
-    - Volume Gateway 
-        - Hybrid cloud block storage with local caching
-    
+   
 ## AWS Athena
 
 - serverless service to peroform anlayltic directly again S3 files
 - uses SQL
 - https://aws.amazon.com/premiumsupport/knowledge-center/analyze-logs-athena/
-
-
 ## AWS ECS
 
 - fully managed container orchestration service
 
 [https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/)
-
 
 ## DynamoDB 
 
@@ -456,15 +504,6 @@ https://aws.amazon.com/dynamodb/
 
 ## Reservations
    - Amazon ElastiCache and Amazon Redshift 
-
-##  Glacier
-
-   - archving service
-   - data access
-        - expedited: 1-5 mins
-        - standard 3-5 hours
-        - bulk; 5-12 hours
-        - https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html
 
 ## Amazon Elasticsearch 
 - Service is involved with operational analytics such as application monitoring, log analytics and clickstream analytics. 
@@ -550,32 +589,6 @@ https://aws.amazon.com/dynamodb/
 - [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 - AWS TaskCat
     - tests cloudformation templates
-- Template examples: https://aws.amazon.com/cloudformation/resources/templates/
-
-stack launch example
-
-```aws cloudformation create-stack --stack-name AWSStudent-Lab1 --template-body file://[simple-infrastructure-file-name] --parameters ParameterKey=KeyName,ParameterValue=[paste KeyPair name here] ParameterKey=InstanceType,ParameterValue=t2.micro```
-
-Get info on stack
-
-```aws cloudformation describe-stacks --stack-name AWSStudent-Lab1```
-
-Delete stack
-
-```aws cloudformation delete-stack --stack-name AWSStudent-Lab1```
-
-Drift detection to identify resourced modifed outside AWS CloudFormation manageent
-
-```aws cloudformation detect-stack-drift --stack-name AWSStudent-Lab1```
-
-create change set
-
-```aws cloudformation create-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet --template-body file://simple-infrastructure-CS.yaml --parameters ParameterKey=KeyName,ParameterValue=qwikLABS-L3644-5438 ParameterKey=InstanceType,ParameterValue=t2.micro```
-execute change set
-
-```aws cloudformation execute-change-set --stack-name AWSStudent-Lab1 --change-set-name Lab1ChangeSet```
-
-    
     
 ## Security & Compliance
 
@@ -671,6 +684,7 @@ Security and Compliance is a shared responsibility between AWS and the customer.
 - IAM is global; across regions
 - permissions are govered by poliies (JSON)
 - multi-factor authentication (MFA) 
+- Supported authentication methods include console passwords, access keys and server certificates.
 - IAM User
     - One IAM User per physical person
 - IAM Policy
@@ -680,6 +694,7 @@ Security and Compliance is a shared responsibility between AWS and the customer.
     - attch policy to group
 - IAM Role
     - assoicated permissions; allow or deny
+    - entity used for assigning permissions to AWS services
     - access to temporary permissions
     - one IAM role per application
     - IAM roles are ideal for situations in which access to services or resources needs to be granted temporarily, instead of long-term.  
@@ -693,6 +708,10 @@ Security and Compliance is a shared responsibility between AWS and the customer.
 - by default new user has access to nothing
 - Users can be assigned an **access key ID** and **secret access key** for programmatic access to the AWS API, CLI, SDK, and other development tools and a password for access to the management console.
 - Access keys are long-term credentials for an IAM user or the AWS account root user. You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
+    - Best practices include
+        - Don’t generate an access key for the root account user.
+        - Use Temporary Security Credentials (IAM Roles) Instead of Long-Term Access Keys.
+        - Manage IAM User Access Keys Properly.
 - Server certificates are **SSL/TLS certificates** that you can use to authenticate with some AWS services.
 
 ### AWS Organizations
@@ -708,7 +727,12 @@ use [AWS Organizations](https://aws.amazon.com/organizations) to consolidate and
         - enable you to place restrictions on the AWS services, resources, and individual API actions that users and roles in each account can access.
         - you can apply service control policies (SCPs) to the organization root, an individual member account, or an OU
 - Automate the creation of AWS accounts and categorize workloads using groups
+- When using AWS Organizations with consolidated billing, best practices include:
+    - Always enable multi-factor authentication (MFA) on the root account.
+    - Always use a strong and complex password on the root account.
+    - The Paying account should be used for billing purposes only. Do not deploy resources into the Paying account.
 
+There is a default limit of 20 linked accounts but this can be extended and there is no reason why you should stick to a maximum of 20 accounts.
 ### Compliance
 
 #### AWS Artifact 
@@ -874,11 +898,12 @@ Three types of offers are available:
 
 ## AWS Config 
 - fully-managed service that provides you with an AWS resource inventory, configuration history, and configuration change notifications to enable security and regulatory compliance.
+-  organization track resource inventory and configuration history for the purpose of security and regulatory compliance
 ## AWS Glue
 - serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development.
 
 ## Amazon Neptune
-- a fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets. 
+- a fast, reliable, fully-managed **graph database** service that makes it easy to build and run applications that work with highly connected datasets. 
 
 ## Migration and Innvoation
 
@@ -907,9 +932,11 @@ Three types of offers are available:
         - Snowball Edge Storage Optimized devices provide 40 vCPUs of compute capacity coupled with 80 terabytes of usable block or Amazon S3-compatible object storage. 
         -  move up to 80TB per device. AWS call this a “petabyte-scale data transfer service”.
     - **AWS Snowmobile**
-        - move 100PB per snowmobile. AWS call this an “Exabyte-scale data transfer service”.
+        - move 100PB per snowmobile. AWS call this an “**Exabyte**-scale data transfer service”.
         - **shipping container**  moved with a tractor-trailer. These services can assist with data migration, disaster recovery, data center shutdown, and remote data collection projects.
 
+##Amazon Elastic Transcoder 
+ - is a highly scalable, easy to use and cost-effective way for developers and businesses to convert (or “transcode”) video and audio files from their source format into versions that will playback on devices like smartphones, tablets and PCs.
 ## Resources
 
 - Getting started: https://aws.amazon.com/getting-started/
