@@ -1,5 +1,6 @@
 """ Use zip to process iterators in parallel 
 used when you need to pair data together
+https://medium.com/techtofreedom/7-levels-of-using-the-zip-function-in-python-a4bd22ee8bcd
 """
 
 names = ["anish", "ligy", "tony", "Leah", "sebastian"]
@@ -45,4 +46,28 @@ for i in zip_longest(a,b):
 for i in zip_longest(a,b, fillvalue=0):
     print(i)
 
+# Create and Update Dictionaries by the Zip Function
+id = [1, 2, 3, 4]
+leaders = ['Elon Mask', 'Tim Cook', 'Bill Gates', 'Yang Zhou']
 
+# create dict by dict comprehension
+leader_dict = {i: name for i, name in zip(id, leaders)}
+print(leader_dict)
+# {1: 'Elon Mask', 2: 'Tim Cook', 3: 'Bill Gates', 4: 'Yang Zhou'}
+
+# create dict by dict function
+leader_dict_2 = dict(zip(id, leaders))
+print(leader_dict_2)
+# {1: 'Elon Mask', 2: 'Tim Cook', 3: 'Bill Gates', 4: 'Yang Zhou'}
+
+# update
+other_id = [5, 6]
+other_leaders = ['Larry Page', 'Sergey Brin']
+leader_dict.update(zip(other_id, other_leaders))
+print(leader_dict)
+
+
+# Get the Transpose of a Matrix
+matrix = [[1, 2, 3], [1, 2, 3]]
+matrix_T = [list(i) for i in zip(*matrix)]
+print(matrix_T)
