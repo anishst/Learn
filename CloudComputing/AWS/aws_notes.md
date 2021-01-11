@@ -30,7 +30,10 @@ Service Summary - https://i.imgur.com/k013j1R.png
 - Increase speed and agility.
 - Stop spending money running and maintaining data centers.
 - Go global in minutes.
-
+- terms
+    - capital expenses (capex)
+    - operating expenses (opex).
+    
 ### AWS Well-Architected Framework
 
 
@@ -162,6 +165,10 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 - billing
   - Amazon EC2 instances running Linux are billed in one second increments, with a minimum of 60 seconds.
   - Reserved and Spot Amazon EC2 Linux instances are charged per second with a minimum charge of 1 minute.
+  - Use the AWS Simple Monthly Calculator to accurately model multitiered application stack
+pricing.
+  - Use the AWS Total Cost of Ownership Calculator to compare on-premises with AWS
+deployment costs.
         
  - EC2 Launch modes:
     - on-demand - pay as you go
@@ -243,6 +250,7 @@ Note: make to sure edit security group to allow HTTP access: Security Groups > w
     - public subnet - can access from interent
     - private subnet
  - **Internet Gateway** connects VPC to internet
+ - VPC peering connection
  - Virutal Private Gateway
     - allows access to private resources in a VPC
  - AWS **Direct Connect**
@@ -434,6 +442,7 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
         - Postgress, MySQL, mariadb, oracle, ms sql, Aurora (aws db)
     - Automatic backup
     - DB snapshots - triggerd by user
+    - Can only scale vertically; use read replicas for horizonal scaling
     - RDS Read replicas for read scalability
         - up to 5; ASYNC replication
     - FREE-TIER Compatible
@@ -508,14 +517,6 @@ https://aws.amazon.com/dynamodb/
 ## Amazon Elasticsearch 
 - Service is involved with operational analytics such as application monitoring, log analytics and clickstream analytics. 
    
-### Automation Tools
-- AWS Elastic beanstalk - deoploy code to cluod
-- opswork - mange infrastructure
-- cloudformation - define infrastructure
-
-#### Tools to record UI clicks:
-- https://chrome.google.com/webstore/detail/console-recorder-for-aws/ganlhgooidfbijjidcpkeaohjnkeicba?hl=en
-- console recorder: https://addons.mozilla.org/en-CA/firefox/addon/console-recorder/#:~:text=Extension%20Metadata&text=Click%20the%20orange%20Console%20Recorder,click%20the%20Start%20Recording%20button.
 
 ## Ways To Interact with/Provision AWS Services
 
@@ -569,26 +570,6 @@ https://aws.amazon.com/dynamodb/
 -https://aws.amazon.com/tools/
 - AWS CLI uses Python SDK (boto3)
 
-### AWS Elastic Beanstalk
-- easy-to-use service for deploying and scaling web applications and services
-- uses Cloud Formation in backend
-- platform as a service; managed service; developer responsible for code only
-- beansstalk itself is free; pay for resources that make up app
-- Beanstalk lifecycle policy
-    - beanstak can store 1000 application versions
-- Elastic Beanstalk - Single  Docker; not ECS uses EC2
-- https://aws.amazon.com/elasticbeanstalk/
-- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
-- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
-
-### AWS CloudFormation
-
-- infrastruce as code
-- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
--  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
-- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-- AWS TaskCat
-    - tests cloudformation templates
     
 ## Security & Compliance
 
@@ -610,7 +591,9 @@ https://aws.amazon.com/dynamodb/
 ## AWS Step Functions 
  - lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly. 
 
-## AWS CodeCommit
+##AWS Developer Tools
+
+### AWS CodeCommit
 
 fully-managed source control service that hosts secure Git-based repositories.
 
@@ -618,7 +601,7 @@ fully-managed source control service that hosts secure Git-based repositories.
 - [https://aws.amazon.com/codecommit/](https://aws.amazon.com/codecommit/)
 - [Setup](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up.html)
 
-## AWS CodeBuild
+### AWS CodeBuild
 
 fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy. 
 
@@ -629,7 +612,7 @@ fully managed continuous integration service that compiles source code, runs tes
 - alternative to Jenkins, Bamboo, TeamCity, [AWS QuickStart](https://aws.amazon.com/quickstart)
 - [Build Spec YAML File](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
 
-## AWS CodeDeploy 
+### AWS CodeDeploy 
 
 CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services.
 
@@ -648,7 +631,7 @@ CodeDeploy is a deployment service that automates application deployments to Ama
 3. Deploy code to s3: ```aws deploy push --application-name CodeDeploy-Demo --source HeartBeat-App --s3-location s3://heartbeat-codedeploy-artifacts-ats-22043/HeartBeat-App.zip```
 4. create deployment and push to s3 bucket: ```aws deploy create-deployment --application-name CodeDeploy-Demo --deployment-group-name HeartBeat-Deployment --deployment-config-name CodeDeployDefault.AllAtOnce --description "Initial Deployment" --s3-location bucket=heartbeat-codedeploy-artifacts-ats-22043,key=HeartBeat-App.zip,bundleType=zip```
 
-## AWS CodePipeline
+### AWS CodePipeline
 
 - fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. 
 - CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This enables you to rapidly and reliably deliver features and updates. You can easily integrate AWS CodePipeline with third-party services such as GitHub or with your own custom plugin. With AWS CodePipeline, you pay for only what you use. There are no upfront fees or long-term commitments.
@@ -656,7 +639,7 @@ CodeDeploy is a deployment service that automates application deployments to Ama
 - [Actions](https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html)
     - parallel/sequential/manual approvals
 
-## Security
+## AWS Security
 
 - [Overview](https://aws.amazon.com/products/security/)
 
@@ -714,6 +697,23 @@ Security and Compliance is a shared responsibility between AWS and the customer.
         - Manage IAM User Access Keys Properly.
 - Server certificates are **SSL/TLS certificates** that you can use to authenticate with some AWS services.
 
+####  AWS Web Application Firewall (WAF) 
+- protect web applications or APIs against common web exploits. Rules can be created that block traffic based on source IP address.
+ 
+#### Amazon Macie
+
+ Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII).
+
+#### AWS Secrets Manager
+AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
+
+
+#### AWS Acceptable Use Policy
+
+The Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services, Inc. and its affiliates (the “Services”) and the website located at http://aws.amazon.com (the “AWS Site”). This policy is present at https://aws.amazon.com/aup/ and is updated on a need basis by AWS.
+
+https://aws.amazon.com/aup/
+
 ### AWS Organizations
 
 use [AWS Organizations](https://aws.amazon.com/organizations) to consolidate and manage multiple AWS accounts within a central location.
@@ -733,21 +733,32 @@ use [AWS Organizations](https://aws.amazon.com/organizations) to consolidate and
     - The Paying account should be used for billing purposes only. Do not deploy resources into the Paying account.
 
 There is a default limit of 20 linked accounts but this can be extended and there is no reason why you should stick to a maximum of 20 accounts.
+
+### Denial-of-service attacks
+- deliberate attempt to make a website or application unavailable to users.
+- use security groups and tools below to prevent:
+    - **AWS Shield**
+         - service that protects applications against DDoS attacks. 
+         - AWS Shield provides two levels of protection: 
+            - Standard (free)
+            - Advanced (paid)
+    - **AWS WAF (Web Application Firewall)**
+        - web application firewall that lets you monitor network requests that come into your **web applications**.
+        - security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns you define. 
+
 ### Compliance
 
 #### AWS Artifact 
+- compliance information resource
 - service that provides on-demand access to AWS security and compliance reports and select online agreements.
 - AWS Artifact Agreements
 - AWS Artifact Reports
 -  Customer Compliance Center contains resources to help you learn more about AWS compliance. 
 
-### Denial-of-service attacks
-- deliberate attempt to make a website or application unavailable to users.
-- use security groups and tools below to prevent
-
-#### AWS Shield
- - service that protects applications against DDoS attacks. 
- - AWS Shield provides two levels of protection: Standard (free) and Advanced (paid)
+   
+### AWS Config 
+- fully-managed service that provides you with an AWS resource inventory, configuration history, and configuration change notifications to enable security and regulatory compliance.
+-  organization track resource inventory and configuration history for the purpose of security and regulatory compliance
 
 ### Additional Security Services
 
@@ -756,9 +767,6 @@ There is a default limit of 20 linked accounts but this can be extended and ther
  - ensure that your applications’ data is secure while in storage (encryption at rest) and while it is transmitted, known as encryption in transit.
  - [KMS](https://aws.amazon.com/kms/)
 
-#### AWS WAF (Web Application Firewall)
-- web application firewall that lets you monitor network requests that come into your **web applications**.
-- security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns you define. 
 
 #### AWS Inspector 
 - **automated security assessment service** that helps improve the security and compliance of applications deployed on AWS
@@ -816,25 +824,6 @@ AWS X-Ray helps developers analyze and debug production, distributed application
 https://aws.amazon.com/xray/
 
 
-
-###  AWS Web Application Firewall (WAF) 
-- protect web applications or APIs against common web exploits. Rules can be created that block traffic based on source IP address.
- 
-### Amazon Macie
-
- Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII).
-
-### AWS Secrets Manager
-AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
-
-
-### AWS Acceptable Use Policy
-
-The Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services, Inc. and its affiliates (the “Services”) and the website located at http://aws.amazon.com (the “AWS Site”). This policy is present at https://aws.amazon.com/aup/ and is updated on a need basis by AWS.
-
-https://aws.amazon.com/aup/
-
-
 ## Serverless
 
 Serverless is the native architecture of the cloud that enables you to shift more of your operational responsibilities to AWS, increasing your agility and innovation. Serverless allows you to build and run applications and services without thinking about servers. It eliminates infrastructure management tasks such as server or cluster provisioning, patching, operating system maintenance, and capacity provisioning.
@@ -870,8 +859,10 @@ Three types of offers are available:
 - **AWS Cost Explorer** is a tool that enables you to visualize, understand, and manage your AWS costs and usage over time.
     - cost reports
 ###  Support Plans
+- All support plans provide 24×7 access to customer service, documentation, whitepapers, and support forums.
 - four different [Support Plans](https://aws.amazon.com/premiumsupport/plans/) to help you troubleshoot issues, lower costs, and efficiently use AWS services. 
     - Basic – billing and account support only (access to forums only).
+        - FREE
         -  you can use the **AWS Personal Health Dashboard**, a tool that provides alerts and remediation guidance when AWS is experiencing events that may affect you. 
     - Developer – business hours support via email.
     - Business – 24×7 email, chat and phone support.
@@ -881,24 +872,54 @@ Three types of offers are available:
         - AWS Concierge
             - support AWS customers on an Enterprise support plan with account issues
 
-- All support plans provide 24×7 access to customer service, documentation, whitepapers, and support forums.
+- You use **Trusted Advisor** to visually confirm whether your account resource configurations
+    - alerts are divided into five categories: Cost Optimization, Performance,
+Security, Fault Tolerance, and Services Limits
+are sound and are compliant with best practices
 - **AWS Marketplace** is a digital catalog that includes thousands of software listings from independent software vendors. You can use AWS Marketplace to find, test, and buy software that runs on AWS. 
     - one-click deployment
     - 3-rd party software that runs on AWS
 - APN Consulting Partners
      - help an organization to design, build, and manage their workloads on AWS
  
+ ## Automation Tools
+ 
+- AWS Elastic beanstalk - deoploy code to cluod
+- opswork - mange infrastructure
+- cloudformation - define infrastructure
 
-## AWS Systems Manager
+### AWS Elastic Beanstalk
+- easy-to-use service for deploying and scaling web applications and services
+- uses Cloud Formation in backend
+- platform as a service; managed service; developer responsible for code only
+- beansstalk itself is free; pay for resources that make up app
+- Beanstalk lifecycle policy
+    - beanstak can store 1000 application versions
+- Elastic Beanstalk - Single  Docker; not ECS uses EC2
+- https://aws.amazon.com/elasticbeanstalk/
+- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
+
+
+### AWS Systems Manager
 - gives you visibility and control of your infrastructure on AWS. 
+- Systems Manager Command documents let you automate tasks against your instance operating
+systems, such as patching, installing software, enforcing configuration settings, and
+collecting inventory
 - provides a unified user interface so you can view operational data from multiple AWS services and **allows you to automate operational tasks** across your AWS resources.
 
-## AWS OpsWorks
+### AWS OpsWorks
 - configuration management service that provides managed instances of Chef and Puppet.
 
-## AWS Config 
-- fully-managed service that provides you with an AWS resource inventory, configuration history, and configuration change notifications to enable security and regulatory compliance.
--  organization track resource inventory and configuration history for the purpose of security and regulatory compliance
+### AWS CloudFormation
+
+- infrastruce as code
+- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
+-  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
+- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+- AWS TaskCat
+    - tests cloudformation templates
+
 ## AWS Glue
 - serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development.
 
@@ -937,6 +958,9 @@ Three types of offers are available:
 
 ##Amazon Elastic Transcoder 
  - is a highly scalable, easy to use and cost-effective way for developers and businesses to convert (or “transcode”) video and audio files from their source format into versions that will playback on devices like smartphones, tablets and PCs.
+## Amazon Rekognition 
+- Automate your image and video analysis with machine learning.
+
 ## Resources
 
 - Getting started: https://aws.amazon.com/getting-started/
