@@ -184,3 +184,33 @@ for username, user_info in users.items():
 	location = user_info['location']
 	print("\tFull name: " + full_name.title())
 	print("\tLocation: " + location.title())
+
+
+#  USING nested dict arrays
+nested_dict = {
+	"stability": {
+		"non_csn":[
+			"test1",
+			"test2"
+		],
+		"full_stability": [
+			"test1",
+			"test2"
+		]
+	},
+	"regression": {
+		"non_csn": [
+			"test1",
+			"test2"
+		]
+	}
+}
+
+for key, val in nested_dict.items():
+	print(key,val)
+
+print("Stabily scripts")
+print(nested_dict["stability"].items())
+print(nested_dict["stability"]["full_stability"])
+for k, va in nested_dict["stability"].items():
+	print(k)

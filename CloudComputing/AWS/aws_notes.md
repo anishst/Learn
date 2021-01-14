@@ -991,7 +991,7 @@ collecting inventory
         - move 100PB per snowmobile. AWS call this an “**Exabyte**-scale data transfer service”.
         - **shipping container**  moved with a tractor-trailer. These services can assist with data migration, disaster recovery, data center shutdown, and remote data collection projects.
 
-###Amazon Elastic Transcoder 
+### Amazon Elastic Transcoder 
  - is a highly scalable, easy to use and cost-effective way for developers and businesses to convert (or “transcode”) video and audio files from their source format into versions that will playback on devices like smartphones, tablets and PCs.
 ### Amazon Rekognition 
 - Automate your image and video analysis with machine learning.
