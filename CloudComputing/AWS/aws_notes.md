@@ -272,7 +272,7 @@ deployment costs.
 
 ### ELB - Elastic Load Balancing
    - automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, Lambda functions, and virtual appliances.
-   - primary benefits: High availability AND Elasticity
+   - primary benefits: High availability, Fault tolerance, AND Elasticity
    - https://aws.amazon.com/elasticloadbalancing 
 
 ### Messaging and queuing
@@ -321,7 +321,7 @@ Amazon Elastic Kubernetes Service (Amazon EKS) gives you the flexibility to star
 
 ### AWS Fargate
 
-AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
+AWS Fargate is a **serverless** compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
 
 [https://aws.amazon.com/fargate/?nc=sn&loc=1](https://aws.amazon.com/fargate/?nc=sn&loc=1)
 
@@ -635,8 +635,11 @@ CodeDeploy is a deployment service that automates application deployments to Ama
 - [Actions](https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html)
     - parallel/sequential/manual approvals
 
-# Security, Identity, & Compliance
+### X-Ray
 
+[AWS X-Ray](https://aws.amazon.com/xray/) helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. 
+
+## Security, Identity, & Compliance
 
 ### Shared Responsibility Model 
 
@@ -781,6 +784,7 @@ There is a default limit of 20 linked accounts but this can be extended and ther
 
 #### AWS Inspector 
 - **automated security assessment service** that helps improve the security and compliance of applications deployed on AWS
+- audits a single EC2 instance; generates a report from list of security checks
 -  checks applications for security vulnerabilities and deviations from security best practices, such as open access to Amazon EC2 instances and installations of vulnerable software versions.
 
 #### Amazon Guard​Duty
@@ -798,7 +802,7 @@ There is a default limit of 20 linked accounts but this can be extended and ther
 - monitors applications  in real time. 
 - allows billing alarms
 - provides data and actionable insights to monitor applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health.
-
+- Use **CloudWatch Logs** for both the EC2 instance and the on-premises servers
 ### CloudTrail
 
 AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. 
@@ -812,27 +816,20 @@ https://aws.amazon.com/cloudtrail/
 -  CloudTrail Insights
     - OPTIONAL FEATURE allows CloudTrail to automatically detect unusual API activities in your AWS account. 
 
-
 ### AWS Trusted Advisor
 
 - [Trusted] Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/) is an online resource that helps to reduce cost, increase performance and improve security by optimizing your AWS environment.
 -  inspects your AWS environment and provides real-time recommendations in accordance with AWS best practices. The inspection includes security checks, such as Amazon S3 buckets with open access permissions.
 - Trusted Advisor provides real time guidance to help you provision your resources following best practices.
 - Advisor will advise you on Cost Optimization, Performance, Security, and Fault Tolerance.
+- no PDF Report
+- holistic view of recommendation for best practices
 - scans your AWS infrastructure and compares is to AWS best practices in five categories:
     - Cost Optimization
     - Performance
     - Security
     - Fault Tolerance
     - Service Limits
-
-
-### X-Ray
-
-AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. 
-
-https://aws.amazon.com/xray/
-
 
 ## Serverless
 
@@ -841,7 +838,6 @@ Serverless is the native architecture of the cloud that enables you to shift mor
 https://aws.amazon.com/serverless/
 - exmples
     - AWS Lambda and Amazon API Gateway are both app-facing components of the AWS Serverless infrastructure
-
 
 ## Migration
 - AWS Migration Hub
@@ -857,7 +853,6 @@ Three types of offers are available:
     - auto scaling
     - IAM
 - 12 Months Free
-- Trials
 
 ### AWS pricing concepts
 - Pay for what you use.
@@ -936,6 +931,7 @@ are sound and are compliant with best practices
 
 ### AWS Systems Manager
 - gives you visibility and control of your infrastructure on AWS. 
+- get operational insights of AWS resources
 - Systems Manager Command documents let you automate tasks against your instance operating
 systems, such as patching, installing software, enforcing configuration settings, and
 collecting inventory
