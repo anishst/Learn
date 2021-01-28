@@ -158,7 +158,10 @@ Maven is a dependency management/build automation tool used primarily for Java p
 
 - https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 - Getting started https://maven.apache.org/guides/getting-started/
-### Maven setup
+
+### Maven setup 
+
+#### Windows
 
 - download binary zip archive. 	apache-maven-3.6.3-bin.zip : https://maven.apache.org/download.cgi
 - configure gloabally on test machine by adding below env variables
@@ -179,11 +182,61 @@ Maven is a dependency management/build automation tool used primarily for Java p
     <artifactId>selenium-api</artifactId>
     <version>3.141.59</version>
     </dependency>```
+
+#### Linux
+
+- Install: ```sudo apt-get install maven```
+- [Guide](https://www.baeldung.com/install-maven-on-windows-linux-mac)
  
- 
-### POM
+### Maven Commands
+- ```mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false``` - setup a simple project once maven is setup 
+- ```mvn package``` - build jar file in targe folder
+- ```mvn clean``` - clean target folder
+- ```mvn site``` - generates a site based upon information on the project's pom. You can look at the documentation generated under target/site.
+- ```mvn test``` - runs test scripts
+
+### Maven Troubleshooting
+
+
+Issue: error when doing mvn test in Linux: ```[ERROR] Source option 5 is no longer supported. Use 6 or later.```
+
+Fix: add this to pom.xml
+```xml
+<properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+</properties>
+```
+
+### Maven with Docker
+
+- [Official Docker Image](https://hub.docker.com/_/maven)
+- [docker image examples](https://github.com/carlossg/docker-maven)
+
+```dockerfile
+# https://stackoverflow.com/questions/27767264/how-to-dockerize-maven-project-and-how-many-ways-to-accomplish-it
+# Build stage
+#
+FROM maven:3.5-jdk-8 AS build  
+COPY src /usr/src/app/src  
+COPY pom.xml /usr/src/app  
+RUN mvn -f /usr/src/app/pom.xml clean package
+```
+
+#### On Demand Run
+run this from a maven project folder: ```docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install```
+
+#### Docker file approach
+
+### Spring Boot with Docker
+- [Git Repo with examples](https://github.com/spring-guides/gs-spring-boot-docker)
+
+#### POM
 
 A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file (pom.xml) that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
+
+- [example pom file](https://github.com/spring-guides/gs-spring-boot-docker/blob/master/complete/pom.xml)
+
 
 ## Resources
 - Official Java Tutorial: https://docs.oracle.com/javase/tutorial/index.html

@@ -25,3 +25,4 @@ ttk.Label(tab2,
 									pady = 30)
 
 root.mainloop()
+
