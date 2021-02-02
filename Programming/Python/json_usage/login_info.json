@@ -1,0 +1,24 @@
+{
+    "ONLINE":
+        {
+           "QAEC":
+                {
+                    "HLAS": ["QAECHLASID", "HLASPWD"],
+                    "CCO": ["QAECCCOID", "CCOPWD"]
+                },
+            "QAEF":
+                {
+                    "HLAS": ["QAEFHLASID", "HLASPWD"],
+                    "CCO": ["QAECCCOID", "CCOPWD"]
+                }
+        }
+        ,
+    "OFFLINE":
+        {
+           "QAEC":
+                { "HLAS": ["HLASID", "HLASPWD"],
+                    "CCO": ["CCOID", "CCOPWD"]
+                }
+        }
+
+}

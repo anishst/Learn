@@ -104,12 +104,12 @@ for match in matches:
     print ("Full match: %s" % (match))
 
  # FINAL - find pattern by searching every line
-import re
-pattern = re.compile(r'Password:') # provide pattern here
-with open('Gmails.txt') as f:
-    for line in f:
-            if pattern.search(line):
-                    print(line,end='')
+# import re
+# pattern = re.compile(r'Password:') # provide pattern here
+# with open('Gmails.txt') as f:
+#     for line in f:
+#             if pattern.search(line):
+#                     print(line,end='')
 
 
 #  FINAL - Findall method from file
@@ -175,3 +175,18 @@ with open('Gmails.txt') as f:
 # 	print (match)
 # 	count = count + 1
 # print("Total matches: {}".format(count))
+
+# get subdomain
+
+from urllib.parse import urlparse
+address =  "https://qae.test.org/"
+url =  urlparse(address)
+subdomain = url.hostname.split('.')[0]
+print(subdomain)
+
+regex = r"(https?:\/\/)?([w]{3}\.)?(\w*.\w*)([\/\w]*)"
+test_str = "https://qae.test.org"
+result = re.findall(regex, test_str)
+
+if result:
+    print (result)
