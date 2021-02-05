@@ -27,6 +27,22 @@ Emojis: https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md
 # Code Documentation 
 Guide on Documenting code: https://guides.github.com/features/wikis/
 
+## Pull Request Steps
+
+1. create a new branch ```git branch feature1``` and checkout ```git checkout feature1```
+2. make your code changes; add and commit
+3. switch to master: ```git checkout master```
+4. check for updates: ```git pull```
+5. if there are new items in master merging new updates by:
+   - ```git checkout feature1```
+   - ```git merge master```
+   - resolve conflicts if any
+6. once all looks good push: ```git push -set-upstream origin feature1```
+7. in GitHub, compare changes and create a pull request
+
+### Videso
+- [GITHUB PULL REQUEST, Branching, Merging & Team Workflow](https://www.youtube.com/watch?v=oFYyTZwMyAg)
+
 ## Git Commands
 
 Cheat Sheets: https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
