@@ -228,7 +228,14 @@ run this from a maven project folder: ```docker run -it --rm --name my-maven-pro
 
 #### Docker file approach
 
-### Spring Boot with Docker
+### Spring Boot
+
+- [Spring Initializer](https://start.spring.io/) - generate template code
+- [QuickStart](https://spring.io/quickstart)
+- [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker/)
+    - [Git Repo](https://github.com/spring-guides/top-spring-boot-docker)
+- [Spring with Cucumber Repo](https://github.com/krushnaDash/spring-bdd) - 2/5/21: worked on local test
+- [Spring Selenium cucumber repo](https://github.com/LamhotJM/integration-test-spring-web) - not tested
 - [Git Repo with examples](https://github.com/spring-guides/gs-spring-boot-docker)
 
 #### POM

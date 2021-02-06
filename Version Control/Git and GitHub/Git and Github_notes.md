@@ -4,7 +4,7 @@ Git is a free and open source distributed version control system
 
 Download page: https://git-scm.com/download/win
 
-# GitHub
+ # GitHub
 
 GitHub is a web-based hosting service for version control using Git
 
@@ -39,6 +39,17 @@ Guide on Documenting code: https://guides.github.com/features/wikis/
    - resolve conflicts if any
 6. once all looks good push: ```git push -set-upstream origin feature1```
 7. in GitHub, compare changes and create a pull request
+
+## Merge vs Rebase
+
+git merge --squash feature
+git commit -m "feature and master merge"
+
+git rebase master
+git log
+
+### Guides
+- https://www.atlassian.com/git/tutorials/merging-vs-rebasing
 
 ### Videso
 - [GITHUB PULL REQUEST, Branching, Merging & Team Workflow](https://www.youtube.com/watch?v=oFYyTZwMyAg)
