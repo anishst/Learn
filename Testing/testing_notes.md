@@ -13,11 +13,30 @@ code; first safety net for catching bugs; should run fast; automate
 
 Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project. 
 
+- extension of TDD
+- tests are written first and then devlopment based on scenarios listed in tests
 ## Cucumber
 
 Cucumber is a tool that supports Behaviour-Driven Development(BDD)
 
-https://cucumber.io/
+- https://cucumber.io/
+- [step definitions](https://cucumber.io/docs/cucumber/step-definitions/)
+ 
+```gherkin
+Feature: Guess the word
+
+  # The first example has two steps
+  Scenario: Maker starts a game
+    When the Maker starts a game
+    Then the Maker waits for a Breaker to join
+
+  # The second example has three steps
+  Scenario: Breaker joins a game
+    Given the Maker has started a game with the word "silky"
+    When the Breaker joins the Maker's game
+    Then the Breaker must guess a word with 5 characters
+```
+
 
 # Agile Testing
 Agile software development has resulted in burning down the silos of the traditional waterfall development methodology. 
