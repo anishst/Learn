@@ -9,7 +9,8 @@ root = Tk()
 class Control(object):
 
     def __init__(self):
-        self.my_thread = None
+        self.my_thre
+        ad = None
         self.stopThread = False
 
     def just_wait(self):

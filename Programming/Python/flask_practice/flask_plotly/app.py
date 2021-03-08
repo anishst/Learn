@@ -16,6 +16,26 @@ def index():
     bar = create_plot(feature)
     return render_template('index.html', plot=bar)
 
+@app.route('/df')
+def new_plot():
+    #https://pbpython.com/plotly-dash-intro.html
+    # data
+    df = pd.read_excel("https://github.com/chris1610/pbpython/blob/master/data/salesfunnel.xlsx?raw=True")
+    # pivot table format
+    pv = pd.pivot_table(df, index=['Name'], columns=["Status"], values=['Quantity'], aggfunc=sum, fill_value=0)
+
+    # Create a trace
+    data = [go.Scatter(
+        x=pv.index,
+        y=pv[('Quantity', 'declined')],
+        mode='markers'
+    )]
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
+    # return graphJSON
+    return df.to_html() + pv.to_html()
+
 def create_plot(feature):
     if feature == 'Bar':
         N = 40
@@ -27,6 +47,54 @@ def create_plot(feature):
                 x=df['x'], # assign x as the dataframe column 'x'
                 y=df['y']
             )
+        ]
+    elif feature == 'Test':
+        #https://pbpython.com/plotly-dash-intro.html
+        df = pd.read_excel("https://github.com/chris1610/pbpython/blob/master/data/salesfunnel.xlsx?raw=True")
+        # pivot table format
+        pv = pd.pivot_table(df, index=['Name'], columns=["Status"], values=['Quantity'], aggfunc=sum, fill_value=0)
+
+        # Create a trace
+        data = [go.Bar(
+            x=pv.index,
+            y=pv[('Quantity', 'declined')]
+        ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'pending')]
+            ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'presented')]
+            ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'won')]
+            ),
+        ]
+    elif feature == 'Expenses':
+        #https://pbpython.com/plotly-dash-intro.html
+        df = pd.read_excel("https://github.com/chris1610/pbpython/blob/master/data/salesfunnel.xlsx?raw=True")
+        # pivot table format
+        pv = pd.pivot_table(df, index=['Name'], columns=["Status"], values=['Quantity'], aggfunc=sum, fill_value=0)
+
+        # Create a trace
+        data = [go.Bar(
+            x=pv.index,
+            y=pv[('Quantity', 'declined')]
+        ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'pending')]
+            ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'presented')]
+            ),
+            go.Bar(
+                x=pv.index,
+                y=pv[('Quantity', 'won')]
+            ),
         ]
     else:
         N = 1000
@@ -50,9 +118,6 @@ def change_features():
 
     feature = request.args['selected']
     graphJSON= create_plot(feature)
-
-
-
 
     return graphJSON
 

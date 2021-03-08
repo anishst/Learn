@@ -228,6 +228,11 @@ run this from a maven project folder: ```docker run -it --rm --name my-maven-pro
 
 #### Docker file approach
 
+### Spring Framework
+
+ - makes it easy create Java enterprise apps
+ - open source
+  
 ### Spring Boot
 
 - [Spring Initializer](https://start.spring.io/) - generate template code
@@ -238,6 +243,15 @@ run this from a maven project folder: ```docker run -it --rm --name my-maven-pro
 - [Spring Selenium cucumber repo](https://github.com/LamhotJM/integration-test-spring-web) - not tested
 - [Git Repo with examples](https://github.com/spring-guides/gs-spring-boot-docker)
 - [My Project](https://github.com/anishst/JavaSpringBoot)
+
+### Java Cucumber
+
+cucumber framework has three components:
+- **Features** — to define application behaviour in plain meaningful English text using a simple grammar defined by a domain-specific language (DSL)
+- **Step Definitions** — A Step Definition is a Java method with an expression that links it to one or more Gherkin steps. When Cucumber executes a Gherkin step in a scenario, it will look for a matching step definition to execute.
+- **Test Runner** — to automate and run the behaviour tests– e.g. TestNG (Java), jUnit (Java)
+- [A Java Project With Cucumber 6, TestNG and Maven.]
+(https://medium.com/swlh/a-java-project-with-cucumber-6-testng-and-maven-c58990d2bcff)
 
 #### Videos
 

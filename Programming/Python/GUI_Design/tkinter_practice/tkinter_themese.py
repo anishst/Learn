@@ -15,7 +15,7 @@ print(style.theme_names())
 print(style.theme_use())
 
 # change theme
-print(style.theme_use('alt'))
+print(style.theme_use('clam'))
 
 greet_button = ttk.Button(root, text="Greet", command=greet)
 greet_button.pack()
