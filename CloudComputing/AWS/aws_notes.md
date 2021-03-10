@@ -1,8 +1,9 @@
 # Amazon Web Services (AWS)
 
 - AWS was launched in 2006
+- [Amazon Products](https://aws.amazon.com/products/)
+- [Overview of Amazon Web Services AWS Whitepaper](https://d1.awsstatic.com/whitepapers/aws-overview.pdf)
 
-Amazon Products: https://aws.amazon.com/products/
 
 Service Summary - https://i.imgur.com/k013j1R.png
 
@@ -65,11 +66,11 @@ The [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-ar
     - focuses on using computing resources efficiently to meet system requirements and to maintain that efficiency as demand changes and technologies evolve.
         - ex. using right EC2 instances
     - There are five design principles for performance efficiency in the cloud
-        - Democratize advanced technologies
+        - Democratize advanced technologies - make it easy to access
         - Go global in minutes
         - Use serverless architectures
         - Experiment more often
-        - Mechanical sympathy.        
+        - Mechanical sympathy - Understading of technology; know the limitations of the tools       
 - **Cost Optimization**
     - control where money is spent
     - ability to run systems to deliver business value at the lowest price point.
@@ -90,14 +91,20 @@ The [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-ar
  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html
  - use AMI TO pre-install software > faster boot
     - AMI is region based
-    
+- **[EC2 Image Builder](https://aws.amazon.com/image-builder/)** simplifies the building, testing, and deployment of Virtual Machine and container images for use on AWS or on-premises.    
 ### AWS Global Infrastructure
 
 https://infrastructure.aws/
 
-- regions
+- **Availablity Zones**
+    - clusters of data centers / min 2 AZ in a region
+    - isolated from other zones
+    - connected by a low-latency link
+    - edge locations host a CDN
+    - best practice is to run applications across at least two Availability Zones in a Region.
+- **Regions**
+    - consist of at least 2 availability zones
     - geo locations / isolated from each other
-    - consist of at least 2 availablity zone
     - Data stored within an AWS region is not replicated outside unless you configure it
     - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
     - factors affecting region selection
@@ -106,12 +113,6 @@ https://infrastructure.aws/
         - Available services within a Region
         - Pricing
     - Both Amazon EC2 and Amazon S3 are managed at a regional level.
-- availablity zones
-    - clusters of data centers / min 2 AZ in a region
-    - isolated from other zones
-    - connecte by a low-latency link
-    - edge locations host a CDN
-    - best practice is to run applications across at least two Availability Zones in a Region.
  - **Edge locations**
     - site that Amazon CloudFront uses to store cached copies of your content closer to your customers for faster delivery.
     - **AWS CloudFront**
@@ -140,8 +141,11 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 - Virtual machines that provides resizable compute capacity in cloud
 - [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)
     - Compute optimized instances
+        - faster cpu
     - Memory optimized instances
-    - Accelerated computing instances
+        - for memory heavy apps
+    - Accelerated computing instances 
+        - gpu based; commonly use for machine/deep learning
     - Storage optimized instance
 - EC2 Dedicated Host
        - allows an organization to bring their own licensing on host hardware that is physically isolated from other AWS accounts
@@ -154,21 +158,7 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - separate cost for AWS services by the department for cost allocation
     - assign metadata to your AWS resources in the form of tags. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. You can create tags to categorize resources by purpose, owner, environment, or other criteria.
 - **resource group** is a collection of resources that share one or more tags or portions of tags. 
- - [Purchase options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
-    - on-demand
-    - saving-plans
-    - reservered instances
-        - 1 or 3 yr terms
-        - Reserved Instances (RIs) provide you with a significant discount (up to 72%) compared to On-Demand instance pricing. Standard reserved instances offer the most cost savings. RIs are based on a 1 or 3 year contract so they are suitable for workloads that will run for the duration of the contract period.
-        - https://aws.amazon.com/ec2/pricing/reserved-instances/
-        - **Standard RIs**: These provide the most significant discount (up to 75% off On-Demand) and are best suited for steady-state usage.
-        - **Convertible RIs**: These provide a discount (up to 54% off On-Demand) and the capability to change the attributes of the RI as long as the exchange results in the creation of Reserved Instances of equal or greater value. Like Standard RIs, Convertible RIs are best suited for steady-state usage.
-        - **Scheduled RIs**: These are available to launch within the time windows you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.
-    - spot instances
-        - 2 min warning before terminated
-    - dedicated hosts
-        - physical machines
- - EC2 Launch modes:
+  - EC2 Launch modes:
     - on-demand - pay as you go
     - reserved - 1 or 3 yr terms
         - Benfits
@@ -180,12 +170,34 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 - billed by the second; t2.micro is free tier
 - security groups can reference other security groups instead of IP ranges
 - default user accounts: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
-- pricing - https://aws.amazon.com/ec2/pricing/
-- benefits of using reserved instances
-    - https://aws.amazon.com/ec2/pricing/reserved-instances/
-    - reduced cost
-    - reserver capcaicty
-
+- [EC2 Pricing Options](https://aws.amazon.com/ec2/pricing/)
+    - [Purchase options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
+        - **On-demand**; most expensive
+            - pay per seond for amazon linux/ubutu or by hour all other OS
+        - **Savings Plans**
+            - gives flexibility; reduce costs up to 66%
+        - [Reserved Instances (RIs)](https://aws.amazon.com/ec2/pricing/reserved-instances/)
+            - 1 or 3 yr terms
+            -  provide you with a significant discount (up to 72%) compared to On-Demand instance pricing. 
+                - **Standard RIs**: These provide the most significant discount (up to 75% off On-Demand) and are best suited for steady-state usage.
+                - **Convertible RIs**: These provide a discount (up to 54% off On-Demand) and the capability to change the attributes of the RI as long as the exchange results in the creation of Reserved Instances of equal or greater value. Like Standard RIs, Convertible RIs are best suited for steady-state usage.
+                - **Scheduled RIs**: These are available to launch within the time windows you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.
+                - Can be shared bewteween mutliple accounts(within a billing family)
+                - benefits of using reserved instances
+                    - https://aws.amazon.com/ec2/pricing/reserved-instances/
+                    - reduced cost
+                    - reserver capcaicty
+        - **Spot Instances**
+            - purchase unused EC2 capacity
+            - price based on long term trends of supply & demand; in console use Spot Instance pricing history to see trends
+            - 2 min warning before terminated
+        - **Dedicated instances (VMs)**
+            - virtual machines that are physically isolated from other AWS Accounts
+        - **Dedicated hosts**
+            - physical machines
+    - [AWS Compute Optimizer](https://aws.amazon.com/compute-optimizer/) 
+        - recommends optimal AWS resources for your workloads to reduce costs and improve performance by using machine learning to analyze historical utilization metrics. 
+    - 
 ### Lighsail
 - service that is used for running virtual instances and databases using a simplified user interface for users who are less experienced with AWS (also at a much lower cost than EC2).    
 
@@ -193,15 +205,28 @@ https://aws.amazon.com/about-aws/global-infrastructure/
 
 ### Connectivity to AWS
 - **Virtual Private Cloud (VPC)**
+    - your private virtual network on AWS; 
     - for networking; establish boundaries around your AWS Resource
-    - spans all the Availability Zones in the region
+    - regional service; spans all the Availability Zones in the region
     - VPC Flow logs
-    - users private cloud in a region
+    - multi-vpc
+        - best for single team or single org
+    - multi-account
+        - large org or orgs with mutliple IT teams
+    - service limit: 5 VPCs per region per account (soft limit; increase via ticket)
+    - CIDR
+        - 0.0.0.0/0 = All IPs
+        - 10.22.0.0/16 =10.22.\*.\*
+    - route tables
+        - directs traffic between VPC resources
  - **Subnets**
     - logicl grouping of resources within the VPC
-    - public subnet - can access from interent / private subnet
+    - **Public subnet** - can access from interent;include routing table to an interent gateway
+    - **Private subnet** - do not have a routing table entry to an interent gateway
     - You can create one or more subnets within each availability zone but subnets **cannot** span across availability zones.
- - **Internet Gateway** connects VPC to internet
+ - **Internet Gateway** 
+    - connects VPC to internet; bi-directional internet access; hightly available by default
+    - You attach this to a VPC
  - **VPC peering connection** - sharing of data over private connections between two accounts they own within a region
  - Virtual Private Gateway
     - VPN concentrator that allows access to private resources in a VPC
@@ -228,7 +253,9 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     -  firewall at the subnet level within a VPC
     - optional layter of security for VPC; usually left with default values; act as firewall for controlling traiffc in/out of subnets
     - stateless packet filtering; allows all inbound/outboutnd traffic
-- a **Network Address Translation (NAT) gateway** allows resources in a private subnet to connect to internet
+- **Network Address Translation (NAT) gateway** 
+    - uni-directional; resides in public subnet
+    - allows resources in a private subnet to connect to internet
 - Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
 - **Security Groups** 
     - firewall that is associated with an EC2 instances
@@ -237,13 +264,24 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - stateful packet filtering; denies all inbound/outboutnd traffic by default 
     - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 - VPC Peering
-    -   connect 2 VPCs privately using AWS network
-    -   not transitive 
+    - connect 2 VPCs privately using AWS network
+    - not transitive
+    - uses private ip addressses
+    - transitive peering not supported
 - VPC Endpoints
-    -   allows you to connect to AWS services using private network 
-- VPC Endpoit gateway: give VPC access to S3, DynamoDB
-- Site to Site VPN & Direct Connect
-- **AWS Transit Gateway** is a service that enables customers to connect their Amazon Virtual Private Clouds (VPCs) and their on-premises networks to a single gateway.
+    -   allows you to connect to AWS services using private network w/o leaving AWS
+        - 2 Types
+            - interface endpoint 
+            - VPC Endpoit gateway: give VPC access to S3, DynamoDB
+- VGW (VPC Virtual Private Gateway)
+- Site to Site VPN 
+- **AWS Direct Connect (DX)** 
+    - physical fiber link
+    - 1 or 10 Gbps
+    - for hybrid cloud architecutre
+- **AWS Transit Gateway** 
+    - fully managed; acts like a hub
+    - is a service that enables customers to connect their Amazon Virtual Private Clouds (VPCs) and their on-premises networks to a single gateway.
 - IPV4 CIDR 10.0.25.0/24 means the subnet contains ip addresses from 10.0.25.0 to 10.0.25.255
 
 ### Global networking
@@ -263,82 +301,95 @@ https://aws.amazon.com/about-aws/global-infrastructure/
     - goal is to survive data center loss
 
 ### [ELB - Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing)
-   - automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, Lambda functions, and virtual appliances.
-   - primary benefits: High availability, Fault tolerance, AND Elasticity
-   - **NLB** Network Load Balancer functions at the (layer 4) of the Open Systems Interconnection (OSI) model. NLBs direct connections based on information at the TCP connection level.
-   -  **ALB**s process traffic at the application level (layer 7) based on information in the HTTP/HTTPS headers.
-   - **CLB**s process traffic at the TCP, SSL, HTTP and HTTPS levels (layer 4 & 7) 
+- automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, Lambda functions, and virtual appliances.
+- primary benefits: High availability, Fault tolerance, AND Elasticity
+- **NLB** Network Load Balancer functions at the (layer 4) of the Open Systems Interconnection (OSI) model. NLBs direct connections based on information at the TCP connection level.
+-  **ALB**s 
+    - flexible app management
+    - process traffic at the application level (layer 7) based on information in the HTTP/HTTPS headers.
+- **CLB**s process traffic at the TCP, SSL, HTTP and HTTPS levels (layer 4 & 7) 
 
 ### Messaging and queuing
 
 - aim for loosely coupled architecture
-- Amazon Simple Notification Service (Amazon **SNS**)
+- [Amazon Simple Notification Service (Amazon SNS)](https://aws.amazon.com/sns/)
     - publish/subscribe service. 
-- Amazon Simple Queue Service (Amazon **SQS**)
+    - single published msg; no recall; http/https retry
+    - [Fanout scenario](https://docs.aws.amazon.com/sns/latest/dg/sns-common-scenarios.html) is when a message published to an SNS topic is replicated and pushed to multiple endpoints
+- [Amazon Simple Queue Service (Amazon SQS)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
     - message queuing service
-    - asynchorouse integration between app components
-    
+    - **Queue types**
+        - standard queues - at-least-once delivery; unlimited msgs
+        - FIFO queues - processed exactly once; 300 msg/second
+     - asynchorouse integration between app components
+     - [message lifecycle](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-basic-architecture.html)
+- [Amazon MQ](https://aws.amazon.com/amazon-mq/)
+    - managed message broker service for [Apache MQ](http://activemq.apache.org/components/classic/)
+    - similiar to IBM Message Broker
+    - use case: lift and shift migration    
 ### Serverless computing
 
 - “serverless” means that your code runs on servers, but you do not need to provision or manage these servers. 
 - AWS Lambda is a service that lets you run code without needing to provision or manage servers. 
 
-#### AWS Lambda
+#### [AWS Lambda](https://aws.amazon.com/lambda/)
 
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
-https://aws.amazon.com/lambda/
 
 - serverless event-driven code execution; 
+- run stateless code
 - trigger invokes lamda function 
 - runs your application code only when needed without needing to run servers
 - 15 min run time
 - scales automatically
 - monitor/log using CloudWatch        
 
-## Containers
+## [Micro Services](https://aws.amazon.com/microservices/)
 
-### AWS ECS
+- [Break a Monolith Application into Microservices ](https://aws.amazon.com/getting-started/hands-on/break-monolith-app-microservices-ecs-docker-ec2/)
 
+### Containers
+
+- amazon uses xen hypervisor
+
+#### [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/)
 - fully managed container orchestration service
+- launch types
 
-[https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/)
+#### [AWS Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/)
 
-### Amazon Elastic Container Service (ECS)
-- https://aws.amazon.com/ecs/
-- fully managed container orchestration service
-
-### AWS EKS
-
-Amazon Elastic Kubernetes Service (Amazon EKS) gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises.
-
-[https://aws.amazon.com/eks/](https://aws.amazon.com/eks/)
-
-### AWS Fargate
-
-AWS Fargate is a **serverless** compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
-
-[https://aws.amazon.com/fargate/?nc=sn&loc=1](https://aws.amazon.com/fargate/?nc=sn&loc=1)
-
-#### AWS ECR
-
-Amazon Elastic Container Registry (ECR) is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere
-
-[https://aws.amazon.com/ecr/](https://aws.amazon.com/ecr/)
+ECR is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere
 
 - amazon version of Docker Hub
+
+#### [AWS Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/)
+
+ EKS gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises.
+
+#### [AWS Fargate](https://aws.amazon.com/fargate/?nc=sn&loc=1)
+
+- fully managed **serverless** compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
+
 
 ##  Storage
 
 ### Instance store 
 
 - provides temporary block-level storage for an Amazon EC2 instance
-- lost when EC2 instance is terminated
+- ephemeral;lost when EC2 instance is terminated
 
 ### EBS - Elastic Block Store
 - block-level storage volumes that you can use with Amazon EC2 instances
 - allows incremental snapshot backups
 - EBS volumes store data within a single Availability Zone
 - need to be same AZ to attach EC2 instances
+- volume types
+    - SSD
+    - IOPS SSD
+    - Hark disk backed
+        - thourhgput optimized HDD
+        - COLD HDD - less freq acces workloads; lowest costt
+- EBS Optimized instance        
 - Both non-root and root volumes can be encrypted
 -  It uses AWS Key Management Service (AWS KMS) customer master keys (CMK) when creating encrypted volumes and snapshots.
 - https://aws.amazon.com/ebs
@@ -349,15 +400,25 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
 
 ### AWS S3 - Simple Storage Service
  - object-based storage system that stores objects that are comprised of **key, value pairs**
- - object level storage and distribtuon for the internet
+ - object level storage and distribution for the internet
     - In object storage, each object consists of data, metadata, and a key.
- - max size is 5 TB
  - part of Amazon CloudFront
- - 99.999999 % durability
- - security
-    - IAM Policy, S3 encyrption, bucket policy
- - static web site hosting
- - storage classes
+ - 99.999999999 % durability (11 9s)
+ - **Security**
+    - By default only owner has access
+    - IAM Policy, S3 encyrption, bucket policy (JSON Format)
+    - [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+    - [S3 Access Points](https://aws.amazon.com/s3/features/access-points/) - S3 Access Points simplify how you manage data access for your application set to your shared data sets on S3
+ - use cases
+    - static web site hosting
+    - backup
+    - data analytics
+ - uploading files to s3
+    - max size is 5 TB
+    - upload methods:
+        - console, cli, sdks
+    - when file size > 100 MB, use multipart upload
+ - **Storage classes**
     - S3 Standard
         - Stores data in a minimum of three Availability Zones
     - S3 Standard-Infrequent Access (S3 Standard-IA)
@@ -366,36 +427,44 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
         - Stores data in a single Availability Zone and lower cost
     - S3 Intelligent-Tiering
         - Ideal for data with unknown or changing access patterns
-- S3 Transfer Acceleration
+- **S3 Transfer Acceleration**
     - enables fast, easy, and secure transfers of files over long distances between a client and an Amazon S3 bucket
+    - [Amazon S3 Transfer Acceleration Speed Comparison Tool](https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html)
 - **Replication** enables automatic, asynchronous copying of objects across Amazon S3 buckets.
     - Both source and destination buckets must have versioning enabled
-    - Buckets that are configured for object replication can be owned by the same AWS account or by different accounts. You can copy objects between different AWS Regions or within the same Region.     
-### S3 Glacier
+    - Buckets that are configured for object replication can be owned by the same AWS account or by different accounts. You can copy objects between different AWS Regions or within the same Region.
+- event triggers     
+- [**S3 Versioning**](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html)
+    - disabled by default
+    - once enabled cannot disable. can only suspend it
+    - provides data protection
+    - consider storage cost, as each version counts towards ur quota
+- S3 Cross-Region Replication (CRR) is used to copy objects across Amazon S3 buckets in different AWS Regions
+    - must have versioning enabled
+- S3 intelligent monitoring
+- [Lifecycle management](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) 
+    - create rules to automatically transfer objects between different storage classes
+- costs
+    - GBs per month
+    - transer OUT to other regions
+#### [S3 Glacier](https://docs.aws.amazon.com/amazonglacier/latest/dev/amazon-glacier-getting-started.html)
 - archiving service
 - [glacier data retreival time](https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html)
     - expedited: 1-5 mins
     - standard 3-5 hours
     - bulk; 5-12 hours
+- S3 Standard-IA
+- S3 One Zone-IA
 - S3 Glacier
     - Low-cost storage designed for data archiving
     - Able to retrieve objects within a few minutes to hours
 - S3 Glacier Deep Archive
     - Lowest-cost object storage class ideal for archiving
     - Able to retrieve objects within 12 hours
-- Allows [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html)
-- S3 Cross-Region Replication (CRR) is used to copy objects across Amazon S3 buckets in different AWS Regions
-- must have versioning enabled
-- Bucket policies are used for controlling access to buckets
-- Lifecycle management 
-- create rules to automatically transfer objects between different storage classes
-- https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
-
-### Storage fees
-- With the standard storage class you pay a **per GB/month storage fee**, and **data transfer out** (data egress) of S3
-- Standard-IA and One Zone-IA have a minimum capacity charge per object. 
-- Standard-IA, One Zone-IA, and Glacier also have a retrieval fee. You don’t pay for data into S3 under any storage class.
-
+- Storage fees
+    - With the standard storage class you pay a **per GB/month storage fee**, and **data transfer out** (data egress) of S3
+    - Standard-IA and One Zone-IA have a minimum capacity charge per object. 
+    - Standard-IA, One Zone-IA, and Glacier also have a retrieval fee. You don’t pay for data into S3 under any storage class.
 
 ## AWS Storage Gateway
 - **hybrid cloud storage** service that gives you **on-premises** access to virtually unlimited cloud storage
@@ -409,17 +478,21 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
         - Hybrid cloud block storage with local caching
         
 ### EFS - Elastic File System
-- file storage
+- file storage - for linux workloads
 - EFS file systems store data across multiple Availability Zones.
 - mutliple resources can access the same data at the same time
 - only linux based AMI
 - automatically scales
+- NFSv4 protocol
+- amazon FSx (windows workloads)
+- amazon FSx (Lustre workloads) - HPC - High performance
 
 ## Databases
 
-- **Amazon RDS - RelationAL Database Service**
+- managed vs unmanaged
+- **Amazon RDS - Relational Database Service**
     - https://aws.amazon.com/rds/
-    - managed DB by AWS
+    - fully managed DB by AWS
         - Postgress, MySQL, mariadb, oracle, ms sql, Aurora (aws db)
     - Automatic backup
     - DB snapshots - triggerd by user
@@ -450,11 +523,18 @@ Amazon Elastic Container Registry (ECR) is a fully managed container registry th
         - Automatically grows; 10GB increments
         - up to 15 replicas
         - aurora serverless - only runs when u need it
-- **DynamoDB**
+- **[DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)**
     - serverless db
     - offers flexible schema and can easily handle **unstructured data**.
     - nonrelational; nosql key/value db
     - highly scalable
+        - [adatpive capacity](https://aws.amazon.com/blogs/database/how-amazon-dynamodb-adaptive-capacity-accommodates-uneven-data-access-patterns-or-why-what-you-know-about-dynamodb-might-be-outdated/)
+        - hot partition
+    - table = collection of data elements
+    - data elements stored as attributes
+    - item = a collection of attributes
+    - [partition keys](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
+    - [RCU](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html) - ready capacity unit / eventually consistent vs strongly consistent
 - Additional database services
     - **Amazon DynamoDB Accelerator (DAX)** is an in-memory cache for DynamoDB. 
     - **Netptune**
@@ -683,6 +763,11 @@ Security and Compliance is a shared responsibility between AWS and the customer.
     - IAM roles are ideal for situations in which access to services or resources needs to be granted temporarily, instead of long-term.  
 - IAM Federation; for big enterprises
     - uses SAML Standard (AD)
+- **[STS Identify Broker Process](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html)**
+    - AWS Security Token Service (AWS STS) 
+- SAML
+- [Amazon Cognito](https://aws.amazon.com/cognito/)
+    -  lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.
 - use IAM **access advisor** to identify unnecessary permisons that hab been assigned to users
 - Best practices:
     - root user acct should never be used/shared
@@ -813,7 +898,10 @@ Serverless is the native architecture of the cloud that enables you to shift mor
 https://aws.amazon.com/serverless/
 - exmples
     - AWS Lambda and Amazon API Gateway are both app-facing components of the AWS Serverless infrastructure
-
+- [Amazon API Gateway](https://aws.amazon.com/api-gateway/) 
+    - fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale
+    - prevents exposing endpoints
+    
 ## Migration
 - AWS Migration Hub
 - AWS Database Migration Service
@@ -947,42 +1035,6 @@ use [AWS Organizations](https://aws.amazon.com/organizations) to consolidate and
     - prod system down respons time : less than 1 hour
     - business-critical sytem down: **less than 15 mins**
 
-## AWS Elastic Beanstalk
-- easy-to-use service for deploying and scaling web applications and services
-- You can upload code directly using a **ZIP or WAR file**. You can also use a Git archive.
-- uses Cloud Formation in backend
-- platform as a service; managed service; developer responsible for code only
-- beansstalk itself is free; pay for resources that make up app
-- Beanstalk lifecycle policy
-    - beanstak can store 1000 application versions
-- Elastic Beanstalk - Single  Docker; not ECS uses EC2
-- https://aws.amazon.com/elasticbeanstalk/
-- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
-- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
-
-
-### AWS Systems Manager
-- gives you visibility and control of your infrastructure on AWS. 
-- get operational insights of AWS resources
-- Systems Manager Command documents let you automate tasks against your instance operating
-systems, such as patching, installing software, enforcing configuration settings, and
-collecting inventory
-- get operational insights of its resources to quickly identify any issues that might impact applications using those resources.
-- provides a unified user interface so you can view operational data from multiple AWS services and **allows you to automate operational tasks** across your AWS resources.
-
-### AWS OpsWorks
-- configuration management service that provides managed instances of Chef and Puppet.
-
-### AWS CloudFormation
-
-- infrastruce as code
-- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
--  AWS CloudFormation template formats - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
-- [stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-- AWS TaskCat
-    - tests cloudformation templates
-
-
 ## Amazon Neptune
 - a fast, reliable, fully-managed **graph database** service that makes it easy to build and run applications that work with highly connected datasets. 
 
@@ -1023,8 +1075,9 @@ collecting inventory
 
 ## Machine Learning
 
-- **Amazon Rekognition**
+- [**Amazon Rekognition**](https://aws.amazon.com/rekognition/?nc=sn&loc=1&blog-cards.sort-by=item.additionalFields.createdDate&blog-cards.sort-order=desc)
     - Automate your image and video analysis with machine learning.
+    - can blur faces in images
 
 - **Amazon SageMaker**
     - fully-managed platform that enables developers and data scientists to quickly and easily build, train, and deploy **machine learning** models at any scale
@@ -1040,6 +1093,13 @@ collecting inventory
 - **Comprehend**
     - NLP (Natural Lauguage Processing)
 
+## Caching
+
+### [Elastic Cache](https://aws.amazon.com/elasticache/)
+ - in-memory data store, compatible with Redis or Memcached. 
+ - lazy loading
+ - TTL
+
 ## Internet of Things
 
 ### AWS IoT Core 
@@ -1048,27 +1108,103 @@ collecting inventory
 ##  Amazon WorkSpaces 
   - a managed, secure cloud desktop service 
   
-## AWS Quick Starts 
-- help you deploy popular technologies on AWS, based on AWS best practices for security and high availability
-- rapidly deploy a popular IT solution and start using it immediately.
 
-## Automation Tools
-- AWS Elastic beanstalk - deoploy code to cluod
-- opswork - mange infrastructure
-- cloudformation - define infrastructure
+## Automation
 
+## AWS Elastic Beanstalk
+- easy-to-use service for deploying and scaling web applications and services
+- You can upload code directly using a **ZIP or WAR file**. You can also use a Git archive.
+- uses Cloud Formation in backend
+- platform as a service; managed service; developer responsible for code only
+- beansstalk itself is free; pay for resources that make up app
+- Beanstalk lifecycle policy
+    - beanstak can store 1000 application versions
+- Elastic Beanstalk - Single  Docker; not ECS uses EC2
+- https://aws.amazon.com/elasticbeanstalk/
+- deployment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+- [Tutorials](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
+
+
+
+## [CloudFormation](https://aws.amazon.com/cloudformation/) 
+- define infrastructure as code (IaC)
+- similiar to [Terraform](https://www.terraform.io/intro/index.html)
+- declarative way of outling your AWS infrastructure using YAML/JSON; YAML is better for CF
+-  [AWS CloudFormation template formats](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html)
+- change set
+- [Stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+    - collection of AWS resources that you can manage as a single unit
+    - deleting stack deletes all services started by stack
+- [AWS CloudFormation Designer (Designer)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/working-with-templates-cfn-designer.html)
+    - graphic tool for creating, viewing, and modifying AWS CloudFormation templates
+    - allows converstion between YAML and JSON
+- AWS TaskCat
+    - tests cloudformation templates
+
+### **AWS Quick Starts** 
+  - help you deploy popular technologies on AWS, based on AWS best practices for security and high availability
+  - rapidly deploy a popular IT solution and start using it immediately.
+
+### AWS Systems Manager
+- gives you visibility and control of your infrastructure on AWS.
+- agent based service 
+- get operational insights of AWS resources
+- Systems Manager Command documents let you automate tasks against your instance operating
+systems, such as patching, installing software, enforcing configuration settings, and
+collecting inventory
+- get operational insights of its resources to quickly identify any issues that might impact applications using those resources.
+- provides a unified user interface so you can view operational data from multiple AWS services and **allows you to automate operational tasks** across your AWS resources.
+
+### AWS OpsWorks
+- **configuration management service** that provides managed instances of **Chef and Puppet**.
+    
 ## Benefits of using the AWS Managed Services
 - manages the daily operations of your AWS infrastructure in alignment with ITIL processes
 - provides a baseline integration with IT Service Management (ITSM) tools such as the ServiceNow platform.
 - Provides ongoing management of your AWS infrastructure so you can focus on your applications. 
 - designed to meet the needs of Enterprises that require stringent SLAs, adherence to corporate compliance, and integration with their systems and ITIL®-based processes.
 
+## [Amazon Managed Streaming for Apache Kafka (Amazon MSK)](https://aws.amazon.com/msk/)
+ - Fully managed, highly available, and secure Apache Kafka service
+
+## [Disaster Recovery](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html)
+
+- **Recovery Time Objective (RTO)** is defined by the organization. RTO is the maximum acceptable delay between the interruption of service and restoration of service. This determines what is considered an acceptable time window when service is unavailable.
+- **Recovery Point Objective (RPO)** is defined by the organization. RPO is the maximum acceptable amount of time since the last data recovery point. This determines what is considered an acceptable loss of data between the last recovery point and the interruption of service.
+- S3 CRR
+- point-in-time volume snapshots
+- AWS DataSync
+- AWS Backup
+- Network disaster recovery
+    - Route 53
+    - ELB
+    - VPC
+    - AWS Direct Connect
+- RDS
+    - snapshots
+    - read replicas with multi-AZ
+    - retain automated backups
+- DynamoDB
+    - backup tables
+    - point-in-time recovery
+- use automation quickly recover
+    - cloudformation
+    - beanstak
+    - opsworks
+- use aws [storage gateway](https://aws.amazon.com/storagegateway/) to back up on-premise data to AWS
+    - AWS Storage Gateway offers [file-based, volume-based, and tape-based](https://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html) storage solutions
+        - file-based
+        - volume-based
+            - Cached volumes 
+            - Stored volumes
+        - tape-based     
 ## Resources
 
 - Getting started: https://aws.amazon.com/getting-started/
 - [Hands-On](https://aws.amazon.com/getting-started/hands-on/)
 - [Break a Monolith Application into Microservices ](https://aws.amazon.com/getting-started/hands-on/break-monolith-app-microservices-ecs-docker-ec2/)
 - [Free tier info](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc)
+- [Ramp Up Guide - good info](Daily:https://zoom.us/meeting/attendee/tJwsduCupjgrG9YecrqrkrJmKpnVocr7foIP/ics?user_id=qLzHPhqoTnGMDrvSDaH7hA)
 - Documentation: https://docs.aws.amazon.com/
 - What's New with AWS? https://aws.amazon.com/new/?whats-new-content-all.sort-by=item.additionalFields.postDateTime&whats-new-content-all.sort-order=desc
 - Free Tier Monitoring: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html#free-budget
@@ -1101,3 +1237,5 @@ collecting inventory
  - [Testing](https://aws.amazon.com/blogs/devops/tag/testing/)
  - [DevSecOps](https://aws.amazon.com/blogs/security/tag/devsecops/)
     - [Definition](https://www.ibm.com/cloud/learn/devsecops)
+ - [Devops Blog](https://aws.amazon.com/blogs/devops/)
+    - [Integrating AWS Device Farm with your CI/CD pipeline to run cross-browser Selenium tests](https://aws.amazon.com/blogs/devops/integrating-aws-device-farm-with-ci-cd-pipeline-to-run-cross-browser-selenium-tests/)

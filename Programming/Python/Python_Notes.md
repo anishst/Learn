@@ -316,7 +316,89 @@ student = Student.query.get(<id>)
 
 to drop all db tables: ```db.drop_all()```
 
+## Django
 
+### Setup
+
+1. create virtual env: ```python -m venv venv```
+2. activate venv: ```source venv/Scripts/activate```; you can deactivate by: ```deactivate```
+3. install packages; 
+    - ```pip install django```
+    - ```pip freeze``` would show installed packages
+4. start main project: ```django-admin.py startproject mysite```; blog is the name I used; if command didn't work try without .py 
+5. cd to dir: ```cd mysite```
+6. migrate dbs: ```python manage.py migrate```
+7. run project: ```python manage.py runserver```
+8. open default by going to: http://localhost:8000/
+9. stop and create superuser:```winpty python manage.py createsuperuser```; follow command prompts
+10. run server and go to: http://localhost:8000/admin; should be able to login as admin. This completes initial setup
+
+### Model creation 3-step process:
+  - url 
+  - view
+  - template file
+
+
+repeat below for each app directory you want to add:
+
+
+1. create a blog dir : ```python manage.py startapp blog```
+2. add blog under mysite\mysite\settings.py file under INSTALLED_APPS list
+3. update mysite\mysite\urls.py
+    ```python
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', include('blog.urls')),
+        ]       
+    ```
+
+4. Write your first view:```mysite\blog\views.py```
+    ```python
+    def home(request):
+        return render(request, 'home.html', {})
+    ```
+5. update mysite\blog\urls.py
+    ```python
+    from django.urls import path
+    from . import views
+    
+    urlpatterns = [
+        path('', views.home, name="home"),
+    ]
+    ```
+6. add template html file: mysite\blog\templates\home.html
+7. re-run app and you should see home page updated with new home.html page
+
+### Create Blog Post Model
+1. create model: mysite\blog\models.py
+    ```python
+    class Post(models.Model):
+        title = models.CharField(max_length=255)
+        author = models.ForeignKey(User, on_delete=models.CASCADE)
+        body = models.TextField()
+    
+        def __str__(self):
+            return self.title + ' | ' + self.author
+    ```
+2. register model:mysite\blog\admin.py
+    ```python
+    from django.contrib import admin
+    from .models import Post
+    
+    # Register your models here.
+    admin.site.register(Post)
+    
+    ```
+3. migrate new model by running: 
+    1. ``` python manage.py makemigrations```
+    2. ```python manage.py migrate```
+4. run server to see changes and you should be able to manage posts now via admin panel
+
+### Django Shell Command example
+
+1. enter by: ```python manage.py shell```
+2. import model ex: ```from blog.models import Post```
+3. see all items: ```Post.objects.all().values()```
 
 ## My Favorite Python Libraries
 
