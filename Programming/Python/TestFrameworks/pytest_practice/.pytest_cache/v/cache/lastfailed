@@ -1,5 +1,9 @@
 {
   "pytest_example_parameters.py": true,
   "pytest_fixtures_db_example.py::test_with_sample_data2": true,
-  "test_pytest_assert_behavior.py::test_1": true
+  "test_pytest_assert_behavior.py::test_1": true,
+  "test_pytest_classbased.py::Test_URL::test_open_url[edge]": true,
+  "test_pytest_classbased.py::Test_URL::test_open_url[firefox]": true,
+  "test_pytest_classbased.py::Test_URL::test_open_url[ie]": true,
+  "test_pytest_classbased_simple.py": true
 }
