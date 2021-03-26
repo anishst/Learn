@@ -252,7 +252,17 @@ filt = df['Country'].isin(countries)
 df.loc[filt, 'Country']
 
 ```
+### Apply Method
 
+```python
+def times2(x):
+    return  x*2
+# use function 
+df['col1'].apply(times2)
+
+# using lamda
+df['col2'].apply(lambda x: x*2)
+```
 ### Grouping/Aggregating Data
 
 show values counts
@@ -295,7 +305,24 @@ df['full_name'] = df['first'] + ' ' + df['last']
 ```python
 df.drop(columns=['first','last'], inplace=True)
 ```
+### Map values
 
+```python
+my_vals = {"Withdrawal from CHASE CREDIT CRD AUTOPAY": "Chase Credit Card" ,
+          "Withdrawal from SPRINT ACHBILLPAY": "Sprint",
+          "Withdrawal from DOMINION ENERGY ELEC BILL": "Dominion",
+          "Withdrawal from LOANDEPOT LOAN PAYMT": "LoanDepot",
+          "Withdrawal to INGATS ": "Transfer to Savings",
+          "Withdrawal from VANGUARD BUY INVESTMENT": "Vanguard Investment",
+          "Deposit from ": " Paycheck"}
+# replace values using dictionary values; if not found fill using existing values
+df["Transaction Description"] = df["Transaction Description"].map(my_vals).fillna(df["Transaction Description"])
+```
+
+### add new column conditional
+```python
+df["Category"] = ["Credit Card" if 'Credit Card' in x else "" for x in  df["Transaction Description"] ]
+```
 ### Split a column value to 2 columns
 
 ```python
@@ -304,7 +331,12 @@ df['full_name'].str.split('', expand=True)
 
 ### Unique Value
 
+```python
 df['colname'].unique()
+# get num of unique value
+df['colname'].nunique()
+```
+
 
 ### Drop duplicates
 
@@ -410,6 +442,27 @@ https://www.youtube.com/watch?v=N6hyN6BW6ao&list=PL-osiE80TeTsWmV9i9c58mdDCSskIF
 ## Pandas stat
 - df1.hist() - histogram of all columns
 - df1.corr() correlation
+
+## [Pivot table](https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html)
+
+```python
+import numpy as np
+import pandas as pd
+df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
+                         "bar", "bar", "bar", "bar"],
+                   "B": ["one", "one", "one", "two", "two",
+                         "one", "one", "two", "two"],
+                   "C": ["small", "large", "large", "small",
+                         "small", "large", "small", "small",
+                         "large"],
+                   "D": [1, 2, 2, 3, 3, 4, 5, 6, 7],
+                   "E": [2, 4, 5, 5, 6, 6, 8, 9, 9]})
+df
+table = pd.pivot_table(df, values='D', index=['A', 'B'],
+                    columns=['C'], aggfunc=np.sum)
+table
+
+```
 
 <a name="#matplot"></a>
 ## Matplotlib
