@@ -1,19 +1,39 @@
-import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk
+from tkinter import *
 
-root = tk.Tk()
-root.geometry('600x400')
 
-root.grid_columnconfigure(0, weight=1)
-root.grid_rowconfigure(0, weight=1)
 
-text = tk.Text(root, height=8)
-text.grid(row=0, column=0, sticky="EW")
-text.insert("1.0", "Please enter some...")
 
-text_scroll = ttk.Scrollbar(root,orient="vertical", command=text.yview())
-text_scroll.grid(row=0, column=1, sticky="ns")
-text["vscrollcommand"] = text_scroll.set
+window = Tk()
+window.geometry('100x150')
 
-root.mainloop()
+# Choosing selectmode as multiple
+# for selecting multiple options
+list = Listbox(window, selectmode="multiple")
+
+# Widget expands horizontally and
+# vertically by assigning both to
+# fill option
+list.pack(expand=YES, fill="both")
+
+# Taking a list 'x' with the items
+# as languages
+x = ["C", "C++", "Java", "Python", "R",
+     "Go", "Ruby", "JavaScript", "Swift"]
+
+for each_item in range(len(x)):
+    list.insert(END, x[each_item])
+
+    # coloring alternative lines of listbox
+    list.itemconfig(each_item,
+                    bg="yellow" if each_item % 2 == 0 else "cyan")
+
+choices = []
+def printValues():
+    for name\
+            , var in choices.items():
+        print("%s: %s" % (name, var.get()))
+
+greet_button = Button(window,text="Greet", command=printValues)
+greet_button.pack()
+
+window.mainloop()
