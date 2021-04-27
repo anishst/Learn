@@ -85,6 +85,7 @@ git fetch | use to get updates from remote
 git rm -r --cached *folder* | removes folders already in git
 git rm --cached *file*  | removes file already in git
 git checkout *file* | allows you to get the latest copy from master branch
+git reset -- *filefoldername*| removes from git repo
 
 
 ### Cloning
