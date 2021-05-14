@@ -237,6 +237,8 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |ps ax | grep test.py|find the process and its process Id|
 |kill PID| kill PID|
 |sudo nohup python3 python_web_server.py > webserver.log|send output to log file|
+|**Zip file related**||
+| sudo tar -xvzf tarballfile.tgz| extract tar ball file|
 
 
 
