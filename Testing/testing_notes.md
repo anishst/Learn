@@ -27,7 +27,7 @@ code; first safety net for catching bugs; should run fast; automate
 - regression testing
 - smoke testing/stability
 
-# <a name="#perf_testing"></a>Performance Testing
+# <a name="perf_testing"></a>Performance Testing
 
 - time takes to respond
 - resource utilization
