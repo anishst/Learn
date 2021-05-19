@@ -1,7 +1,7 @@
 # Testing
 
-[API Testing](#api_testing)
-
+- [API Testing](#api_testing)
+- [Performance Testing](#perf_testing)
 ## Levels of Testing
 - **Unit testing** - verify your code at the level of functions and classes; positive and negative testing at the lowest layers of 
 code; first safety net for catching bugs; should run fast; automate
@@ -27,7 +27,7 @@ code; first safety net for catching bugs; should run fast; automate
 - regression testing
 - smoke testing/stability
 
-# Performance Testing
+# <a name="#perf_testing"></a>Performance Testing
 
 - time takes to respond
 - resource utilization
@@ -55,7 +55,9 @@ code; first safety net for catching bugs; should run fast; automate
   - capacity testing
     - how many users can use meeting requirements
 
-
+## Tools
+- Jmeter
+  - [my notes](https://github.com/anishst/Learn/blob/master/Testing/Performance/jmeter_notes.md)
 # BDD
 
 Behavior-driven development (or BDD) is an agile software development technique that encourages collaboration between developers, QA and non-technical or business participants in a software project. 
