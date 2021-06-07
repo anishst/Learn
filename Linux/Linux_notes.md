@@ -190,6 +190,7 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |**Processes and Job Control**||
 |ps|display process status; ps -e; ps -f ps -u|
 |ps -u username| display user's processes|
+|ps aux pipe grep bash|get process info|
 |command &|start command in background|
 |Ctrl-c|kill foreground process|
 |Ctrl-z|suspends foreground process|
@@ -199,6 +200,8 @@ Grep -  stands for ‘global regular expression print’. This command is used f
 |fuser 80/tcp|show process related to port 80|
 |ps -ef &#124;  grep "python3 python_web_server.py" &#124; awk '{print $2}' |get PID of a python file running|
 |ps -ef  &#124; grep "python3 python_web_server.py"  &#124; awk '{print $2}'  &#124; xargs sudo kill -9 | get PID of a python file running and kill all ids|
+|ss -ntaupe|find processes listening on a port|
+|netstat -t|lists TCP connections|
 |**Cron service**||
 |* * * * * command|crontab format|
 |0 7 * * 1 rpt | run every monday at 7:00|

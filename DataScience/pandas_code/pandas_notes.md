@@ -19,14 +19,18 @@ pd.set_option('display.max_rows', 10)
 |```df.fillna(0)```|Replace null values| 
 | ```df.dtypes```| shows data types|
 | ```df.values.tolist()``` | convert df to list|
-| ```df['Transaction Date']=pd.to_datetime(df['Transaction Date'])``` | convert date col into dattime type|
 |```df['col'].sum()```| print sum of a column|
 |```df.loc[df['col'].str.contains('text'), 'Transaction Amount'].sum()```| sum based on value of another column|
 |```df[df['col'].str.contains('text')].sum()```| sum based on value of another column|
+| **Data Read**||
+|```pd.read_excel(r'data/Payments.xlsx', sheet_name='Payments', usecols='A:E', header=0)```| read using columns #|
+| ```df['Transaction Date']=pd.to_datetime(df['Transaction Date'])``` | convert date col into dattime type|data type|
 | **Group By**||
 |```df.groupby(['column1', 'column2']).sum()```|get sum|
 |```df.groupby(['column1', 'column2']).count()```|get count|
 |```df.groupby(df['Transaction Date'].dt.strftime('%B'))['Transaction Amount'].sum().sort_values()```| group by month|
+|df.groupby("Description")['Amount'].mean()|grouby amount|
+|df.groupby("Member Name")['Amount'].mean().plot(kind='bar')|plot groupby|
 | **Data Slicing**||
 |df[-1:]|get last row|
 |df.iloc[-1]|get last row using iloc|
@@ -39,10 +43,17 @@ pd.set_option('display.max_rows', 10)
 | df[df.filter(items=["1990"] < 10)]| only column 1990 population density < 10 |
 | df.filter(like="8", axis=1)| Years containing an 8|
 | df.filter(regex="a$", axis=0)| countries ending with a|
+|df[df['Description'].str.contains('COSTCO', na=False)]|filter example|
+|filter = (costco_df["Debit"] > 300)||
 | **Data Sorting**||
 | df.sort_values(by=["1990"])| sort by   1990|
 |```df.drop_duplicates()```| drop duplicates|
 |```df.join(lookup_dataframe, on='column_name')```|join your main dataframe df with another dataframe, we’ll call this lookup_dataframe on the column 'column_name' which appears in both df and lookup_dataframe. The join method has the default parameter how='left'|
+|costco_df.loc['2020'].sort_values(by=["Date"], ascending=False)|get 2020 data sort by descending order|
+|costco_df.loc['2020'].mean()| average bill for 2020|
+|**Format**||
+|```df[['Category', 'Amount']].groupby(['Category'], as_index=False).mean().style.highlight_max(color='red')```| data highlight|
+|```df[['Category', 'Amount']].groupby(['Category'], as_index=False).mean().style.highlight_max(color='red').highlight_min(color='blue')```|[https://towardsdatascience.com/10-examples-to-master-pandas-styler-408ea794e91](highlight max and min)|
 | **Plotting**||
 |```data['Gender'].value_counts().plot.pie()```| plot pie char of gender|
 |```data['Neighbourhood'].value_counts(sort=True).nlargest(10).plot.bar()```|bar chart|
