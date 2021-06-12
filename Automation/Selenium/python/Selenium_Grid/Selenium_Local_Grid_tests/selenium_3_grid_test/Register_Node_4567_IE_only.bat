@@ -1,0 +1,1 @@
+java -Dwebdriver.ie.driver=C:/SeleniumSetup/webdriver/IEDriverServer.exe -jar selenium-server-standalone-3.141.59.jar -port 4567 -role node -hub http://localhost:4444/grid/register -browser "browserName=internet explorer,version=11,platform=WINDOWS,maxInstances=5"

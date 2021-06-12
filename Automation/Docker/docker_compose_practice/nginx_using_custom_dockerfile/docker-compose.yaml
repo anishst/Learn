@@ -1,0 +1,15 @@
+# testing using nginx and apache
+version: '3'
+
+services:
+  proxy:
+    build: 
+      context:  . # build in current directory
+      dockerfile: nginx.Dockerfile # custom build file
+    image: nginx-custom # custom name
+    ports:
+      - '80:80' # expose 80 on host and sent to 80 in container
+  web:
+    image: httpd  # apache server
+    volumes: 
+      - //c/Users/anish/Downloads:/usr/local/apache2/htdocs # bind mount source files

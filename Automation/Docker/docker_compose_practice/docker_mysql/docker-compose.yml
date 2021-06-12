@@ -1,0 +1,17 @@
+# https://medium.com/better-programming/setting-up-mysql-database-in-a-docker-d6c69a3e9afe
+
+version: '3'
+
+services:
+
+  mysql-development:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: helloworld
+      MYSQL_DATABASE: testapp
+    ports:
+      - "3308:3306"
+  admin:    
+    image: adminer    
+    ports:      
+      - "8081:8080"      

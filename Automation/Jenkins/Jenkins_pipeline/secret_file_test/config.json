@@ -1,0 +1,8 @@
+{
+  "browser": "Chrome",
+  "implicit_wait": 10,
+  "testproject_projectname": "TestProject Python SDK Example",
+  "testproject_token": "",
+  "covid_file": "postman_files/covid_cases.json",
+  "Password": "passwordtest"
+}

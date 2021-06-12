@@ -1,0 +1,17 @@
+version: "3.7"
+
+services: 
+    jenkins:
+        # image: jenkins/jenkins:lts
+        image: jenkinsmasterwithplugins:latest # using custom image
+        environment: 
+            # skip setupwizard
+            JAVA_OPTS: -Djenkins.install.runSetupWizard=false
+            # set default admin user/pwd
+            JENKINS_OPTS: --argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin, --argumentsRealm.roles.admin=admin
+        ports: 
+            - 9000:8080
+        volumes: 
+            - /var/run/docker.sock:/var/run/docker.sock
+        build: 
+            context: .

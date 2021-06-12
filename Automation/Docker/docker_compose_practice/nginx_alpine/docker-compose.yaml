@@ -1,0 +1,14 @@
+# nginx and alpine services; this will download index.htm from nginx container and store in my folder
+version: "3"
+services: 
+    nginx: 
+        image: nginx
+        container_name: nginxContainer
+    alpine: 
+        image: alpine
+        working_dir: /myfolderincontainer
+        entrypoint: "wget nginx"
+        volumes: 
+            - .:/myfolderincontainer
+        depends_on: 
+            - nginx

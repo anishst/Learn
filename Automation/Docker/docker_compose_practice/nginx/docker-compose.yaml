@@ -1,0 +1,11 @@
+# testing using nginx and apache
+version: '3'
+
+services:
+  proxy:
+    restart: always # restart on failure
+    image: nginx
+    ports:
+      - '80:80' # expose 80 on host and sent to 80 in container
+  web:
+    image: httpd  # apache server

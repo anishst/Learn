@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "- [ax-core](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/puppeteer)\r - [demo example](https://www.deque.com/blog/accessibility-testing-for-the-mobile-web/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axe-core/puppeteer": "^4.1.1",
+    "axe-core": "^4.1.3",
+    "puppeteer": "^6.0.0"
+  }
+}

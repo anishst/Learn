@@ -1,0 +1,9 @@
+# https://github.com/cypress-io/cypress-example-docker-compose/blob/master/docker-compose.yml
+version: '3'
+services:
+ 
+  e2e:
+    image: cypress
+    build: .
+    container_name: cypress
+    command: npx cypress run

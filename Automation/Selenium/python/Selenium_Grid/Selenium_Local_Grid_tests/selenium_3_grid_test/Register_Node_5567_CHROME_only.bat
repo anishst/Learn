@@ -1,0 +1,1 @@
+java -Dwebdriver.ie.driver=C:/SeleniumSetup/webdriver/chromedriver.exe -jar selenium-server-standalone-3.141.59.jar -port 5567 -role node -hub http://localhost:4444/grid/register -browser "browserName=chrome,version=11,platform=WINDOWS,maxInstances=5"
