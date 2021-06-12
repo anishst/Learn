@@ -77,5 +77,5 @@ for item in query:
     print(item)
 
 # drop collection
-printer_collection.drop()
-print("\nDropped collection!")
+# printer_collection.drop()
+# print("\nDropped collection!")

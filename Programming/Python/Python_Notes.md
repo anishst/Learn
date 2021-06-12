@@ -41,6 +41,21 @@ for l1, l2, l3 in product(list1,list2, list3):
 
 https://medium.com/fintechexplained/advanced-python-itertools-library-the-gem-of-python-language-99da37dfcca2
 
+
+## Dictionaries
+
+### Merge two Dictionaries
+```python
+
+def merge(dic1,dic2):
+    dic3=dic1.copy()
+    dic3.update(dic2)
+    return dic3
+dic1={1:"hello", 2:"world"}
+dic2={3:"Python", 4:"Programming"}
+merge(dic1,dic2) # {1: 'hello', 2: 'world', 3: 'Python', 4: 'Programming'}
+```
+
 ### Enum
 
 https://medium.com/better-programming/enumerations-in-python-b01a1fb479de
